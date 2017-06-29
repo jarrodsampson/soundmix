@@ -11,7 +11,11 @@ export default function(props) {
                     <div key={i} className="col s12 m6 l4">
                         <div className="hotBox">
                             <div className="card hoverable">
-                                <p>{item.name}</p>
+                                <p>
+                                    <NavLink to={'/user/' + item.username}>
+                                        {item.name}
+                                    </NavLink>
+                                </p>
 
                                 <p>
                                     <img src={item.pictures.large} /></p>

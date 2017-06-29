@@ -25,7 +25,8 @@ const initialState = {
     },
     searchParamString: "",
     pageCount: 100,
-    offset: 0
+    offset: 0,
+    userDetails: {}
 };
 
 
@@ -46,6 +47,8 @@ const APIReducer = function(state = initialState, action) {
             return Object.assign({}, state, { searchResults: action.searchList });
         case types.GET_SEARCH_LIST_PARAMS_SUCCESS:
             return Object.assign({}, state, { searchParamString: action.searchString });
+        case types.GET_USER_DETAIL_SUCCESS:
+            return Object.assign({}, state, { userDetails: action.userDetail });
         default:
 
     }

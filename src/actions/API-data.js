@@ -36,6 +36,14 @@ export function getSearchParamSuccess(searchString) {
     };
 }
 
+export function getUserDetailSuccess(userDetail) {
+    return {
+        type: types.GET_USER_DETAIL_SUCCESS,
+        userDetail
+    };
+}
+
+
 
 export function getLatestByTagListSuccess(tagLatestList) {
     return {

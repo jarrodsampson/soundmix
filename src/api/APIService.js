@@ -65,6 +65,17 @@ export function searchByParams(params, offset, limit) {
         .catch((err) => console.log(''));
 }
 
+export function getUserDetail(id) {
+    return fetch("https://api.mixcloud.com/" + id)
+        .then(response => response.json())
+        .then(json => {
+            console.log("User Data", json);
+            store.dispatch(APIFunction.getUserDetailSuccess(json));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
 export function grabExtraData(url) {
     return fetch(url)
         .then(response => response.json())
