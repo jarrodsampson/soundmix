@@ -1,0 +1,12 @@
+.scrollTop {
+  position: fixed;
+  bottom: 20px;
+  right: 1em;
+  z-index: 996;
+  cursor: pointer;
+}
+
+.scrollTop i {
+  font-size: 20pt;
+  color: white;
+}
