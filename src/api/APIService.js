@@ -98,6 +98,17 @@ export function getUserCloudCasts(id) {
         .catch((err) => console.log(''));
 }
 
+export function getUserFeed(id) {
+    return fetch("https://api.mixcloud.com/" + id + "/feed/")
+        .then(response => response.json())
+        .then(json => {
+            console.log("User Feed Data", json);
+            //store.dispatch(APIFunction.getUserDetailSuccess(json));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
 export function getMixDetail(id) {
     return fetch("https://api.mixcloud.com/" + id)
         .then(response => response.json())

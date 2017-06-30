@@ -13,6 +13,7 @@ class UserDetail extends Component {
         APIService.getUserDetail(id);
         APIService.getUserPlaylists(id);
         APIService.getUserCloudCasts(id);
+        APIService.getUserFeed(id);
     }
 
     componentDidMount() {
