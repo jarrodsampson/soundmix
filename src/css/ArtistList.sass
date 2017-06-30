@@ -1,0 +1,54 @@
+.hotBoxContainer
+  position: relative
+  overflow: hidden
+  height: 300px
+  .imageContain
+    width: 300px
+    height: 300px
+    overflow: hidden
+    position: absolute
+    top: 0
+    left: 0
+  .mainImage
+    transition: all .2s ease-in-out
+    -webkit-transition: all .2s ease-in-out
+    -moz-transition: all .2s ease-in-out
+    transition-timing-function: cubic-bezier(1.28, -0.55, 0.265, 1.55)
+  &:hover .mainImage
+    -moz-transform: scale(1.2)
+    -webkit-transform: scale(1.2)
+    transform: scale(1.2)
+  .counts
+    div
+      display: inline-block
+      margin: 0 0.3em 0 0.3em
+      p span
+        position: relative
+        top: -5px
+        font-size: 14pt
+        margin: .3em
+    position: relative
+    top: -10px
+    right: 0
+  .tags
+    position: absolute
+    bottom: 0
+    right: 0
+    width: 571px
+    text-align: right
+  .postedTime
+    position: absolute
+    top: 0
+    left: 0
+    background: rgba(0, 0, 0, 0.6)
+    padding: .5em
+    time
+      color: white
+  .title
+    font-size: 22pt
+  .user
+    height: 80px
+    p
+      float: left
+    img
+      float: right

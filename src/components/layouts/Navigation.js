@@ -18,7 +18,7 @@ export default function(props) {
                         <li><NavLink to="/popular" activeClassName="activeV">Popular</NavLink></li>
                         <li><NavLink to="/hot" activeClassName="activeV">Hot</NavLink></li>
                         <li><NavLink to="#aboutModal">About</NavLink></li>
-                        <NavItem href="https://punkapi.com/documentation/v2" target="_blank" rel="noopener noreferrer">API</NavItem>
+                        <NavItem href="//www.mixcloud.com/developers/" target="_blank" rel="noopener noreferrer">API</NavItem>
                         <li><NavLink to="/search" activeClassName="activeV"><Icon>search</Icon></NavLink></li>
                     </Navbar>
                 </Headroom>

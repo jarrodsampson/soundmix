@@ -14,6 +14,7 @@ class Popular extends Component {
 
     getContent(offset, limit) {
         APIService.getPopularList(offset, limit);
+        window.scrollTo(0,0);
     }
 
     componentDidMount() {
@@ -30,7 +31,7 @@ class Popular extends Component {
 
     render() {
         return (
-            <div className="">
+            <div className="container center-align max-width">
                 <DocumentTitle title={"Popular - SoundMix"} />
 
                 <ReactPaginate previousLabel={"Previous"}

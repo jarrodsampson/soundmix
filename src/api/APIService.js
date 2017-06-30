@@ -76,6 +76,88 @@ export function getUserDetail(id) {
         .catch((err) => console.log(''));
 }
 
+export function getUserPlaylists(id) {
+    return fetch("https://api.mixcloud.com/" + id + "/playlists/")
+        .then(response => response.json())
+        .then(json => {
+            console.log("User Playlist Data", json);
+            //store.dispatch(APIFunction.getUserDetailSuccess(json));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
+export function getUserCloudCasts(id) {
+    return fetch("https://api.mixcloud.com/" + id + "/cloudcasts/")
+        .then(response => response.json())
+        .then(json => {
+            console.log("User Cloudcast Data", json);
+            //store.dispatch(APIFunction.getUserDetailSuccess(json));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
+export function getMixDetail(id) {
+    return fetch("https://api.mixcloud.com/" + id)
+        .then(response => response.json())
+        .then(json => {
+            console.log("Mix Data", json);
+            store.dispatch(APIFunction.getMixDetailSuccess(json));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
+export function getMixListeners(id) {
+    console.log("https://api.mixcloud.com/" + id + "/listeners/");
+    return fetch("https://api.mixcloud.com/" + id + "/listeners/?limit=50")
+        .then(response => response.json())
+        .then(json => {
+            console.log("Mix Listeners Data", json);
+            store.dispatch(APIFunction.getMixListenerSuccess(json));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
+export function getMixSimilar(id) {
+    console.log("https://api.mixcloud.com/" + id + "/similar/");
+    return fetch("https://api.mixcloud.com/" + id + "/similar/?limit=50")
+        .then(response => response.json())
+        .then(json => {
+            console.log("Mix Similar/Suggested Data", json);
+            store.dispatch(APIFunction.getMixSimilarSuccess(json));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
+export function getMixFavorite(id) {
+    console.log("https://api.mixcloud.com/" + id + "/favorites/");
+    return fetch("https://api.mixcloud.com/" + id + "/favorites/?limit=20")
+        .then(response => response.json())
+        .then(json => {
+            console.log("Mix Favorites Data", json);
+            store.dispatch(APIFunction.getMixFavoriteSuccess(json));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
+export function getTagSearch(tag, offset, limit) {
+    return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
+        .then(response => response.json())
+        .then(json => {
+            console.log("TagSearch Data", json);
+            store.dispatch(APIFunction.getTagSearchSuccess(json));
+            //store.dispatch(APIFunction.getSearchParamSuccess(params));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
+
 export function grabExtraData(url) {
     return fetch(url)
         .then(response => response.json())

@@ -22,7 +22,7 @@ class Discover extends Component {
     }
 
     handlePageClick = (data) => {
-        let selected = data.selected * 20;
+        //let selected = data.selected * 20;
         //console.log(selected);
 
         //this.getContent(selected, 20);
@@ -47,7 +47,7 @@ class Discover extends Component {
                                containerClassName={"pagination"}
                                subContainerClassName={"pages pagination"}
                                activeClassName={"active"} />
-                    <TagList data={this.props.discoverList.data} />
+                {/*<TagList data={this.props.discoverList.data} />*/}
                 <ReactPaginate previousLabel={"Previous"}
                                nextLabel={"Next"}
                                breakLabel={<a href="">...</a>}

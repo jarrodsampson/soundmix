@@ -10,3 +10,84 @@
   font-size: 20pt;
   color: white;
 }
+
+.side-nav {
+  min-height: 1000px;
+  z-index: 1002;
+}
+
+#sidenav-overlay {
+  z-index: 0 !important;
+}
+
+nav ul li a {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+.appRoot2 {
+  min-height:700px;
+}
+
+
+.max-width {
+  max-width:1200px;
+  margin:auto;
+}
+
+.min-height {
+  min-height: 570px;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.no-margin{
+  margin:0 !important;
+}
+
+.left-padding {
+  padding-left: .5em;
+}
+
+.pushDown {
+  margin-top:2em;
+}
+
+.pushDownLarge {
+  margin-top:3em;
+}
+
+.owl-carousel {
+  z-index: 0 !important;
+}
+
+.max-width {
+  max-width:1200px;
+  margin:auto;
+}
+
+
+input[type="text"]:focus:not([readonly]), input[type="password"]:focus:not([readonly]), input[type="email"]:focus:not([readonly]), input[type="url"]:focus:not([readonly]), input[type="time"]:focus:not([readonly]), input[type="date"]:focus:not([readonly]), input[type="datetime"]:focus:not([readonly]), input[type="datetime-local"]:focus:not([readonly]), input[type="tel"]:focus:not([readonly]), input[type="number"]:focus:not([readonly]), input[type="search"]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid red !important;
+  box-shadow: 0 1px 0 0 red !important;
+}
+
+.activeV {
+  background:rgba(0,0,0,0.2);
+}
+
+iframe {
+  width:100%;
+  outline: none;
+  border: none;
+}
+
+@media(min-width:992px) {
+
+  nav .brand-logo {
+    padding-left: 1em;
+  }
+
+}

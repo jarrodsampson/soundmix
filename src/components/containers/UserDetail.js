@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import InfiniteScroll from 'redux-infinite-scroll';
-import DocumentTitle from 'react-document-title';
 import '../../css/Home.css';
 import '../../css/owl.carousel.min.css';
 import '../../css/owl.theme.default.min.css';
 import * as APIService from '../../api/APIService';
-import ReactPaginate from 'react-paginate';
 
 import UserDetailView from '../views/UserDetailView';
 
@@ -14,6 +11,8 @@ class UserDetail extends Component {
 
     getContent(id) {
         APIService.getUserDetail(id);
+        APIService.getUserPlaylists(id);
+        APIService.getUserCloudCasts(id);
     }
 
     componentDidMount() {
@@ -23,10 +22,8 @@ class UserDetail extends Component {
     render() {
         return (
             <div className="">
-                <div className="container">
-
+                <div className="">
                     <UserDetailView {...this.props.userDetails} goBack={APIService.goBack} />
-
                 </div>
             </div>
         );

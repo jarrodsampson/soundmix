@@ -18,7 +18,7 @@ export default function(props) {
                                 </p>
 
                                 <p>
-                                    <img src={item.pictures.large} /></p>
+                                    <img src={item.pictures.large} alt={item.name} /></p>
                             </div>
                         </div>
                     </div>

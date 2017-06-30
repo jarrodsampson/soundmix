@@ -43,6 +43,40 @@ export function getUserDetailSuccess(userDetail) {
     };
 }
 
+export function getMixDetailSuccess(mixDetail) {
+    return {
+        type: types.GET_MIX_DETAIL_SUCCESS,
+        mixDetail
+    };
+}
+
+export function getMixListenerSuccess(listenerList) {
+    return {
+        type: types.GET_MIX_LISTENERS_SUCCESS,
+        listenerList
+    };
+}
+
+export function getMixSimilarSuccess(similarList) {
+    return {
+        type: types.GET_MIX_SIMILAR_SUCCESS,
+        similarList
+    };
+}
+
+export function getMixFavoriteSuccess(favoriteList) {
+    return {
+        type: types.GET_MIX_FAVORITE_SUCCESS,
+        favoriteList
+    };
+}
+
+export function getTagSearchSuccess(tagList) {
+    return {
+        type: types.GET_TAG_LIST_SUCCESS,
+        tagList
+    };
+}
 
 
 export function getLatestByTagListSuccess(tagLatestList) {

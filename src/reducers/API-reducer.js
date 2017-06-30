@@ -26,7 +26,29 @@ const initialState = {
     searchParamString: "",
     pageCount: 100,
     offset: 0,
-    userDetails: {}
+    userDetails: {
+        pictures: {},
+        cover_pictures: {}
+    },
+    mixDetails: {
+        pictures: {},
+        user: {
+            pictures: {}
+        },
+        tags: []
+    },
+    listeners: {
+        data: []
+    },
+    suggestions: {
+        data: []
+    },
+    favoriteList: {
+        data: []
+    },
+    tagSearchList: {
+        data: []
+    }
 };
 
 
@@ -49,6 +71,16 @@ const APIReducer = function(state = initialState, action) {
             return Object.assign({}, state, { searchParamString: action.searchString });
         case types.GET_USER_DETAIL_SUCCESS:
             return Object.assign({}, state, { userDetails: action.userDetail });
+        case types.GET_MIX_DETAIL_SUCCESS:
+            return Object.assign({}, state, { mixDetails: action.mixDetail });
+        case types.GET_MIX_LISTENERS_SUCCESS:
+            return Object.assign({}, state, { listeners: action.listenerList });
+        case types.GET_MIX_SIMILAR_SUCCESS:
+            return Object.assign({}, state, { suggestions: action.similarList });
+        case types.GET_MIX_FAVORITE_SUCCESS:
+            return Object.assign({}, state, { favoriteList: action.favoriteList });
+        case types.GET_TAG_LIST_SUCCESS:
+            return Object.assign({}, state, { tagSearchList: action.tagList });
         default:
 
     }

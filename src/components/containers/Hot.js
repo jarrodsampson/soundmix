@@ -14,6 +14,7 @@ class Hot extends Component {
 
     getContent(offset, limit) {
         APIService.getHotList(offset, limit);
+        window.scrollTo(0,0);
     }
 
     componentDidMount() {
@@ -30,7 +31,7 @@ class Hot extends Component {
 
     render() {
         return (
-            <div className="">
+            <div className="container center-align max-width">
                 <DocumentTitle title={"Hot - SoundMix"} />
 
                     <ReactPaginate previousLabel={"Previous"}
