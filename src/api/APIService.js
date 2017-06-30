@@ -81,7 +81,7 @@ export function getUserPlaylists(id) {
         .then(response => response.json())
         .then(json => {
             console.log("User Playlist Data", json);
-            //store.dispatch(APIFunction.getUserDetailSuccess(json));
+            store.dispatch(APIFunction.getUserPlaylistSuccess(json));
             return json;
         })
         .catch((err) => console.log(''));
@@ -92,7 +92,7 @@ export function getUserCloudCasts(id) {
         .then(response => response.json())
         .then(json => {
             console.log("User Cloudcast Data", json);
-            //store.dispatch(APIFunction.getUserDetailSuccess(json));
+            store.dispatch(APIFunction.getUserCloudCastsSuccess(json));
             return json;
         })
         .catch((err) => console.log(''));
@@ -103,7 +103,7 @@ export function getUserFeed(id) {
         .then(response => response.json())
         .then(json => {
             console.log("User Feed Data", json);
-            //store.dispatch(APIFunction.getUserDetailSuccess(json));
+            store.dispatch(APIFunction.getUserFeedSuccess(json));
             return json;
         })
         .catch((err) => console.log(''));

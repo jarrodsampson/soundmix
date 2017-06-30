@@ -24,7 +24,13 @@ class UserDetail extends Component {
         return (
             <div className="">
                 <div className="">
-                    <UserDetailView {...this.props.userDetails} goBack={APIService.goBack} />
+                    <UserDetailView
+                        {...this.props.userDetails}
+                        goBack={APIService.goBack}
+                        playlists={this.props.playlists.data}
+                        cloudcasts={this.props.cloudcasts.data}
+                        feed={this.props.feed.data}
+                    />
                 </div>
             </div>
         );
@@ -35,7 +41,10 @@ const mapStateToProps = function(store) {
 
     //console.log("Store", store.api.hotList.data);
     return {
-        userDetails: store.api.userDetails
+        userDetails: store.api.userDetails,
+        playlists: store.api.playlists,
+        cloudcasts: store.api.cloudcasts,
+        feed: store.api.feed
     };
 };
 

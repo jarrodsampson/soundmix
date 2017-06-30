@@ -30,6 +30,15 @@ const initialState = {
         pictures: {},
         cover_pictures: {}
     },
+    playlists: {
+            data: []
+    },
+    cloudcasts: {
+            data: []
+    },
+    feed: {
+            data: []
+    },
     mixDetails: {
         pictures: {},
         user: {
@@ -81,6 +90,12 @@ const APIReducer = function(state = initialState, action) {
             return Object.assign({}, state, { favoriteList: action.favoriteList });
         case types.GET_TAG_LIST_SUCCESS:
             return Object.assign({}, state, { tagSearchList: action.tagList });
+        case types.GET_USER_PLAYLISTS_SUCCESS:
+            return Object.assign({}, state, { playlists: action.playlists });
+        case types.GET_USER_CLOUDCASTS_SUCCESS:
+            return Object.assign({}, state, { cloudcasts: action.cloudcasts });
+        case types.GET_USER_FEED_SUCCESS:
+            return Object.assign({}, state, { feed: action.feed });
         default:
 
     }

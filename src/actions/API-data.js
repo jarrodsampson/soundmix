@@ -43,6 +43,27 @@ export function getUserDetailSuccess(userDetail) {
     };
 }
 
+export function getUserPlaylistSuccess(playlists) {
+    return {
+        type: types.GET_USER_PLAYLISTS_SUCCESS,
+        playlists
+    };
+}
+
+export function getUserCloudCastsSuccess(cloudcasts) {
+    return {
+        type: types.GET_USER_CLOUDCASTS_SUCCESS,
+        cloudcasts
+    };
+}
+
+export function getUserFeedSuccess(feed) {
+    return {
+        type: types.GET_USER_FEED_SUCCESS,
+        feed
+    };
+}
+
 export function getMixDetailSuccess(mixDetail) {
     return {
         type: types.GET_MIX_DETAIL_SUCCESS,
