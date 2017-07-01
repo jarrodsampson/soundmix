@@ -7,6 +7,7 @@ export function getHotList(offset, limit) {
         .then(json => {
             console.log("Hot List", json.data);
             store.dispatch(APIFunction.getHotListSuccess(json));
+            store.dispatch(APIFunction.setLoadingStatus(false));
             return json;
         })
         .catch((err) => console.log(''));
@@ -18,6 +19,7 @@ export function getNewList(offset, limit) {
         .then(json => {
             console.log("New List", json.data);
             store.dispatch(APIFunction.getNewListSuccess(json));
+            store.dispatch(APIFunction.setLoadingStatus(false));
             return json;
         })
         .catch((err) => console.log(''));
@@ -29,24 +31,20 @@ export function getPopularList(offset, limit) {
         .then(json => {
             console.log("Popular List", json.data);
             store.dispatch(APIFunction.getPopularListSuccess(json));
+            store.dispatch(APIFunction.setLoadingStatus(false));
             return json;
         })
         .catch((err) => console.log(''));
 }
 
-export function searchByTag(tag) {
-    return fetch("https://api.mixcloud.com/discover/" + tag + "/?metadata=1")
+export function searchByTag(tag, offset, limit) {
+    return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("Tag Data", json.metadata.connections);
+            console.log("Tag Data", json);
 
-            store.dispatch(
-                APIFunction.getLatestByTagListSuccess(
-                    grabExtraData(
-                        json.metadata.connections.latest
-                    )
-                )
-            );
+            store.dispatch(APIFunction.getTagDiscoverySuccess(json));
+            store.dispatch(APIFunction.getSearchParamSuccess(tag));
 
             return json;
         })
@@ -71,6 +69,7 @@ export function getUserDetail(id) {
         .then(json => {
             console.log("User Data", json);
             store.dispatch(APIFunction.getUserDetailSuccess(json));
+            store.dispatch(APIFunction.setLoadingStatus(false));
             return json;
         })
         .catch((err) => console.log(''));
@@ -87,23 +86,25 @@ export function getUserPlaylists(id) {
         .catch((err) => console.log(''));
 }
 
-export function getUserCloudCasts(id) {
-    return fetch("https://api.mixcloud.com/" + id + "/cloudcasts/")
+export function getUserCloudCasts(id, offset, limit) {
+    return fetch("https://api.mixcloud.com/" + id + "/cloudcasts?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Cloudcast Data", json);
             store.dispatch(APIFunction.getUserCloudCastsSuccess(json));
+            store.dispatch(APIFunction.setLoadingStatus(false));
             return json;
         })
         .catch((err) => console.log(''));
 }
 
-export function getUserFeed(id) {
-    return fetch("https://api.mixcloud.com/" + id + "/feed/")
+export function getUserFeed(id, offset, limit) {
+    return fetch("https://api.mixcloud.com/" + id + "/feed/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Feed Data", json);
             store.dispatch(APIFunction.getUserFeedSuccess(json));
+            store.dispatch(APIFunction.setLoadingStatus(false));
             return json;
         })
         .catch((err) => console.log(''));
@@ -115,6 +116,7 @@ export function getMixDetail(id) {
         .then(json => {
             console.log("Mix Data", json);
             store.dispatch(APIFunction.getMixDetailSuccess(json));
+            store.dispatch(APIFunction.setLoadingStatus(false));
             return json;
         })
         .catch((err) => console.log(''));

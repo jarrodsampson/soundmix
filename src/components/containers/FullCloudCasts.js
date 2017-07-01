@@ -1,41 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import DocumentTitle from 'react-document-title';
-import '../../css/Home.css';
-import '../../css/owl.carousel.min.css';
-import '../../css/owl.theme.default.min.css';
 import * as APIService from '../../api/APIService';
+
 import ReactPaginate from 'react-paginate';
 
-import ArtistList from '../views/ArtistList';
+import CloudCastList from '../views/CloudCastList';
 
-class Hot extends Component {
+class FullCloudCasts extends Component {
 
-    getContent(offset, limit) {
-        APIService.getHotList(offset, limit);
+    getContent(id, offset, limit) {
+        APIService.getUserCloudCasts(id, offset, limit);
         window.scrollTo(0,0);
     }
 
     componentDidMount() {
-        this.getContent(0, 20);
+        this.getContent(this.props.match.params.id, 0, 20);
     }
 
     handlePageClick = (data) => {
         let selected = data.selected * 20;
-        //console.log(selected);
-
-        this.getContent(selected, 20);
-
+        this.getContent(this.props.match.params.id, selected, 20);
     };
 
     render() {
         return (
-            <div className="container center-align max-width">
-                <DocumentTitle title={"Hot - SoundMix"} />
+            <div className="center-align">
+                <div className="">
+
                     <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
+                        <CloudCastList
+                            isLoading = {this.props.isLoading}
+                            goBack={APIService.goBack}
+                            cloudcasts={this.props.cloudcasts.data}
+                        />
 
-                        <ArtistList data={this.props.hotList.data} />
                         <ReactPaginate previousLabel={"Previous"}
                                        nextLabel={"Next"}
                                        breakLabel={<a href="">...</a>}
@@ -46,9 +45,9 @@ class Hot extends Component {
                                        onPageChange={this.handlePageClick}
                                        containerClassName={"pagination"}
                                        subContainerClassName={"pages pagination"}
-                                       activeClassName={"active"}
-                        />
+                                       activeClassName={"active"} />
                     </div>
+                </div>
             </div>
         );
     }
@@ -56,13 +55,11 @@ class Hot extends Component {
 
 const mapStateToProps = function(store) {
 
-    //console.log("Store", store.api);
+    console.log("Store", store.api);
     return {
-        hotList: store.api.hotList,
-        pageCount: store.api.pageCount,
-        offset: store.api.offset,
+        cloudcasts: store.api.cloudcasts,
         isLoading: store.api.isLoading
     };
 };
 
-export default connect(mapStateToProps)(Hot);
+export default connect(mapStateToProps)(FullCloudCasts);

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import InfiniteScroll from 'redux-infinite-scroll';
 import DocumentTitle from 'react-document-title';
 import '../../css/ArtistList.css';
 import '../../css/owl.carousel.min.css';
@@ -34,30 +33,21 @@ class New extends Component {
             <div className="container center-align max-width">
                 <DocumentTitle title={"New - SoundMix"} />
 
-                <ReactPaginate previousLabel={"Previous"}
-                               nextLabel={"Next"}
-                               breakLabel={<a href="">...</a>}
-                               breakClassName={"break-me"}
-                               pageCount={this.props.pageCount}
-                               marginPagesDisplayed={0}
-                               pageRangeDisplayed={7}
-                               onPageChange={this.handlePageClick}
-                               containerClassName={"pagination"}
-                               subContainerClassName={"pages pagination"}
-                               activeClassName={"active"} />
-                <ArtistList data={this.props.newList.data} />
-                <ReactPaginate previousLabel={"Previous"}
-                               nextLabel={"Next"}
-                               breakLabel={<a href="">...</a>}
-                               breakClassName={"break-me"}
-                               pageCount={this.props.pageCount}
-                               marginPagesDisplayed={0}
-                               pageRangeDisplayed={7}
-                               onPageChange={this.handlePageClick}
-                               containerClassName={"pagination"}
-                               subContainerClassName={"pages pagination"}
-                               activeClassName={"active"} />
-
+                <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
+                <div className={this.props.isLoading ? 'hidden' : ''}>
+                    <ArtistList data={this.props.newList.data} />
+                    <ReactPaginate previousLabel={"Previous"}
+                                   nextLabel={"Next"}
+                                   breakLabel={<a href="">...</a>}
+                                   breakClassName={"break-me"}
+                                   pageCount={this.props.pageCount}
+                                   marginPagesDisplayed={0}
+                                   pageRangeDisplayed={7}
+                                   onPageChange={this.handlePageClick}
+                                   containerClassName={"pagination"}
+                                   subContainerClassName={"pages pagination"}
+                                   activeClassName={"active"} />
+                </div>
 
             </div>
         );
@@ -66,11 +56,12 @@ class New extends Component {
 
 const mapStateToProps = function(store) {
 
-    //console.log("Store", store.api.hotList.data);
+    //console.log("Store", store.api);
     return {
         newList: store.api.newList,
         pageCount: store.api.pageCount,
-        offset: store.api.offset
+        offset: store.api.offset,
+        isLoading: store.api.isLoading
     };
 };
 

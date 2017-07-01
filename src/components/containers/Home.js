@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import InfiniteScroll from 'redux-infinite-scroll';
 import DocumentTitle from 'react-document-title';
 import '../../css/Home.css';
 import '../../css/owl.carousel.min.css';
 import '../../css/owl.theme.default.min.css';
 import * as APIService from '../../api/APIService';
 import { Parallax } from 'react-parallax';
-import ReactPaginate from 'react-paginate';
+//import ReactPaginate from 'react-paginate';
 
-import ArtistList from '../views/ArtistList';
+//import ArtistList from '../views/ArtistList';
 
 class Home extends Component {
 
@@ -35,32 +34,8 @@ class Home extends Component {
                 <DocumentTitle title={"SoundMix - The Best Artists"} />
                 <div className="searchHolder">
                     <Parallax className="banner" bgImage="assets/images/beerBg.jpg" strength={400} />
-                    <div className="searchBox">
-                        <h4 className="searchTextHeader">Search for What You Love</h4>
-                    </div>
-                    <ReactPaginate previousLabel={"Previous"}
-                                   nextLabel={"Next"}
-                                   breakLabel={<a href="">...</a>}
-                                   breakClassName={"break-me"}
-                                   pageCount={this.props.pageCount}
-                                   marginPagesDisplayed={0}
-                                   pageRangeDisplayed={7}
-                                   onPageChange={this.handlePageClick}
-                                   containerClassName={"pagination"}
-                                   subContainerClassName={"pages pagination"}
-                                   activeClassName={"active"} />
-                    <ArtistList data={this.props.hotList.data} />
-                    <ReactPaginate previousLabel={"Previous"}
-                                   nextLabel={"Next"}
-                                   breakLabel={<a href="">...</a>}
-                                   breakClassName={"break-me"}
-                                   pageCount={this.props.pageCount}
-                                   marginPagesDisplayed={0}
-                                   pageRangeDisplayed={7}
-                                   onPageChange={this.handlePageClick}
-                                   containerClassName={"pagination"}
-                                   subContainerClassName={"pages pagination"}
-                                   activeClassName={"active"} />
+
+
                 </div>
 
             </div>
@@ -70,7 +45,7 @@ class Home extends Component {
 
 const mapStateToProps = function(store) {
 
-    //console.log("Store", store.api.hotList.data);
+    //console.log("Store", store.api);
     return {
         hotList: store.api.hotList,
         pageCount: store.api.pageCount,

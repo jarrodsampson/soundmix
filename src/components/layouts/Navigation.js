@@ -13,12 +13,13 @@ export default function(props) {
             <main>
 
                 <Headroom>
-                    <Navbar brand='SoundMix' right className="red" options={{ closeOnClick: true }}>
+                    <Navbar brand='SoundMix' right className="deep-purple darken-1" options={{ closeOnClick: true }}>
                         <li><NavLink to="/new" activeClassName="activeV">New</NavLink></li>
                         <li><NavLink to="/popular" activeClassName="activeV">Popular</NavLink></li>
                         <li><NavLink to="/hot" activeClassName="activeV">Hot</NavLink></li>
                         <li><NavLink to="#aboutModal">About</NavLink></li>
                         <NavItem href="//www.mixcloud.com/developers/" target="_blank" rel="noopener noreferrer">API</NavItem>
+                        <li><NavLink to="/discover" activeClassName="activeV">Discover</NavLink></li>
                         <li><NavLink to="/search" activeClassName="activeV"><Icon>search</Icon></NavLink></li>
                     </Navbar>
                 </Headroom>
@@ -51,8 +52,8 @@ export default function(props) {
                 <div className="container">
                     <div className="row">
                         <div className="col l6 s12">
-                            <h5 className="white-text">Berr.IO</h5>
-                            <p className="grey-text text-lighten-4">A search application through Brewdog's expansive back catalogue of beer.</p>
+                            <h5 className="white-text">SoundMix</h5>
+                            <p className="grey-text text-lighten-4">Find awesome cloudcast roaming the world. Right now.</p>
                         </div>
                         <div className="col l4 offset-l2 s12">
                             <h5 className="white-text">About The Developer</h5>
@@ -67,7 +68,7 @@ export default function(props) {
                         </div>
                     </div>
                 </div>
-                <div className="footer-copyright red">
+                <div className="footer-copyright deep-purple darken-1">
                     <div className="container">
                         © 2017 Planlodge
                         <a className="grey-text text-lighten-4 right" href="//planlodge.com" target="_blank" rel="noopener noreferrer">Portfolio</a>

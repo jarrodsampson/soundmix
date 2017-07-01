@@ -8,23 +8,19 @@ const initialState = {
         data: []
     },
     popularList: {
-        data: []
-    },
-    discoverList: {
-        popular: {},
-        latest: {
-            data: [
-                {
-                    "name":"mark"
-                }
-            ]
+        data: [],
+        paging: {
+            next: ""
         }
+    },
+    discoverTagList: {
+        data: []
     },
     searchResults: {
       data: []
     },
     searchParamString: "",
-    pageCount: 100,
+    pageCount: 10,
     offset: 0,
     userDetails: {
         pictures: {},
@@ -57,7 +53,8 @@ const initialState = {
     },
     tagSearchList: {
         data: []
-    }
+    },
+    isLoading: true
 };
 
 
@@ -96,6 +93,10 @@ const APIReducer = function(state = initialState, action) {
             return Object.assign({}, state, { cloudcasts: action.cloudcasts });
         case types.GET_USER_FEED_SUCCESS:
             return Object.assign({}, state, { feed: action.feed });
+        case types.GET_TAG_DISCOVER_LIST_SUCCESS:
+            return Object.assign({}, state, { discoverTagList: action.tagDiscoverList });
+        case types.GET_LOADING_STATUS:
+            return Object.assign({}, state, { isLoading: action.status });
         default:
 
     }

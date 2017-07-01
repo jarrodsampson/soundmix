@@ -1,3 +1,9 @@
+body {
+  background: #ecf0f1;
+}
+
+.hidden { display:none; }
+
 .scrollTop {
   position: fixed;
   bottom: 20px;
@@ -68,14 +74,41 @@ nav ul li a {
   margin:auto;
 }
 
-
 input[type="text"]:focus:not([readonly]), input[type="password"]:focus:not([readonly]), input[type="email"]:focus:not([readonly]), input[type="url"]:focus:not([readonly]), input[type="time"]:focus:not([readonly]), input[type="date"]:focus:not([readonly]), input[type="datetime"]:focus:not([readonly]), input[type="datetime-local"]:focus:not([readonly]), input[type="tel"]:focus:not([readonly]), input[type="number"]:focus:not([readonly]), input[type="search"]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid red !important;
-  box-shadow: 0 1px 0 0 red !important;
+  border-bottom: 1px solid #5e35b1 !important;
+  box-shadow: 0 1px 0 0 #5e35b1 !important;
+}
+
+.buttonColor {
+  background: #5e35b1;
 }
 
 .activeV {
   background:rgba(0,0,0,0.2);
+}
+
+.pagination li.active {
+  background-color: #9575cd;
+}
+
+.pagination li:hover {
+  background-color: #9575cd;
+}
+
+.pagination li:hover a{
+  color:white;
+}
+
+.pagination li.active:hover {
+  background-color: #5e35b1;
+}
+
+.pagination {
+  cursor:pointer;
+}
+
+a {
+  color: #5e35b1;
 }
 
 iframe {

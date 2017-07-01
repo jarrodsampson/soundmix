@@ -36,6 +36,7 @@ class MixDetail extends Component {
                         favorites={this.props.favoriteList.data}
                         goBack={APIService.goBack}
                         onClickAlbum={this.albumClick}
+                        isLoading = {this.props.isLoading}
                     />
 
                 </div>
@@ -51,7 +52,8 @@ const mapStateToProps = function(store) {
         mixDetails: store.api.mixDetails,
         listeners: store.api.listeners,
         suggestions: store.api.suggestions,
-        favoriteList: store.api.favoriteList
+        favoriteList: store.api.favoriteList,
+        isLoading: store.api.isLoading
     };
 };
 

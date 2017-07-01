@@ -1,0 +1,14 @@
+
+.coverPhoto {
+    max-width:100%;
+}
+
+.feedBox .card .card-content {
+    min-height:205px;
+}
+
+.feedBox .card p {
+    position:absolute;
+    bottom:1em;
+    left:2em;
+}

@@ -13,7 +13,7 @@ class DiscoverForm extends Component {
 
     handleSubmit(e) {
         console.log(e.discoverText);
-        APIService.searchByTag(e.discoverText);
+        APIService.searchByTag(e.discoverText, 0, 20);
         //window.location.replace("/search/" + e.discoverText);
     }
 
@@ -23,7 +23,7 @@ class DiscoverForm extends Component {
         return (
             <form onSubmit={handleSubmit(this.handleSubmit)}>
                 <Field name="discoverText" component="input" type="text" placeholder="Type In A Tag" {...discoverText} />
-                <Button className="red" type="submit"><Icon>search</Icon></Button>
+                <Button className="buttonColor" type="submit"><Icon>search</Icon></Button>
             </form>
 
         );

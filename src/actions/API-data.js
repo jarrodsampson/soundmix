@@ -100,9 +100,16 @@ export function getTagSearchSuccess(tagList) {
 }
 
 
-export function getLatestByTagListSuccess(tagLatestList) {
+export function getTagDiscoverySuccess(tagDiscoverList) {
     return {
-        type: types.GET_TAG_LATEST_LIST_SUCCESS,
-        tagLatestList
+        type: types.GET_TAG_DISCOVER_LIST_SUCCESS,
+        tagDiscoverList
+    };
+}
+
+export function setLoadingStatus(status) {
+    return {
+        type: types.GET_LOADING_STATUS,
+        status
     };
 }

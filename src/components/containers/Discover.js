@@ -8,24 +8,23 @@ import '../../css/owl.theme.default.min.css';
 import * as APIService from '../../api/APIService';
 import ReactPaginate from 'react-paginate';
 
-import TagList from '../views/search/TagList';
+import ArtistList from '../views/ArtistList';
 import DiscoverForm from '../layouts/DiscoverForm';
 
 class Discover extends Component {
 
-    getContent(offset, limit) {
-        APIService.getNewList(offset, limit);
+    getContent(tag, offset, limit) {
+        APIService.searchByTag(tag, offset, limit);
+        window.scrollTo(0,0);
     }
 
-    componentDidMount() {
-        //this.getContent(0, 20);
-    }
+    componentDidMount() {}
 
     handlePageClick = (data) => {
-        //let selected = data.selected * 20;
+        let selected = data.selected * 20;
         //console.log(selected);
 
-        //this.getContent(selected, 20);
+        this.getContent(this.props.searchParamString, selected, 20);
 
     };
 
@@ -34,32 +33,24 @@ class Discover extends Component {
             <div className="">
                 <DocumentTitle title={"Discover - SoundMix"} />
 
-                <DiscoverForm onSubmit={this.submit} />
+                <div className="container">
+                    <DiscoverForm onSubmit={this.submit} />
+                </div>
 
-                <ReactPaginate previousLabel={"Previous"}
-                               nextLabel={"Next"}
-                               breakLabel={<a href="">...</a>}
-                               breakClassName={"break-me"}
-                               pageCount={this.props.pageCount}
-                               marginPagesDisplayed={0}
-                               pageRangeDisplayed={7}
-                               onPageChange={this.handlePageClick}
-                               containerClassName={"pagination"}
-                               subContainerClassName={"pages pagination"}
-                               activeClassName={"active"} />
-                {/*<TagList data={this.props.discoverList.data} />*/}
-                <ReactPaginate previousLabel={"Previous"}
-                               nextLabel={"Next"}
-                               breakLabel={<a href="">...</a>}
-                               breakClassName={"break-me"}
-                               pageCount={this.props.pageCount}
-                               marginPagesDisplayed={0}
-                               pageRangeDisplayed={7}
-                               onPageChange={this.handlePageClick}
-                               containerClassName={"pagination"}
-                               subContainerClassName={"pages pagination"}
-                               activeClassName={"active"} />
-
+                <div className="center-align">
+                    <ArtistList data={this.props.discoverTagList.data} />
+                    <ReactPaginate previousLabel={"Previous"}
+                                   nextLabel={"Next"}
+                                   breakLabel={<a href="">...</a>}
+                                   breakClassName={"break-me"}
+                                   pageCount={this.props.pageCount}
+                                   marginPagesDisplayed={0}
+                                   pageRangeDisplayed={7}
+                                   onPageChange={this.handlePageClick}
+                                   containerClassName={"pagination"}
+                                   subContainerClassName={"pages pagination"}
+                                   activeClassName={"active"} />
+                    </div>
 
             </div>
         );
@@ -70,7 +61,8 @@ const mapStateToProps = function(store) {
 
     console.log("Store", store.api);
     return {
-        discoverList: store.api.discoverList.latest,
+        discoverTagList: store.api.discoverTagList,
+        searchParamString: store.api.searchParamString,
         pageCount: store.api.pageCount,
         offset: store.api.offset
     };

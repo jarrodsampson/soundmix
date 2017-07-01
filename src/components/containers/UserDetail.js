@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../../css/Home.css';
+import '../../css/UserDetail.css';
 import '../../css/owl.carousel.min.css';
 import '../../css/owl.theme.default.min.css';
 import * as APIService from '../../api/APIService';
@@ -13,7 +13,7 @@ class UserDetail extends Component {
         APIService.getUserDetail(id);
         APIService.getUserPlaylists(id);
         APIService.getUserCloudCasts(id);
-        APIService.getUserFeed(id);
+        APIService.getUserFeed(id, 0, 20);
     }
 
     componentDidMount() {
@@ -22,10 +22,11 @@ class UserDetail extends Component {
 
     render() {
         return (
-            <div className="">
+            <div className="center-align">
                 <div className="">
                     <UserDetailView
                         {...this.props.userDetails}
+                        isLoading = {this.props.isLoading}
                         goBack={APIService.goBack}
                         playlists={this.props.playlists.data}
                         cloudcasts={this.props.cloudcasts.data}
@@ -39,12 +40,13 @@ class UserDetail extends Component {
 
 const mapStateToProps = function(store) {
 
-    //console.log("Store", store.api.hotList.data);
+    console.log("Store", store.api);
     return {
         userDetails: store.api.userDetails,
         playlists: store.api.playlists,
         cloudcasts: store.api.cloudcasts,
-        feed: store.api.feed
+        feed: store.api.feed,
+        isLoading: store.api.isLoading
     };
 };
 

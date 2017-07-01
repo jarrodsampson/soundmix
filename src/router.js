@@ -19,6 +19,9 @@ import Search from './components/containers/Search';
 import UserDetail from './components/containers/UserDetail';
 import MixDetail from './components/containers/MixDetail';
 
+import FullFeed from './components/containers/FullFeed';
+import FullCloudCasts from './components/containers/FullCloudCasts';
+
 export default (
             <Router>
                 <ScrollToTop>
@@ -28,10 +31,12 @@ export default (
                             <Route exact path="/hot" component={Hot}/>
                             <Route exact path="/popular" component={Popular}/>
                             <Route exact path="/new" component={New}/>
+                            <Route exact path="/search" component={Search}/>
                             <Route exact path="/discover" component={Discover}/>
                             <Route exact path="/tag/:id" component={TagSearch}/>
-                            <Route exact path="/search" component={Search}/>
                             <Route exact path="/user/:id" component={UserDetail}/>
+                            <Route exact path="/feed/:id" component={FullFeed}/>
+                            <Route exact path="/cloudcasts/:id" component={FullCloudCasts}/>
                             <Route exact path="/mix/:username/:slug" component={MixDetail}/>
                             <Redirect from="*" to="/" />
                         </Switch>
