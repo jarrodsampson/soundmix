@@ -110,6 +110,42 @@ export function getUserFeed(id, offset, limit) {
         .catch((err) => console.log(''));
 }
 
+export function getUserFollowers(id, offset, limit) {
+    return fetch("https://api.mixcloud.com/" + id + "/followers/?limit=" + limit + "&offset=" + offset)
+        .then(response => response.json())
+        .then(json => {
+            console.log("User Follower Data", json);
+            store.dispatch(APIFunction.getUserFollowersSuccess(json));
+            store.dispatch(APIFunction.setLoadingStatus(false));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
+export function getUserFollowing(id, offset, limit) {
+    return fetch("https://api.mixcloud.com/" + id + "/following/?limit=" + limit + "&offset=" + offset)
+        .then(response => response.json())
+        .then(json => {
+            console.log("User Following Data", json);
+            store.dispatch(APIFunction.getUserFollowingSuccess(json));
+            store.dispatch(APIFunction.setLoadingStatus(false));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
+export function getUserFavorites(id, offset, limit) {
+    return fetch("https://api.mixcloud.com/" + id + "/favorites/?limit=" + limit + "&offset=" + offset)
+        .then(response => response.json())
+        .then(json => {
+            console.log("User Favorites Data", json);
+            store.dispatch(APIFunction.getUserFavoritesSuccess(json));
+            store.dispatch(APIFunction.setLoadingStatus(false));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
 export function getMixDetail(id) {
     return fetch("https://api.mixcloud.com/" + id)
         .then(response => response.json())

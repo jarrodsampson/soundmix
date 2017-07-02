@@ -4,12 +4,12 @@ import * as APIService from '../../api/APIService';
 
 import ReactPaginate from 'react-paginate';
 
-import FeedList from '../views/FeedList';
+import FollowerList from '../views/FollowerList';
 
-class FullFeed extends Component {
+class FullFollowing extends Component {
 
     getContent(id, offset, limit) {
-        APIService.getUserFeed(id, offset, limit);
+        APIService.getUserFollowing(id, offset, limit);
         window.scrollTo(0,0);
     }
 
@@ -29,10 +29,10 @@ class FullFeed extends Component {
 
                     <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
-                        <FeedList
+                        <FollowerList
                             isLoading = {this.props.isLoading}
                             goBack={APIService.goBack}
-                            feed={this.props.feed.data}
+                            followers={this.props.following.data}
                         />
 
                         <ReactPaginate previousLabel={"Previous"}
@@ -57,9 +57,9 @@ const mapStateToProps = function(store) {
 
     console.log("Store", store.api);
     return {
-        feed: store.api.feed,
+        following: store.api.following,
         isLoading: store.api.isLoading
     };
 };
 
-export default connect(mapStateToProps)(FullFeed);
+export default connect(mapStateToProps)(FullFollowing);

@@ -40,7 +40,7 @@ export default function (props) {
                                     <div className="">
                                         <p>
                                             <Icon>message</Icon>
-                                            <span>{props.cloudcast_count}</span>
+                                            <NavLink to={"/cloudcasts/" + props.username}><span>{props.cloudcast_count}</span></NavLink>
                                         </p>
                                     </div>
                                     <div className="">
@@ -52,19 +52,19 @@ export default function (props) {
                                     <div className="">
                                         <p>
                                             <Icon>star</Icon>
-                                            <span>{props.favorite_count}</span>
+                                            <NavLink to={"/favorites/" + props.username}><span>{props.favorite_count}</span></NavLink>
                                         </p>
                                     </div>
                                     <div className="">
                                         <p>
                                             <Icon>perm_identity</Icon>
-                                            <span>{props.following_count}</span>
+                                            <NavLink to={"/following/" + props.username}><span>{props.following_count}</span></NavLink>
                                         </p>
                                     </div>
                                     <div className="">
                                         <p>
                                             <Icon>repeat</Icon>
-                                            <span>{props.follower_count}</span>
+                                            <NavLink to={"/followers/" + props.username}><span>{props.follower_count}</span></NavLink>
                                         </p>
                                     </div>
                                 </div>

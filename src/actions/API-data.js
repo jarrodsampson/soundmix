@@ -64,6 +64,27 @@ export function getUserFeedSuccess(feed) {
     };
 }
 
+export function getUserFollowersSuccess(followers) {
+    return {
+        type: types.GET_USER_FOLLOWERS_SUCCESS,
+        followers
+    };
+}
+
+export function getUserFollowingSuccess(following) {
+    return {
+        type: types.GET_USER_FOLLOWING_SUCCESS,
+        following
+    };
+}
+
+export function getUserFavoritesSuccess(favorites) {
+    return {
+        type: types.GET_USER_FAVORITES_SUCCESS,
+        favorites
+    };
+}
+
 export function getMixDetailSuccess(mixDetail) {
     return {
         type: types.GET_MIX_DETAIL_SUCCESS,

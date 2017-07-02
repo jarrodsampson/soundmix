@@ -21,6 +21,9 @@ import MixDetail from './components/containers/MixDetail';
 
 import FullFeed from './components/containers/FullFeed';
 import FullCloudCasts from './components/containers/FullCloudCasts';
+import FullFollowers from './components/containers/FullFollowers';
+import FullFollowing from './components/containers/FullFollowing';
+import FullFavorites from './components/containers/FullFavorites';
 
 export default (
             <Router>
@@ -36,6 +39,9 @@ export default (
                             <Route exact path="/tag/:id" component={TagSearch}/>
                             <Route exact path="/user/:id" component={UserDetail}/>
                             <Route exact path="/feed/:id" component={FullFeed}/>
+                            <Route exact path="/favorites/:id" component={FullFavorites}/>
+                            <Route exact path="/followers/:id" component={FullFollowers}/>
+                            <Route exact path="/following/:id" component={FullFollowing}/>
                             <Route exact path="/cloudcasts/:id" component={FullCloudCasts}/>
                             <Route exact path="/mix/:username/:slug" component={MixDetail}/>
                             <Redirect from="*" to="/" />

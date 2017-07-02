@@ -35,6 +35,12 @@ const initialState = {
     feed: {
             data: []
     },
+    followers: {
+            data: []
+    },
+    following: {
+            data: []
+    },
     mixDetails: {
         pictures: {},
         user: {
@@ -93,6 +99,12 @@ const APIReducer = function(state = initialState, action) {
             return Object.assign({}, state, { cloudcasts: action.cloudcasts });
         case types.GET_USER_FEED_SUCCESS:
             return Object.assign({}, state, { feed: action.feed });
+        case types.GET_USER_FOLLOWERS_SUCCESS:
+            return Object.assign({}, state, { followers: action.followers });
+        case types.GET_USER_FOLLOWING_SUCCESS:
+            return Object.assign({}, state, { following: action.following });
+        case types.GET_USER_FAVORITES_SUCCESS:
+            return Object.assign({}, state, { favoriteList: action.favorites });
         case types.GET_TAG_DISCOVER_LIST_SUCCESS:
             return Object.assign({}, state, { discoverTagList: action.tagDiscoverList });
         case types.GET_LOADING_STATUS:
