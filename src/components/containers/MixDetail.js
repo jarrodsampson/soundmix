@@ -22,7 +22,7 @@ class MixDetail extends Component {
     }
 
     albumClick() {
-        this.getContent(this.props.match.params.id, 0, 20);
+        this.getContent(this.props.match.params.id, this.props.paginationConfig.offset, this.props.paginationConfig.limit);
     }
 
     render() {
@@ -56,7 +56,8 @@ const mapStateToProps = function(store) {
         suggestions: store.api.suggestions,
         favoriteList: store.api.favoriteList,
         commentsList: store.api.commentsList,
-        isLoading: store.api.isLoading
+        isLoading: store.api.isLoading,
+        paginationConfig: store.api.paginationConfig
     };
 };
 

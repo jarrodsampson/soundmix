@@ -24,7 +24,7 @@ class Search extends Component {
     handlePageClick = (data) => {
         let selected = data.selected * 20;
         //console.log(selected);
-        this.getContent(this.props.searchParamString, selected, 20);
+        this.getContent(this.props.searchParamString, selected, this.props.paginationConfig.limit);
 
     };
 
@@ -41,7 +41,7 @@ class Search extends Component {
                                nextLabel={"Next"}
                                breakLabel={<a href="">...</a>}
                                breakClassName={"break-me"}
-                               pageCount={this.props.pageCount}
+                               pageCount={this.props.paginationConfig.pageCount}
                                marginPagesDisplayed={0}
                                pageRangeDisplayed={7}
                                onPageChange={this.handlePageClick}
@@ -61,8 +61,7 @@ const mapStateToProps = function(store) {
     return {
         searchResults: store.api.searchResults,
         searchParamString: store.api.searchParamString,
-        pageCount: store.api.pageCount,
-        offset: store.api.offset
+        paginationConfig: store.api.paginationConfig
     };
 };
 

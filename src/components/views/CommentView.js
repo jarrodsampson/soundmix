@@ -4,7 +4,7 @@ import Truncate from 'react-truncate';
 
 // Using "Stateless Functional Components"
 export default function (props) {
-    console.log("Ps", props);
+    //console.log("Ps", props);
     return (
         <div className="row itemHolder">
             {props.commentList.map((item, i) => {

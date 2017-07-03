@@ -6,7 +6,7 @@ import {NavLink} from 'react-router-dom';
 
 // Using "Stateless Functional Components"
 export default function (props) {
-    console.log("Ps", props);
+    //console.log("Ps", props);
     return (
         <div className="row itemHolder">
             {props.mixList.map((item, i) => {

@@ -8,10 +8,7 @@ const initialState = {
         data: []
     },
     popularList: {
-        data: [],
-        paging: {
-            next: ""
-        }
+        data: []
     },
     discoverTagList: {
         data: []
@@ -20,8 +17,11 @@ const initialState = {
       data: []
     },
     searchParamString: "",
-    pageCount: 10,
-    offset: 0,
+    paginationConfig: {
+        pageCount: 10,
+        offset: 0,
+        limit: 21
+    },
     userDetails: {
         pictures: {},
         cover_pictures: {}

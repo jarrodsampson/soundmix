@@ -14,11 +14,11 @@ class Popular extends Component {
     }
 
     componentDidMount() {
-        this.getContent(0, 20);
+        this.getContent(this.props.paginationConfig.offset, this.props.paginationConfig.limit);
     }
 
     handlePageClick = (data) => {
-        let selected = data.selected * 20;
+        let selected = data.selected * this.props.paginationConfig.limit;
         //console.log(selected);
 
         this.getContent(selected, 20);
@@ -37,7 +37,7 @@ class Popular extends Component {
                                    nextLabel={"Next"}
                                    breakLabel={<a href="">...</a>}
                                    breakClassName={"break-me"}
-                                   pageCount={this.props.pageCount}
+                                   pageCount={this.props.paginationConfig.pageCount}
                                    marginPagesDisplayed={0}
                                    pageRangeDisplayed={7}
                                    onPageChange={this.handlePageClick}
@@ -56,8 +56,7 @@ const mapStateToProps = function(store) {
     console.log("Store", store.api);
     return {
         popularList: store.api.popularList,
-        pageCount: store.api.pageCount,
-        offset: store.api.offset,
+        paginationConfig: store.api.paginationConfig,
         isLoading: store.api.isLoading
     };
 };

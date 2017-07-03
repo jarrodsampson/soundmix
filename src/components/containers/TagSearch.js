@@ -18,19 +18,19 @@ class TagSearch extends Component {
     }
 
     componentDidMount() {
-        this.getContent(this.props.match.params.id, 0, 20);
+        this.getContent(this.props.match.params.id, this.props.paginationConfig.offset, this.props.paginationConfig.limit);
     }
 
     handlePageClick = (data) => {
         let selected = data.selected * 20;
         //console.log(selected);
 
-        this.getContent(this.props.match.params.id, selected, 20);
+        this.getContent(this.props.match.params.id, selected, this.props.paginationConfig.limit);
 
     };
 
     tagClick() {
-        this.getContent(this.props.match.params.id, 0, 20);
+        this.getContent(this.props.match.params.id, this.props.paginationConfig.offset, this.props.paginationConfig.limit);
     }
 
     render() {
@@ -45,7 +45,7 @@ class TagSearch extends Component {
                                nextLabel={"Next"}
                                breakLabel={<a href="">...</a>}
                                breakClassName={"break-me"}
-                               pageCount={this.props.pageCount}
+                               pageCount={this.props.paginationConfig.pageCount}
                                marginPagesDisplayed={0}
                                pageRangeDisplayed={7}
                                onPageChange={this.handlePageClick}
@@ -64,8 +64,7 @@ const mapStateToProps = function(store) {
     //console.log("Store", store.api.hotList.data);
     return {
         tagSearchList: store.api.tagSearchList,
-        pageCount: store.api.pageCount,
-        offset: store.api.offset
+        paginationConfig: store.api.paginationConfig
     };
 };
 

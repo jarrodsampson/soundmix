@@ -120,6 +120,11 @@ export default function (props) {
                     <h4>Recent Listeners</h4>
                     <div className="row">
                         <UserView userList={props.listeners} />
+                        {(() => {
+                            if (props.listeners.length === 0) {
+                                return <p>No Recent Listeners Found.</p>
+                            }
+                        })()}
                     </div>
                 </div>
 
@@ -128,6 +133,11 @@ export default function (props) {
                         <h4>Suggested For You</h4>
                         <div className="row">
                             <MixView mixList={props.suggestions} />
+                            {(() => {
+                                if (props.suggestions.length === 0) {
+                                    return <p>No Suggestions Found.</p>
+                                }
+                            })()}
                         </div>
                     </div>
                 </div>
@@ -136,6 +146,11 @@ export default function (props) {
                      <h4>Comments</h4>
                      <div className="row">
                           <CommentView commentList={props.comments} />
+                         {(() => {
+                             if (props.comments.length === 0) {
+                                 return <p>No Comments Found.</p>
+                             }
+                         })()}
                      </div>
                 </div>
 
@@ -143,6 +158,11 @@ export default function (props) {
                     <h4>Recent Likes</h4>
                     <div className="row">
                         <CarouselUserView list={props.favorites} />
+                        {(() => {
+                            if (props.favorites.length === 0) {
+                                return <p>No Likes Found.</p>
+                            }
+                        })()}
                     </div>
                 </div>
             </div>

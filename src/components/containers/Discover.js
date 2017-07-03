@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import InfiniteScroll from 'redux-infinite-scroll';
 import DocumentTitle from 'react-document-title';
 import '../../css/Home.css';
 import '../../css/owl.carousel.min.css';
@@ -24,7 +23,7 @@ class Discover extends Component {
         let selected = data.selected * 20;
         //console.log(selected);
 
-        this.getContent(this.props.searchParamString, selected, 20);
+        this.getContent(this.props.searchParamString, selected, this.props.paginationConfig.limit);
 
     };
 
@@ -43,7 +42,7 @@ class Discover extends Component {
                                    nextLabel={"Next"}
                                    breakLabel={<a href="">...</a>}
                                    breakClassName={"break-me"}
-                                   pageCount={this.props.pageCount}
+                                   pageCount={this.props.paginationConfig.pageCount}
                                    marginPagesDisplayed={0}
                                    pageRangeDisplayed={7}
                                    onPageChange={this.handlePageClick}
@@ -63,8 +62,7 @@ const mapStateToProps = function(store) {
     return {
         discoverTagList: store.api.discoverTagList,
         searchParamString: store.api.searchParamString,
-        pageCount: store.api.pageCount,
-        offset: store.api.offset
+        paginationConfig: store.api.paginationConfig
     };
 };
 

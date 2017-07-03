@@ -14,12 +14,12 @@ class FullCloudCasts extends Component {
     }
 
     componentDidMount() {
-        this.getContent(this.props.match.params.id, 0, 20);
+        this.getContent(this.props.match.params.id, this.props.paginationConfig.offset, this.props.paginationConfig.limit);
     }
 
     handlePageClick = (data) => {
         let selected = data.selected * 20;
-        this.getContent(this.props.match.params.id, selected, 20);
+        this.getContent(this.props.match.params.id, selected, this.props.paginationConfig.limit);
     };
 
     render() {
@@ -39,7 +39,7 @@ class FullCloudCasts extends Component {
                                        nextLabel={"Next"}
                                        breakLabel={<a href="">...</a>}
                                        breakClassName={"break-me"}
-                                       pageCount={this.props.pageCount}
+                                       pageCount={this.props.paginationConfig.pageCount}
                                        marginPagesDisplayed={0}
                                        pageRangeDisplayed={7}
                                        onPageChange={this.handlePageClick}
@@ -58,7 +58,8 @@ const mapStateToProps = function(store) {
     console.log("Store", store.api);
     return {
         cloudcasts: store.api.cloudcasts,
-        isLoading: store.api.isLoading
+        isLoading: store.api.isLoading,
+        paginationConfig: store.api.paginationConfig
     };
 };
 

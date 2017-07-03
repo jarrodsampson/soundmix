@@ -48,8 +48,7 @@ const mapStateToProps = function(store) {
     //console.log("Store", store.api);
     return {
         hotList: store.api.hotList,
-        pageCount: store.api.pageCount,
-        offset: store.api.offset
+        paginationConfig: store.api.paginationConfig
     };
 };
 
