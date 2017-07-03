@@ -14,6 +14,7 @@ class MixDetail extends Component {
         APIService.getMixListeners(id);
         APIService.getMixSimilar(id);
         APIService.getMixFavorite(id);
+        APIService.getMixComments(id);
     }
 
     componentDidMount() {
@@ -34,6 +35,7 @@ class MixDetail extends Component {
                         listeners={this.props.listeners.data}
                         suggestions={this.props.suggestions.data}
                         favorites={this.props.favoriteList.data}
+                        comments={this.props.commentsList.data}
                         goBack={APIService.goBack}
                         onClickAlbum={this.albumClick}
                         isLoading = {this.props.isLoading}
@@ -53,6 +55,7 @@ const mapStateToProps = function(store) {
         listeners: store.api.listeners,
         suggestions: store.api.suggestions,
         favoriteList: store.api.favoriteList,
+        commentsList: store.api.commentsList,
         isLoading: store.api.isLoading
     };
 };

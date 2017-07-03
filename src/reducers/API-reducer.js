@@ -41,6 +41,9 @@ const initialState = {
     following: {
             data: []
     },
+    listensList: {
+            data: []
+    },
     mixDetails: {
         pictures: {},
         user: {
@@ -58,6 +61,9 @@ const initialState = {
         data: []
     },
     tagSearchList: {
+        data: []
+    },
+    commentsList: {
         data: []
     },
     isLoading: true
@@ -91,6 +97,8 @@ const APIReducer = function(state = initialState, action) {
             return Object.assign({}, state, { suggestions: action.similarList });
         case types.GET_MIX_FAVORITE_SUCCESS:
             return Object.assign({}, state, { favoriteList: action.favoriteList });
+        case types.GET_MIX_COMMENTS_SUCCESS:
+            return Object.assign({}, state, { commentsList: action.comments });
         case types.GET_TAG_LIST_SUCCESS:
             return Object.assign({}, state, { tagSearchList: action.tagList });
         case types.GET_USER_PLAYLISTS_SUCCESS:
@@ -105,6 +113,8 @@ const APIReducer = function(state = initialState, action) {
             return Object.assign({}, state, { following: action.following });
         case types.GET_USER_FAVORITES_SUCCESS:
             return Object.assign({}, state, { favoriteList: action.favorites });
+        case types.GET_USER_LISTENS_SUCCESS:
+            return Object.assign({}, state, { listensList: action.listens });
         case types.GET_TAG_DISCOVER_LIST_SUCCESS:
             return Object.assign({}, state, { discoverTagList: action.tagDiscoverList });
         case types.GET_LOADING_STATUS:

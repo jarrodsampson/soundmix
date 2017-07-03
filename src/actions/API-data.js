@@ -85,6 +85,13 @@ export function getUserFavoritesSuccess(favorites) {
     };
 }
 
+export function getUserListensSuccess(listens) {
+    return {
+        type: types.GET_USER_LISTENS_SUCCESS,
+        listens
+    };
+}
+
 export function getMixDetailSuccess(mixDetail) {
     return {
         type: types.GET_MIX_DETAIL_SUCCESS,
@@ -110,6 +117,13 @@ export function getMixFavoriteSuccess(favoriteList) {
     return {
         type: types.GET_MIX_FAVORITE_SUCCESS,
         favoriteList
+    };
+}
+
+export function getMixCommentsSuccess(comments) {
+    return {
+        type: types.GET_MIX_COMMENTS_SUCCESS,
+        comments
     };
 }
 

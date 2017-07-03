@@ -46,7 +46,7 @@ export default function (props) {
                                     <div className="">
                                         <p>
                                             <Icon>visibility</Icon>
-                                            <span>{props.listen_count}</span>
+                                            <NavLink to={"/listens/" + props.username}><span>{props.listen_count}</span></NavLink>
                                         </p>
                                     </div>
                                     <div className="">

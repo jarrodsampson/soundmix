@@ -7,6 +7,7 @@ import Iframe from 'react-iframe'
 
 import MixView from '../views/MixView';
 import UserView from '../views/UserView';
+import CommentView from '../views/CommentView';
 import CarouselUserView from '../views/CarouselUserView';
 
 // Using "Stateless Functional Components"
@@ -129,6 +130,13 @@ export default function (props) {
                             <MixView mixList={props.suggestions} />
                         </div>
                     </div>
+                </div>
+
+                <div className="row">
+                     <h4>Comments</h4>
+                     <div className="row">
+                          <CommentView commentList={props.comments} />
+                     </div>
                 </div>
 
                 <div className="row">

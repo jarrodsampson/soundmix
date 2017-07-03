@@ -24,6 +24,7 @@ import FullCloudCasts from './components/containers/FullCloudCasts';
 import FullFollowers from './components/containers/FullFollowers';
 import FullFollowing from './components/containers/FullFollowing';
 import FullFavorites from './components/containers/FullFavorites';
+import ListensList from './components/containers/ListensList';
 
 export default (
             <Router>
@@ -42,6 +43,7 @@ export default (
                             <Route exact path="/favorites/:id" component={FullFavorites}/>
                             <Route exact path="/followers/:id" component={FullFollowers}/>
                             <Route exact path="/following/:id" component={FullFollowing}/>
+                            <Route exact path="/listens/:id" component={ListensList}/>
                             <Route exact path="/cloudcasts/:id" component={FullCloudCasts}/>
                             <Route exact path="/mix/:username/:slug" component={MixDetail}/>
                             <Redirect from="*" to="/" />

@@ -146,6 +146,18 @@ export function getUserFavorites(id, offset, limit) {
         .catch((err) => console.log(''));
 }
 
+export function getUserListensList(id, offset, limit) {
+    return fetch("https://api.mixcloud.com/" + id + "/listens/?limit=" + limit + "&offset=" + offset)
+        .then(response => response.json())
+        .then(json => {
+            console.log("User Listen Data", json);
+            store.dispatch(APIFunction.getUserListensSuccess(json));
+            store.dispatch(APIFunction.setLoadingStatus(false));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
 export function getMixDetail(id) {
     return fetch("https://api.mixcloud.com/" + id)
         .then(response => response.json())
@@ -189,6 +201,18 @@ export function getMixFavorite(id) {
         .then(json => {
             console.log("Mix Favorites Data", json);
             store.dispatch(APIFunction.getMixFavoriteSuccess(json));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
+export function getMixComments(id) {
+    console.log("https://api.mixcloud.com/" + id + "/comments/");
+    return fetch("https://api.mixcloud.com/" + id + "/comments/?limit=20")
+        .then(response => response.json())
+        .then(json => {
+            console.log("Mix Comments Data", json);
+            store.dispatch(APIFunction.getMixCommentsSuccess(json));
             return json;
         })
         .catch((err) => console.log(''));
