@@ -77,11 +77,13 @@ class UserDetail extends Component {
                     <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
 
-                        <UserDetailPane
-                            {...this.props.userDetails}
-                        />
+                        <div>
+                            <UserDetailPane
+                                {...this.props.userDetails}
+                            />
+                        </div>
 
-                        <Tabs className='tab-demo z-depth-1'>
+                        <Tabs className='tab-demo z-depth-1 tabs-fixed-width'>
                             <Tab title="Summary" active>
                                 <UserDetailSummary
                                     goBack={APIService.goBack}
@@ -90,7 +92,7 @@ class UserDetail extends Component {
                                     feed={this.props.feed.data}
                                 />
                             </Tab>
-                            <Tab title="Feed" active>
+                            <Tab title="Feed">
                                 <FeedList
                                     isLoading = {this.props.isLoading}
                                     goBack={APIService.goBack}
@@ -110,104 +112,153 @@ class UserDetail extends Component {
                                                activeClassName={"active"} />
 
                             </Tab>
-                            <Tab title="Followers" active>
+                            <Tab title="Followers">
                                 <FollowerList
                                     isLoading = {this.props.isLoading}
                                     goBack={APIService.goBack}
                                     followers={this.props.followers.data}
                                 />
 
-                                <ReactPaginate previousLabel={"Previous"}
-                                               nextLabel={"Next"}
-                                               breakLabel={<a href="">...</a>}
-                                               breakClassName={"break-me"}
-                                               pageCount={this.props.paginationConfig.pageCount}
-                                               marginPagesDisplayed={0}
-                                               pageRangeDisplayed={7}
-                                               onPageChange={this.handleFollowersPageClick}
-                                               containerClassName={"pagination"}
-                                               subContainerClassName={"pages pagination"}
-                                               activeClassName={"active"} />
+                                {(() => {
+                                    if (this.props.followers.data.length >= this.props.paginationConfig.limit) {
+                                        return <ReactPaginate previousLabel={"Previous"}
+                                                              nextLabel={"Next"}
+                                                              breakLabel={<a href="">...</a>}
+                                                              breakClassName={"break-me"}
+                                                              pageCount={this.props.paginationConfig.pageCount}
+                                                              marginPagesDisplayed={0}
+                                                              pageRangeDisplayed={7}
+                                                              onPageChange={this.handleFollowersPageClick}
+                                                              containerClassName={"pagination"}
+                                                              subContainerClassName={"pages pagination"}
+                                                              activeClassName={"active"} />
+                                    }
+
+                                    if (this.props.followers.data.length === 0) {
+                                        return <p>No Followers Just Yet...</p>
+                                    }
+
+                                })()}
+
 
                             </Tab>
-                            <Tab title="Following" active>
+                            <Tab title="Following">
                                 <FollowerList
-                                    isLoading = {this.props.isLoading}
+                                    isLoading={this.props.isLoading}
                                     goBack={APIService.goBack}
                                     followers={this.props.following.data}
                                 />
 
-                                <ReactPaginate previousLabel={"Previous"}
-                                               nextLabel={"Next"}
-                                               breakLabel={<a href="">...</a>}
-                                               breakClassName={"break-me"}
-                                               pageCount={this.props.paginationConfig.pageCount}
-                                               marginPagesDisplayed={0}
-                                               pageRangeDisplayed={7}
-                                               onPageChange={this.handleFollowingPageClick}
-                                               containerClassName={"pagination"}
-                                               subContainerClassName={"pages pagination"}
-                                               activeClassName={"active"} />
+
+                                {(() => {
+                                    if (this.props.following.data.length >= this.props.paginationConfig.limit) {
+                                        return <ReactPaginate previousLabel={"Previous"}
+                                                              nextLabel={"Next"}
+                                                              breakLabel={<a href="">...</a>}
+                                                              breakClassName={"break-me"}
+                                                              pageCount={this.props.paginationConfig.pageCount}
+                                                              marginPagesDisplayed={0}
+                                                              pageRangeDisplayed={7}
+                                                              onPageChange={this.handleFollowingPageClick}
+                                                              containerClassName={"pagination"}
+                                                              subContainerClassName={"pages pagination"}
+                                                              activeClassName={"active"} />
+                                    }
+
+                                    if (this.props.following.data.length === 0) {
+                                        return <p>Not Following Anyone Just Yet...</p>
+                                    }
+
+                                })()}
 
                             </Tab>
-                            <Tab title="Listens" active>
+                            <Tab title="Listens">
                                 <MusicList
                                     isLoading = {this.props.isLoading}
                                     goBack={APIService.goBack}
                                     data={this.props.listensList.data}
                                 />
 
-                                <ReactPaginate previousLabel={"Previous"}
-                                               nextLabel={"Next"}
-                                               breakLabel={<a href="">...</a>}
-                                               breakClassName={"break-me"}
-                                               pageCount={this.props.paginationConfig.pageCount}
-                                               marginPagesDisplayed={0}
-                                               pageRangeDisplayed={7}
-                                               onPageChange={this.handleListensPageClick}
-                                               containerClassName={"pagination"}
-                                               subContainerClassName={"pages pagination"}
-                                               activeClassName={"active"} />
+                                {(() => {
+                                    if (this.props.listensList.data.length >= this.props.paginationConfig.limit) {
+                                        return <ReactPaginate previousLabel={"Previous"}
+                                                              nextLabel={"Next"}
+                                                              breakLabel={<a href="">...</a>}
+                                                              breakClassName={"break-me"}
+                                                              pageCount={this.props.paginationConfig.pageCount}
+                                                              marginPagesDisplayed={0}
+                                                              pageRangeDisplayed={7}
+                                                              onPageChange={this.handleListensPageClick}
+                                                              containerClassName={"pagination"}
+                                                              subContainerClassName={"pages pagination"}
+                                                              activeClassName={"active"} />
+                                    }
+
+                                    if (this.props.listensList.data.length === 0) {
+                                        return <p>No Listens Publicly Available.</p>
+                                    }
+
+                                })()}
+
 
                             </Tab>
-                            <Tab title="Likes" active>
+                            <Tab title="Likes">
                                 <FavoritesList
                                     isLoading = {this.props.isLoading}
                                     goBack={APIService.goBack}
                                     favorites={this.props.favorites.data}
                                 />
 
-                                <ReactPaginate previousLabel={"Previous"}
-                                               nextLabel={"Next"}
-                                               breakLabel={<a href="">...</a>}
-                                               breakClassName={"break-me"}
-                                               pageCount={this.props.paginationConfig.pageCount}
-                                               marginPagesDisplayed={0}
-                                               pageRangeDisplayed={7}
-                                               onPageChange={this.handleFavoritesPageClick}
-                                               containerClassName={"pagination"}
-                                               subContainerClassName={"pages pagination"}
-                                               activeClassName={"active"} />
+                                {(() => {
+                                    if (this.props.favorites.data.length >= this.props.paginationConfig.limit) {
+                                        return <ReactPaginate previousLabel={"Previous"}
+                                                              nextLabel={"Next"}
+                                                              breakLabel={<a href="">...</a>}
+                                                              breakClassName={"break-me"}
+                                                              pageCount={this.props.paginationConfig.pageCount}
+                                                              marginPagesDisplayed={0}
+                                                              pageRangeDisplayed={7}
+                                                              onPageChange={this.handleFavoritesPageClick}
+                                                              containerClassName={"pagination"}
+                                                              subContainerClassName={"pages pagination"}
+                                                              activeClassName={"active"} />
+                                    }
+
+                                    if (this.props.favorites.data.length === 0) {
+                                        return <p>No Likes Publicly Available.</p>
+                                    }
+
+                                })()}
+
 
                             </Tab>
-                            <Tab title="CloudCasts" active>
+                            <Tab title="CloudCasts">
                                 <CloudCastList
                                     isLoading = {this.props.isLoading}
                                     goBack={APIService.goBack}
                                     cloudcasts={this.props.cloudcasts.data}
                                 />
 
-                                <ReactPaginate previousLabel={"Previous"}
-                                               nextLabel={"Next"}
-                                               breakLabel={<a href="">...</a>}
-                                               breakClassName={"break-me"}
-                                               pageCount={this.props.paginationConfig.pageCount}
-                                               marginPagesDisplayed={0}
-                                               pageRangeDisplayed={7}
-                                               onPageChange={this.handleCloudCastsPageClick}
-                                               containerClassName={"pagination"}
-                                               subContainerClassName={"pages pagination"}
-                                               activeClassName={"active"} />
+                                {(() => {
+                                    if (this.props.cloudcasts.data.length >= this.props.paginationConfig.limit) {
+                                        return <ReactPaginate previousLabel={"Previous"}
+                                                              nextLabel={"Next"}
+                                                              breakLabel={<a href="">...</a>}
+                                                              breakClassName={"break-me"}
+                                                              pageCount={this.props.paginationConfig.pageCount}
+                                                              marginPagesDisplayed={0}
+                                                              pageRangeDisplayed={7}
+                                                              onPageChange={this.handleCloudCastsPageClick}
+                                                              containerClassName={"pagination"}
+                                                              subContainerClassName={"pages pagination"}
+                                                              activeClassName={"active"} />
+                                    }
+
+                                    if (this.props.cloudcasts.data.length === 0) {
+                                        return <p>No Cloudcasts Just Yet...</p>
+                                    }
+
+                                })()}
 
                             </Tab>
                         </Tabs>

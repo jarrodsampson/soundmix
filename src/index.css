@@ -35,6 +35,9 @@ nav ul li a {
   min-height:700px;
 }
 
+.justify {
+  text-align: justify;
+}
 
 .max-width {
   max-width:1200px;

@@ -7,28 +7,31 @@ import {NavLink} from 'react-router-dom';
 
 // Using "Stateless Functional Components"
 export default function (props) {
-    //console.log(props.isLoading);
+    let coverImage;
+
+    if ((props.cover_pictures['1670wx240h'] || "none") === undefined) {
+        coverImage = "http://www.publicdomainpictures.net/pictures/150000/velka/banner-header-tapete-145002399028x.jpg";
+    } else {
+        coverImage = (props.cover_pictures['1670wx240h'] || "None");
+    }
+
     return (
         <div>
             <DocumentTitle title={(props.username || "Loading...") + " - SoundMix"}/>
             <div className="container-fluid">
-                <img className="coverPhoto" src={props.cover_pictures['1670wx240h']} alt={props.username}/>
+                <img className="coverPhoto" src={coverImage} alt={props.username}/>
             </div>
-            <div className="row">
+            <div className="row detailPane">
                 <div className="col s12 card">
                     <div className="card-content">
                         <div className="col s12 m6">
                             <img src={props.pictures.large} alt={props.username} />
                         </div>
+
                         <div className="col s12 m6">
                             <span className="card-title">{props.name}</span>
-                            <p>{props.biog}</p>
-                            <p>{props.city}</p>
-                            <p>{props.country}</p>
-                            <p>
-                                Created:
-                                <Moment fromNow>{props.created_time}</Moment>
-                            </p>
+
+
                             <div className="counts">
                                 <div className="">
                                     <p>
@@ -61,11 +64,24 @@ export default function (props) {
                                     </p>
                                 </div>
                             </div>
-                            <div>
+
+                            <div className="justify">
+                                <p className="bio-text">{props.biog || "No Bio Added."}</p>
+                                {(() => {
+                                    if (props.city !== undefined) {
+                                        return <p>HomeTown: {props.city}</p>
+                                    }
+                                })()}
+                                <p>Country: {props.country}</p>
+                                <p>
+                                    Created: <Moment fromNow>{props.created_time}</Moment>
+                                </p>
+
                                 <p>
                                     <a href={props.url} target="_blank">Full Profile</a>
                                 </p>
                             </div>
+
                         </div>
                     </div>
                 </div>

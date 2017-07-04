@@ -12,3 +12,26 @@
     bottom:1em;
     left:2em;
 }
+
+.detailPane {
+    margin-top: -1em;
+}
+
+.tab-demo {
+    margin-top: -2.3em;
+}
+
+.counts {}
+.counts div {
+    display: inline-block;
+    margin: 0 0.3em 0 0.3em; }
+.counts div p span {
+    position: relative;
+    top: -5px;
+    font-size: 14pt;
+    margin: .3em; }
+
+
+.bio-text {
+    margin: 1em 0 1em 0 !important;
+}

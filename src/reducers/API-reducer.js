@@ -24,7 +24,9 @@ const initialState = {
     },
     userDetails: {
         pictures: {},
-        cover_pictures: {}
+        cover_pictures: {
+            "1670wx240h": "image"
+        }
     },
     playlists: {
             data: []

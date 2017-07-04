@@ -135,6 +135,7 @@ export function getUserFollowing(id, offset, limit) {
 }
 
 export function getUserFavorites(id, offset, limit) {
+    console.log("https://api.mixcloud.com/" + id + "/favorites/?limit=" + limit + "&offset=" + offset);
     return fetch("https://api.mixcloud.com/" + id + "/favorites/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
