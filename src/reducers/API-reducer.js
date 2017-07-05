@@ -10,6 +10,9 @@ const initialState = {
     popularList: {
         data: []
     },
+    cityList: {
+        data: []
+    },
     discoverTagList: {
         data: []
     },
@@ -78,6 +81,8 @@ const APIReducer = function(state = initialState, action) {
 
         case types.GET_HOTLIST_SUCCESS:
             return Object.assign({}, state, { hotList: action.hotList });
+        case types.GET_CITY_LIST_SUCCESS:
+            return Object.assign({}, state, { cityList: action.cityList });
         case types.GET_NEWLIST_SUCCESS:
             return Object.assign({}, state, { newList: action.newList });
         case types.GET_POPULARLIST_SUCCESS:

@@ -26,6 +26,8 @@ import FullFollowing from './components/containers/FullFollowing';
 import FullFavorites from './components/containers/FullFavorites';
 import ListensList from './components/containers/ListensList';
 
+import YourHood from './components/containers/YourHood';
+
 export default (
             <Router>
                 <ScrollToTop>
@@ -37,6 +39,8 @@ export default (
                             <Route exact path="/new" component={New}/>
                             <Route exact path="/search" component={Search}/>
                             <Route exact path="/discover" component={Discover}/>
+                            <Route path="/city/:id" component={YourHood}/>
+                            <Route exact path="/city" component={YourHood}/>
                             <Route exact path="/tag/:id" component={TagSearch}/>
                             <Route exact path="/user/:id" component={UserDetail}/>
                             <Route exact path="/feed/:id" component={FullFeed}/>

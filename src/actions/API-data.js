@@ -148,3 +148,10 @@ export function setLoadingStatus(status) {
         status
     };
 }
+
+export function getMixByCitySuccess(cityList) {
+    return {
+        type: types.GET_CITY_LIST_SUCCESS,
+        cityList
+    };
+}

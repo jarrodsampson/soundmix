@@ -13,6 +13,7 @@
     "react-back2top": "^0.1.5",
     "react-document-title": "^2.0.3",
     "react-dom": "^15.6.1",
+    "react-geolocated": "^2.0.0",
     "react-headroom": "^2.1.5",
     "react-iframe": "^1.0.7",
     "react-materialize": "^1.0.3",

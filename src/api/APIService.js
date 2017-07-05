@@ -242,6 +242,20 @@ export function grabExtraData(url) {
         .catch((err) => console.log(''));
 }
 
+export function getMixListByCity(city, offset, limit) {
+    console.log("https://api.mixcloud.com/discover/city:" + city + "/popular/?limit=" + limit + "&offset=" + offset);
+    return fetch("https://api.mixcloud.com/discover/city:" + city + "/popular/?limit=" + limit + "&offset=" + offset)
+        .then(response => response.json())
+        .then(json => {
+            console.log("Mix By City Data", json.data);
+            store.dispatch(APIFunction.getMixByCitySuccess(json));
+            store.dispatch(APIFunction.getSearchParamSuccess(city));
+            store.dispatch(APIFunction.setLoadingStatus(false));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
 export function goBack() {
     window.history.back();
 }
