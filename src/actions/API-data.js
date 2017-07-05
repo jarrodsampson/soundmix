@@ -14,7 +14,6 @@ export function getNewListSuccess(newList) {
     };
 }
 
-
 export function getPopularListSuccess(popularList) {
     return {
         type: types.GET_POPULARLIST_SUCCESS,
