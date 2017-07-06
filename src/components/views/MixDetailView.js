@@ -7,7 +7,7 @@ import Iframe from 'react-iframe'
 
 import MixView from '../views/MixView';
 import UserView from '../views/UserView';
-import CommentView from '../views/CommentView';
+import CarouselCommentView from '../views/CarouselCommentView';
 import CarouselUserView from '../views/CarouselUserView';
 
 // Using "Stateless Functional Components"
@@ -145,7 +145,7 @@ export default function (props) {
                 <div className="row">
                      <h4>Comments</h4>
                      <div className="row">
-                          <CommentView commentList={props.comments} />
+                          <CarouselCommentView commentList={props.comments} />
                          {(() => {
                              if (props.comments.length === 0) {
                                  return <p>No Comments Found.</p>

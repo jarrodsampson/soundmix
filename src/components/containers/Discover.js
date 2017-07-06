@@ -30,27 +30,44 @@ class Discover extends Component {
     render() {
         return (
             <div className="">
-                <DocumentTitle title={"Discover - SoundMix"} />
+                <DocumentTitle title={(this.props.searchParamString.replace(/[+]/g, " ") || "Discover") + " - SoundMix"} />
 
                 <div className="container">
                     <DiscoverForm onSubmit={this.submit} />
                 </div>
 
-                <div className="center-align">
-                    <ArtistList data={this.props.discoverTagList.data} />
-                    <ReactPaginate previousLabel={"Previous"}
-                                   nextLabel={"Next"}
-                                   breakLabel={<a href="">...</a>}
-                                   breakClassName={"break-me"}
-                                   pageCount={this.props.paginationConfig.pageCount}
-                                   marginPagesDisplayed={0}
-                                   pageRangeDisplayed={7}
-                                   onPageChange={this.handlePageClick}
-                                   containerClassName={"pagination"}
-                                   subContainerClassName={"pages pagination"}
-                                   activeClassName={"active"} />
-                    </div>
+                <div className="center-align container">
 
+                    <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
+                    <div className={this.props.isLoading ? 'hidden' : ''}>
+
+                        <ArtistList data={this.props.discoverTagList.data} />
+
+                        {(() => {
+
+                            if (this.props.discoverTagList.data.length >= this.props.paginationConfig.limit) {
+                                return <ReactPaginate previousLabel={"Previous"}
+                                                      nextLabel={"Next"}
+                                                      breakLabel={<a href="">...</a>}
+                                                      breakClassName={"break-me"}
+                                                      pageCount={this.props.paginationConfig.pageCount}
+                                                      marginPagesDisplayed={0}
+                                                      pageRangeDisplayed={7}
+                                                      onPageChange={this.handlePageClick}
+                                                      containerClassName={"pagination"}
+                                                      subContainerClassName={"pages pagination"}
+                                                      activeClassName={"active"} />
+                            }
+
+                            if (this.props.discoverTagList.data.length === 0) {
+                                return <p>No Results Found...</p>
+                            }
+
+                        })()}
+
+
+                    </div>
+                </div>
             </div>
         );
     }
@@ -58,11 +75,12 @@ class Discover extends Component {
 
 const mapStateToProps = function(store) {
 
-    console.log("Store", store.api);
+    //console.log("Store", store.api);
     return {
         discoverTagList: store.api.discoverTagList,
         searchParamString: store.api.searchParamString,
-        paginationConfig: store.api.paginationConfig
+        paginationConfig: store.api.paginationConfig,
+        isLoading: store.api.isLoading
     };
 };
 

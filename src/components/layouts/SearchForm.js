@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form'
 import {Button, Icon} from 'react-materialize';
 import PropTypes from 'prop-types';
 import serialize from 'form-serialize';
-
+import { connect } from 'react-redux';
 
 import * as APIService from '../../api/APIService';
 
@@ -17,7 +17,7 @@ class SearchForm extends Component {
     handleSubmit(e) {
         let form = serialize(document.querySelector('#searchData'));
         console.log(form);
-        APIService.searchByParams(form, 0, 20);
+        APIService.searchByParams(form, 0, 21);
         //window.location.replace("/search/" + e.discoverText);
     }
 
@@ -50,7 +50,7 @@ class SearchForm extends Component {
                                 </label>
                             </div>
                         </div>
-                        <Button className="red" type="submit"><Icon>search</Icon></Button>
+                        <Button className="buttonColor" type="submit"><Icon>search</Icon></Button>
                      </div>
                  </div>
             </form>
@@ -65,4 +65,12 @@ SearchForm = reduxForm({
     fields: ['textText','maleText','femaleText']
 })(SearchForm);
 
-export default SearchForm;
+const mapStateToProps = function(store) {
+
+    //console.log("Store", store.api);
+    return {
+        paginationConfig: store.api.paginationConfig
+    };
+};
+
+export default connect(mapStateToProps)(SearchForm);

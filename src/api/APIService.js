@@ -38,6 +38,9 @@ export function getPopularList(offset, limit) {
 }
 
 export function searchByTag(tag, offset, limit) {
+
+    store.dispatch(APIFunction.setLoadingStatus(true));
+
     return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
@@ -45,6 +48,7 @@ export function searchByTag(tag, offset, limit) {
 
             store.dispatch(APIFunction.getTagDiscoverySuccess(json));
             store.dispatch(APIFunction.getSearchParamSuccess(tag));
+            store.dispatch(APIFunction.setLoadingStatus(false));
 
             return json;
         })
@@ -159,6 +163,18 @@ export function getUserListensList(id, offset, limit) {
         .catch((err) => console.log(''));
 }
 
+export function getUserComments(id, offset, limit) {
+    console.log("https://api.mixcloud.com/" + id + "/comments/?limit=" + limit + "&offset=" + offset);
+    return fetch("https://api.mixcloud.com/" + id + "/comments/?limit=" + limit + "&offset=" + offset)
+        .then(response => response.json())
+        .then(json => {
+            console.log("User Comment Data", json);
+            store.dispatch(APIFunction.getUserCommentsSuccess(json));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
 export function getMixDetail(id) {
     return fetch("https://api.mixcloud.com/" + id)
         .then(response => response.json())
@@ -225,18 +241,7 @@ export function getTagSearch(tag, offset, limit) {
         .then(json => {
             console.log("TagSearch Data", json);
             store.dispatch(APIFunction.getTagSearchSuccess(json));
-            //store.dispatch(APIFunction.getSearchParamSuccess(params));
-            return json;
-        })
-        .catch((err) => console.log(''));
-}
-
-
-export function grabExtraData(url) {
-    return fetch(url)
-        .then(response => response.json())
-        .then(json => {
-            console.log("Extra Data", json.data);
+            store.dispatch(APIFunction.setLoadingStatus(false));
             return json;
         })
         .catch((err) => console.log(''));

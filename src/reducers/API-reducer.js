@@ -1,6 +1,7 @@
 import * as types from '../actions/action-types';
 
 const initialState = {
+    // chart lists
     hotList: {
         data: []
     },
@@ -13,6 +14,7 @@ const initialState = {
     cityList: {
         data: []
     },
+    // search data
     discoverTagList: {
         data: []
     },
@@ -20,16 +22,19 @@ const initialState = {
       data: []
     },
     searchParamString: "",
+    // pagination details/ settings
     paginationConfig: {
         pageCount: 10,
         offset: 0,
         limit: 21
     },
+    // user data
     userDetails: {
         pictures: {},
         cover_pictures: {
             "1670wx240h": "image"
-        }
+        },
+        user: {}
     },
     playlists: {
             data: []
@@ -49,6 +54,10 @@ const initialState = {
     listensList: {
             data: []
     },
+    comments: {
+        data: []
+    },
+    // mix data
     mixDetails: {
         pictures: {},
         user: {
@@ -71,6 +80,7 @@ const initialState = {
     commentsList: {
         data: []
     },
+    // helpers
     isLoading: true
 };
 
@@ -114,6 +124,8 @@ const APIReducer = function(state = initialState, action) {
             return Object.assign({}, state, { cloudcasts: action.cloudcasts });
         case types.GET_USER_FEED_SUCCESS:
             return Object.assign({}, state, { feed: action.feed });
+        case types.GET_USER_COMMENTS_SUCCESS:
+            return Object.assign({}, state, { comments: action.userCommentsList });
         case types.GET_USER_FOLLOWERS_SUCCESS:
             return Object.assign({}, state, { followers: action.followers });
         case types.GET_USER_FOLLOWING_SUCCESS:

@@ -22,9 +22,9 @@ export default function (props) {
                 <img className="coverPhoto" src={coverImage} alt={props.username}/>
             </div>
             <div className="row detailPane">
-                <div className="col s12 card">
-                    <div className="card-content">
-                        <div className="col s12 m6">
+                <div className="col s12 card valign-wrapper">
+                    <div className="card-content valign-wrapper">
+                        <div className="col s12 m4 valign-wrapper">
                             <img src={props.pictures.large} alt={props.username} />
                         </div>
 

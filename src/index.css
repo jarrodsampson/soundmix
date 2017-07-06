@@ -120,6 +120,10 @@ iframe {
   border: none;
 }
 
+.commentSlide .card {
+  min-height: 200px;
+}
+
 @media(min-width:992px) {
 
   nav .brand-logo {

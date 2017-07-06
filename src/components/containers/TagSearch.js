@@ -39,21 +39,23 @@ class TagSearch extends Component {
 
                 <DocumentTitle title={(this.props.match.params.id).replace(/[+]/g, " ") + " - SoundMix"} />
 
+                <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
+                <div className={this.props.isLoading ? 'hidden' : ''}>
 
-                <ArtistList data={this.props.tagSearchList.data} onClickTag={this.tagClick} />
-                <ReactPaginate previousLabel={"Previous"}
-                               nextLabel={"Next"}
-                               breakLabel={<a href="">...</a>}
-                               breakClassName={"break-me"}
-                               pageCount={this.props.paginationConfig.pageCount}
-                               marginPagesDisplayed={0}
-                               pageRangeDisplayed={7}
-                               onPageChange={this.handlePageClick}
-                               containerClassName={"pagination"}
-                               subContainerClassName={"pages pagination"}
-                               activeClassName={"active"} />
+                    <ArtistList data={this.props.tagSearchList.data} onClickTag={this.tagClick} />
+                    <ReactPaginate previousLabel={"Previous"}
+                                   nextLabel={"Next"}
+                                   breakLabel={<a href="">...</a>}
+                                   breakClassName={"break-me"}
+                                   pageCount={this.props.paginationConfig.pageCount}
+                                   marginPagesDisplayed={0}
+                                   pageRangeDisplayed={7}
+                                   onPageChange={this.handlePageClick}
+                                   containerClassName={"pagination"}
+                                   subContainerClassName={"pages pagination"}
+                                   activeClassName={"active"} />
 
-
+                </div>
             </div>
         );
     }
@@ -64,7 +66,8 @@ const mapStateToProps = function(store) {
     //console.log("Store", store.api.hotList.data);
     return {
         tagSearchList: store.api.tagSearchList,
-        paginationConfig: store.api.paginationConfig
+        paginationConfig: store.api.paginationConfig,
+        isLoading: store.api.isLoading
     };
 };
 

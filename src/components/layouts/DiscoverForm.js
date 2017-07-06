@@ -12,8 +12,8 @@ class DiscoverForm extends Component {
     };
 
     handleSubmit(e) {
-        console.log(e.discoverText);
-        APIService.searchByTag(e.discoverText, 0, 20);
+        console.log((e.discoverText).replace(/ /g, "+"));
+        APIService.searchByTag((e.discoverText).replace(/ /g, "+"), 0, 21);
         //window.location.replace("/search/" + e.discoverText);
     }
 

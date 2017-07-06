@@ -91,6 +91,13 @@ export function getUserListensSuccess(listens) {
     };
 }
 
+export function getUserCommentsSuccess(userCommentsList) {
+    return {
+        type: types.GET_USER_COMMENTS_SUCCESS,
+        userCommentsList
+    };
+}
+
 export function getMixDetailSuccess(mixDetail) {
     return {
         type: types.GET_MIX_DETAIL_SUCCESS,

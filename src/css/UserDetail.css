@@ -35,3 +35,10 @@
 .bio-text {
     margin: 1em 0 1em 0 !important;
 }
+
+.tab-area .row .col:nth-child(1) {
+    float: left;
+    box-sizing: border-box;
+    padding: 0 !important;
+    min-height: 1px;
+}
