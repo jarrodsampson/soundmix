@@ -4,7 +4,7 @@ import * as APIService from '../../api/APIService';
 
 import ReactPaginate from 'react-paginate';
 
-import FeedList from '../views/FeedList';
+import FeedList from '../views/lists/FeedList';
 
 class FullFeed extends Component {
 

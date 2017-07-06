@@ -6,7 +6,7 @@ import * as LocationService from '../../api/LocationService';
 
 import {geolocated} from 'react-geolocated';
 
-import MusicList from '../views/MusicList';
+import MusicList from '../views/lists/MusicList';
 
 import ReactPaginate from 'react-paginate';
 

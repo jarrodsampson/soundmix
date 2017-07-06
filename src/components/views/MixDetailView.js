@@ -5,9 +5,9 @@ import Moment from 'react-moment';
 import {NavLink} from 'react-router-dom';
 import Iframe from 'react-iframe'
 
-import MixView from '../views/MixView';
-import CarouselCommentView from '../views/CarouselCommentView';
-import CarouselUserView from '../views/CarouselUserView';
+import MixView from '../views/items/MixView';
+import CarouselCommentView from '../views/items/CarouselCommentView';
+import CarouselUserView from '../views/items/CarouselUserView';
 
 // Using "Stateless Functional Components"
 export default function (props) {
@@ -16,8 +16,7 @@ export default function (props) {
         <div className="">
             <DocumentTitle title={(props.name || "Loading...") + " - SoundMix"}/>
 
-            <div className={!props.isLoading ? 'hidden' : ''}>Loading...</div>
-            <div className={props.isLoading ? 'hidden' : ''}>
+
                 <div className="row">
                     <Button className="buttonColor" onClick={props.goBack}>Back</Button>
                 </div>
@@ -35,7 +34,7 @@ export default function (props) {
                                                 <img className="mainImage" src={props.pictures.large} alt={props.name}/>
                                             </div>
                                         </div>
-                                        <div className="col s12 m6 l8">
+                                        <div className="col s12 m6 l8 center-align">
 
                                             <div className="counts">
                                                 <div className="">
@@ -116,7 +115,7 @@ export default function (props) {
                 </div>
 
                 <div className="row">
-                    <h4>Recent Listeners</h4>
+                    <h4 className="headers">Recent Listeners</h4>
                     <div className="row">
                         <CarouselUserView list={props.listeners} />
                         {(() => {
@@ -142,7 +141,7 @@ export default function (props) {
                 </div>
 
                 <div className="row">
-                     <h4>Comments</h4>
+                     <h4 className="headers">Comments</h4>
                      <div className="row">
                           <CarouselCommentView commentList={props.comments} />
                          {(() => {
@@ -154,7 +153,7 @@ export default function (props) {
                 </div>
 
                 <div className="row">
-                    <h4>Recent Likes</h4>
+                    <h4 className="headers">Recent Likes</h4>
                     <div className="row">
                         <CarouselUserView list={props.favorites} />
                         {(() => {
@@ -164,7 +163,6 @@ export default function (props) {
                         })()}
                     </div>
                 </div>
-            </div>
 
         </div>
     );

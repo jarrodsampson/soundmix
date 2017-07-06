@@ -23,7 +23,8 @@ const initialState = {
     paginationConfig: {
         pageCount: 10,
         offset: 0,
-        limit: 21
+        limit: 21,
+        limitWideColumn: 20
     },
     userDetails: {
         pictures: {},

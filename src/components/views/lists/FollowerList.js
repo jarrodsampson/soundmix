@@ -1,13 +1,13 @@
 import React from 'react';
 
-import FeedView from './FeedView';
+import UserPlainView from '../items/UserPlainView';
 
 // Using "Stateless Functional Components"
 export default function(props) {
     //console.log("Ps", props);
     return (
 
-        <FeedView feed={props.feed} />
+        <UserPlainView userList={props.followers} />
 
     );
 }

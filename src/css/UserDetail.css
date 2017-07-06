@@ -36,9 +36,14 @@
     margin: 1em 0 1em 0 !important;
 }
 
-.tab-area .row .col:nth-child(1) {
-    float: left;
-    box-sizing: border-box;
-    padding: 0 !important;
-    min-height: 1px;
+.tab-area .row > .col:not(.padding){
+    padding: 0;
+}
+
+.plainCard .card-image img {
+    max-height:315px;
+}
+
+.plainCard {
+    max-height: 403px;
 }

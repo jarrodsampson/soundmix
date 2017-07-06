@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MixView from './MixView';
+import MixView from '../items/MixView';
 
 // Using "Stateless Functional Components"
 export default function(props) {

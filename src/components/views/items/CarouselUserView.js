@@ -5,7 +5,7 @@ import OwlCarousel from 'react-owl-carousel';
 
 // Using "Stateless Functional Components"
 export default function (props) {
-    console.log("Ps", props);
+    //console.log("Ps", props);
     return (
         <OwlCarousel
             items={6}
@@ -34,7 +34,15 @@ export default function (props) {
                                         className="material-icons">add</i></NavLink>
                                 </div>
                                 <div className="card-content">
-                                    <p>Listened <Moment fromNow>{item.listen_time}</Moment></p>
+                                    {(() => {
+                                        if (item.listen_time !== undefined) {
+                                            return <p>Listened <Moment fromNow>{item.listen_time}</Moment></p>
+                                        } else {
+                                            return <p>
+                                                        <NavLink to={"/user/" + item.username}> {item.username} </NavLink>
+                                                    </p>
+                                        }
+                                    })()}
                                 </div>
                             </div>
                         </div>

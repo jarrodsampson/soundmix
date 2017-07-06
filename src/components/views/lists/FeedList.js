@@ -1,13 +1,13 @@
 import React from 'react';
 
-import MixView from './MixView';
+import FeedView from '../items/FeedView';
 
 // Using "Stateless Functional Components"
 export default function(props) {
     //console.log("Ps", props);
     return (
 
-        <MixView mixList={props.data} />
+        <FeedView feed={props.feed} />
 
     );
 }

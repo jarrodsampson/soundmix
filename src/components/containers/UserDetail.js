@@ -7,11 +7,11 @@ import * as APIService from '../../api/APIService';
 
 import UserDetailSummary from '../views/UserDetailSummary';
 import UserDetailPane from '../views/UserDetailPane';
-import FollowerList from '../views/FollowerList';
-import MusicList from '../views/MusicList';
-import FavoritesList from '../views/FavoritesList';
-import CloudCastList from '../views/CloudCastList';
-import FeedList from '../views/FeedList';
+import FollowerList from '../views/lists/FollowerList';
+import MusicList from '../views/lists/MusicList';
+import FavoritesList from '../views/lists/FavoritesList';
+import CloudCastList from '../views/lists/CloudCastList';
+import FeedList from '../views/lists/FeedList';
 
 import {Tabs, Tab} from 'react-materialize';
 import ReactPaginate from 'react-paginate';
@@ -22,8 +22,8 @@ class UserDetail extends Component {
         APIService.getUserDetail(id);
         APIService.getUserPlaylists(id);
         APIService.getUserFeed(id, this.props.paginationConfig.offset, this.props.paginationConfig.limit);
-        APIService.getUserFollowers(id, this.props.paginationConfig.offset, this.props.paginationConfig.limit);
-        APIService.getUserFollowing(id, this.props.paginationConfig.offset, this.props.paginationConfig.limit);
+        APIService.getUserFollowers(id, this.props.paginationConfig.offset, this.props.paginationConfig.limitWideColumn);
+        APIService.getUserFollowing(id, this.props.paginationConfig.offset, this.props.paginationConfig.limitWideColumn);
         APIService.getUserListensList(id, this.props.paginationConfig.offset, this.props.paginationConfig.limit);
         APIService.getUserFavorites(id, this.props.paginationConfig.offset, this.props.paginationConfig.limit);
         APIService.getUserCloudCasts(id, this.props.paginationConfig.offset, this.props.paginationConfig.limit);
@@ -36,13 +36,13 @@ class UserDetail extends Component {
 
     handleFollowersPageClick = (data) => {
         let selected = data.selected * 20;
-        APIService.getUserFollowers(this.props.match.params.id, selected, this.props.paginationConfig.limit);
+        APIService.getUserFollowers(this.props.match.params.id, selected, this.props.paginationConfig.limitWideColumn);
         window.scrollTo(0,0);
     };
 
     handleFollowingPageClick = (data) => {
         let selected = data.selected * 20;
-        APIService.getUserFollowing(this.props.match.params.id, selected, this.props.paginationConfig.limit);
+        APIService.getUserFollowing(this.props.match.params.id, selected, this.props.paginationConfig.limitWideColumn);
         window.scrollTo(0,0);
     };
 
@@ -75,7 +75,7 @@ class UserDetail extends Component {
             <div className="center-align">
                 <div className="">
 
-                    <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
+                    <div className={!this.props.isLoading ? 'hidden' : ''}><div className="dataLoader">Loading...</div></div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
 
                         <div>
@@ -84,7 +84,7 @@ class UserDetail extends Component {
                             />
                         </div>
 
-                        <div className="tab-area">
+                        <div className="container-fluid tab-area">
                             <Tabs className='tab-demo z-depth-1 tabs-fixed-width'>
                                 <Tab title="Summary" active>
 
@@ -130,7 +130,7 @@ class UserDetail extends Component {
                                     />
 
                                     {(() => {
-                                        if (this.props.followers.data.length >= this.props.paginationConfig.limit) {
+                                        if (this.props.followers.data.length >= this.props.paginationConfig.limitWideColumn) {
                                             return <ReactPaginate previousLabel={"Previous"}
                                                                   nextLabel={"Next"}
                                                                   breakLabel={<a href="">...</a>}
@@ -162,7 +162,7 @@ class UserDetail extends Component {
 
 
                                     {(() => {
-                                        if (this.props.following.data.length >= this.props.paginationConfig.limit) {
+                                        if (this.props.following.data.length >= this.props.paginationConfig.limitWideColumn) {
                                             return <ReactPaginate previousLabel={"Previous"}
                                                                   nextLabel={"Next"}
                                                                   breakLabel={<a href="">...</a>}

@@ -30,16 +30,21 @@ class MixDetail extends Component {
             <div className="">
                 <div className="">
 
-                    <MixDetailView
-                        {...this.props.mixDetails}
-                        listeners={this.props.listeners.data}
-                        suggestions={this.props.suggestions.data}
-                        favorites={this.props.favoriteList.data}
-                        comments={this.props.commentsList.data}
-                        goBack={APIService.goBack}
-                        onClickAlbum={this.albumClick}
-                        isLoading = {this.props.isLoading}
-                    />
+                    <div className={!this.props.isLoading ? 'hidden' : ''}><div className="dataLoader">Loading...</div></div>
+                    <div className={this.props.isLoading ? 'hidden' : ''}>
+
+                        <MixDetailView
+                            {...this.props.mixDetails}
+                            listeners={this.props.listeners.data}
+                            suggestions={this.props.suggestions.data}
+                            favorites={this.props.favoriteList.data}
+                            comments={this.props.commentsList.data}
+                            goBack={APIService.goBack}
+                            onClickAlbum={this.albumClick}
+                            isLoading = {this.props.isLoading}
+                        />
+
+                    </div>
 
                 </div>
             </div>

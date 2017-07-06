@@ -9,7 +9,7 @@ export default function (props) {
         <div className="row itemHolder">
             {props.feed.map((item, i) => {
                 return (
-                    <div key={i} className="col s12 m6 l4 feedBox">
+                    <div key={i} className="col s12 m6 l4 feedBox padding">
                         <div className="card hoverable">
                             <div className="card-content">
                                               <span className="card-title">{item.from.username} {item.title}

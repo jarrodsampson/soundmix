@@ -4,7 +4,7 @@ import * as APIService from '../../api/APIService';
 
 import ReactPaginate from 'react-paginate';
 
-import FavoritesList from '../views/FavoritesList';
+import FavoritesList from '../views/lists/FavoritesList';
 
 class FullFavorites extends Component {
 

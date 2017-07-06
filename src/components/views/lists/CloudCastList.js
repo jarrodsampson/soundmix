@@ -1,13 +1,13 @@
 import React from 'react';
 
-import UserPlainView from './UserPlainView';
+import MixView from '../items/MixView';
 
 // Using "Stateless Functional Components"
 export default function(props) {
     //console.log("Ps", props);
     return (
 
-        <UserPlainView userList={props.followers} />
+        <MixView mixList={props.cloudcasts} />
 
     );
 }

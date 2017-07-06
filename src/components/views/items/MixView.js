@@ -54,7 +54,7 @@ export default function (props) {
 
                                         <div className="user valign-wrapper">
                                             <div className="col s12 m6 l6">
-                                                <NavLink to={"/user/" + item.user.username}>
+                                                <NavLink to={"/user/" + (item.user.username || "None")}>
                                                     <img src={item.user.pictures.thumbnail} alt={item.user.name} />
                                                 </NavLink>
                                             </div>

@@ -4,7 +4,7 @@ import * as APIService from '../../api/APIService';
 
 import ReactPaginate from 'react-paginate';
 
-import CloudCastList from '../views/CloudCastList';
+import CloudCastList from '../views/lists/CloudCastList';
 
 class FullCloudCasts extends Component {
 
@@ -25,7 +25,7 @@ class FullCloudCasts extends Component {
     render() {
         return (
             <div className="center-align">
-                <div className="">
+                <div className="container">
 
                     <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>

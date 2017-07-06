@@ -8,8 +8,8 @@ export default function (props) {
         <div className="row itemHolder">
             {props.userList.map((item, i) => {
                 return (
-                    <div key={i} className="col s12 m3 l3">
-                        <div className="card hoverable">
+                    <div key={i} className="col s12 m3 l3 padding">
+                        <div className="card hoverable plainCard">
                             <div className="card-image">
                                 <img src={item.pictures.large} alt={item.username}/>
 

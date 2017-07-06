@@ -4,7 +4,7 @@ import * as APIService from '../../api/APIService';
 
 import ReactPaginate from 'react-paginate';
 
-import FollowerList from '../views/FollowerList';
+import FollowerList from '../views/lists/FollowerList';
 
 class FullFollowers extends Component {
 

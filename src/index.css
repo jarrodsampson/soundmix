@@ -126,14 +126,22 @@ iframe {
   left: 50%;
   width: 300px;
   height: 100px;
-  margin-left: -150px;
-  margin-top: -50px;
+  margin:auto;
 }
 
 .commentSlide .card {
   min-height: 200px;
   max-height: 200px;
 }
+
+.headers {
+  padding-left: .3em;
+}
+
+.btn-floating.halfway-fab {
+  z-index: 0;
+}
+
 
 @media(min-width:992px) {
 

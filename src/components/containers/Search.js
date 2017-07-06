@@ -8,8 +8,8 @@ import * as APIService from '../../api/APIService';
 import ReactPaginate from 'react-paginate';
 
 import TagList from '../views/search/TagList';
-import UserView from '../views/UserView';
-import MixView from '../views/MixView';
+import UserView from '../views/items/UserView';
+import MixView from '../views/items/MixView';
 import SearchForm from '../layouts/SearchForm';
 
 class Search extends Component {

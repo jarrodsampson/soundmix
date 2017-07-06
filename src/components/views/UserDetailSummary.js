@@ -1,8 +1,8 @@
 import React from 'react';
 
-import FeedView from '../views/FeedView';
-import MixView from '../views/MixView';
-import CarouselCommentView from '../views/CarouselCommentView';
+import FeedView from '../views/items/FeedView';
+import MixView from '../views/items/MixView';
+import CarouselCommentView from '../views/items/CarouselCommentView';
 
 // Using "Stateless Functional Components"
 export default function (props) {
@@ -33,7 +33,7 @@ export default function (props) {
                             </div>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="container">
                         <h4>CloudCasts</h4>
                         <div className="row">
                             <MixView mixList={(props.cloudcasts).filter((i, index) => (index < 3))} />

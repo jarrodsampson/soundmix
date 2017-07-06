@@ -4,7 +4,7 @@ import * as APIService from '../../api/APIService';
 
 import ReactPaginate from 'react-paginate';
 
-import MusicList from '../views/MusicList';
+import MusicList from '../views/lists/MusicList';
 
 class ListensList extends Component {
 
