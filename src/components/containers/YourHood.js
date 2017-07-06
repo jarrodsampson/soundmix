@@ -44,11 +44,11 @@ class YourHood extends Component {
 
     render() {
         return (
-            <div className="">
+            <div className="container">
                 <DocumentTitle title={ (this.props.searchParamString || "Your Hood") + " - The Best Artists"} />
                 <div className="center-align">
 
-                    <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
+                    <div className={!this.props.isLoading ? 'hidden' : ''}><div className="dataLoader"> Loading...</div></div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
                         {(() => {
 

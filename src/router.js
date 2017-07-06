@@ -28,6 +28,8 @@ import ListensList from './components/containers/ListensList';
 
 import YourHood from './components/containers/YourHood';
 
+import NotFound from './components/containers/NotFound';
+
 export default (
             <Router>
                 <ScrollToTop>
@@ -39,7 +41,7 @@ export default (
                             <Route exact path="/new" component={New}/>
                             <Route exact path="/search" component={Search}/>
                             <Route exact path="/discover" component={Discover}/>
-                            <Route path="/city/:id" component={YourHood}/>
+                            <Route exact path="/city/:id" component={YourHood}/>
                             <Route exact path="/city" component={YourHood}/>
                             <Route exact path="/tag/:id" component={TagSearch}/>
                             <Route exact path="/user/:id" component={UserDetail}/>
@@ -50,7 +52,8 @@ export default (
                             <Route exact path="/listens/:id" component={ListensList}/>
                             <Route exact path="/cloudcasts/:id" component={FullCloudCasts}/>
                             <Route exact path="/mix/:username/:slug" component={MixDetail}/>
-                            <Redirect from="*" to="/" />
+                            <Route path="/error" component={NotFound} />
+                            <Redirect from="*" to="/error" />
                         </Switch>
                     </Navigation>
                 </ScrollToTop>

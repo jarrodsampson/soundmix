@@ -17,12 +17,12 @@ export default function (props) {
 
                                 <div className="card-content">
 
-                                    <div className="col s12 m6 l3">
+                                    <div className="col s12 m6 l4">
                                         <div className="imageContain">
                                             <img className="mainImage" src={item.pictures.large} alt={item.name} />
                                         </div>
                                     </div>
-                                    <div className="col s12 m6 l9">
+                                    <div className="col s12 m6 l8">
 
                                         <div className="counts">
                                             <div className="">

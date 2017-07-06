@@ -185,11 +185,13 @@ class UserDetail extends Component {
                                 </Tab>
                                 <Tab title="Listens">
                                     <div className="col s12 pushDown"></div>
-                                    <MusicList
-                                        isLoading = {this.props.isLoading}
-                                        goBack={APIService.goBack}
-                                        data={this.props.listensList.data}
-                                    />
+                                    <div className="container">
+                                        <MusicList
+                                            isLoading = {this.props.isLoading}
+                                            goBack={APIService.goBack}
+                                            data={this.props.listensList.data}
+                                        />
+                                    </div>
 
                                     {(() => {
                                         if (this.props.listensList.data.length >= this.props.paginationConfig.limit) {
@@ -216,11 +218,13 @@ class UserDetail extends Component {
                                 </Tab>
                                 <Tab title="Likes">
                                     <div className="col s12 pushDown"></div>
-                                    <FavoritesList
-                                        isLoading = {this.props.isLoading}
-                                        goBack={APIService.goBack}
-                                        favorites={this.props.favorites.data}
-                                    />
+                                    <div className="container">
+                                        <FavoritesList
+                                            isLoading = {this.props.isLoading}
+                                            goBack={APIService.goBack}
+                                            favorites={this.props.favorites.data}
+                                        />
+                                    </div>
 
                                     {(() => {
                                         if (this.props.favorites.data.length >= this.props.paginationConfig.limit) {
@@ -247,11 +251,13 @@ class UserDetail extends Component {
                                 </Tab>
                                 <Tab title="CloudCasts">
                                     <div className="col s12 pushDown"></div>
-                                    <CloudCastList
-                                        isLoading = {this.props.isLoading}
-                                        goBack={APIService.goBack}
-                                        cloudcasts={this.props.cloudcasts.data}
-                                    />
+                                    <div className="container">
+                                        <CloudCastList
+                                            isLoading = {this.props.isLoading}
+                                            goBack={APIService.goBack}
+                                            cloudcasts={this.props.cloudcasts.data}
+                                        />
+                                    </div>
 
                                     {(() => {
                                         if (this.props.cloudcasts.data.length >= this.props.paginationConfig.limit) {

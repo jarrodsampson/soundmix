@@ -6,7 +6,6 @@ import {NavLink} from 'react-router-dom';
 import Iframe from 'react-iframe'
 
 import MixView from '../views/MixView';
-import UserView from '../views/UserView';
 import CarouselCommentView from '../views/CarouselCommentView';
 import CarouselUserView from '../views/CarouselUserView';
 
@@ -31,12 +30,12 @@ export default function (props) {
 
                                     <div className="card-content">
 
-                                        <div className="col s12 m6 l3">
+                                        <div className="col s12 m6 l4">
                                             <div className="imageContain">
                                                 <img className="mainImage" src={props.pictures.large} alt={props.name}/>
                                             </div>
                                         </div>
-                                        <div className="col s12 m6 l9">
+                                        <div className="col s12 m6 l8">
 
                                             <div className="counts">
                                                 <div className="">
@@ -119,7 +118,7 @@ export default function (props) {
                 <div className="row">
                     <h4>Recent Listeners</h4>
                     <div className="row">
-                        <UserView userList={props.listeners} />
+                        <CarouselUserView list={props.listeners} />
                         {(() => {
                             if (props.listeners.length === 0) {
                                 return <p>No Recent Listeners Found.</p>

@@ -1,8 +1,13 @@
 import store from '../Store';
 import * as APIFunction from '../actions/API-data';
 
+var server = "https://api.mixcloud.com/";
+
 export function getHotList(offset, limit) {
-    return fetch("https://api.mixcloud.com/popular/hot/?limit=" + limit + "&offset=" + offset)
+
+    store.dispatch(APIFunction.setLoadingStatus(true));
+
+    return fetch(server + "popular/hot/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("Hot List", json.data);
@@ -14,7 +19,10 @@ export function getHotList(offset, limit) {
 }
 
 export function getNewList(offset, limit) {
-    return fetch("https://api.mixcloud.com/new/?limit=" + limit + "&offset=" + offset)
+
+    store.dispatch(APIFunction.setLoadingStatus(true));
+
+    return fetch(server + "new/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("New List", json.data);
@@ -26,7 +34,10 @@ export function getNewList(offset, limit) {
 }
 
 export function getPopularList(offset, limit) {
-    return fetch("https://api.mixcloud.com/popular/?limit=" + limit + "&offset=" + offset)
+
+    store.dispatch(APIFunction.setLoadingStatus(true));
+
+    return fetch(server + "popular/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("Popular List", json.data);
@@ -68,7 +79,7 @@ export function searchByParams(params, offset, limit) {
 }
 
 export function getUserDetail(id) {
-    return fetch("https://api.mixcloud.com/" + id)
+    return fetch(server + id)
         .then(response => response.json())
         .then(json => {
             console.log("User Data", json);
@@ -80,7 +91,7 @@ export function getUserDetail(id) {
 }
 
 export function getUserPlaylists(id) {
-    return fetch("https://api.mixcloud.com/" + id + "/playlists/")
+    return fetch(server + id + "/playlists/")
         .then(response => response.json())
         .then(json => {
             console.log("User Playlist Data", json);
@@ -91,7 +102,7 @@ export function getUserPlaylists(id) {
 }
 
 export function getUserCloudCasts(id, offset, limit) {
-    return fetch("https://api.mixcloud.com/" + id + "/cloudcasts?limit=" + limit + "&offset=" + offset)
+    return fetch(server + id + "/cloudcasts?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Cloudcast Data", json);
@@ -103,7 +114,7 @@ export function getUserCloudCasts(id, offset, limit) {
 }
 
 export function getUserFeed(id, offset, limit) {
-    return fetch("https://api.mixcloud.com/" + id + "/feed/?limit=" + limit + "&offset=" + offset)
+    return fetch(server + id + "/feed/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Feed Data", json);
@@ -115,7 +126,7 @@ export function getUserFeed(id, offset, limit) {
 }
 
 export function getUserFollowers(id, offset, limit) {
-    return fetch("https://api.mixcloud.com/" + id + "/followers/?limit=" + limit + "&offset=" + offset)
+    return fetch(server + id + "/followers/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Follower Data", json);
@@ -127,7 +138,7 @@ export function getUserFollowers(id, offset, limit) {
 }
 
 export function getUserFollowing(id, offset, limit) {
-    return fetch("https://api.mixcloud.com/" + id + "/following/?limit=" + limit + "&offset=" + offset)
+    return fetch(server + id + "/following/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Following Data", json);
@@ -139,8 +150,8 @@ export function getUserFollowing(id, offset, limit) {
 }
 
 export function getUserFavorites(id, offset, limit) {
-    console.log("https://api.mixcloud.com/" + id + "/favorites/?limit=" + limit + "&offset=" + offset);
-    return fetch("https://api.mixcloud.com/" + id + "/favorites/?limit=" + limit + "&offset=" + offset)
+    console.log(server + id + "/favorites/?limit=" + limit + "&offset=" + offset);
+    return fetch(server + id + "/favorites/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Favorites Data", json);
@@ -152,7 +163,7 @@ export function getUserFavorites(id, offset, limit) {
 }
 
 export function getUserListensList(id, offset, limit) {
-    return fetch("https://api.mixcloud.com/" + id + "/listens/?limit=" + limit + "&offset=" + offset)
+    return fetch(server + id + "/listens/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Listen Data", json);
@@ -164,8 +175,8 @@ export function getUserListensList(id, offset, limit) {
 }
 
 export function getUserComments(id, offset, limit) {
-    console.log("https://api.mixcloud.com/" + id + "/comments/?limit=" + limit + "&offset=" + offset);
-    return fetch("https://api.mixcloud.com/" + id + "/comments/?limit=" + limit + "&offset=" + offset)
+    console.log(server + id + "/comments/?limit=" + limit + "&offset=" + offset);
+    return fetch(server + id + "/comments/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Comment Data", json);
@@ -176,7 +187,7 @@ export function getUserComments(id, offset, limit) {
 }
 
 export function getMixDetail(id) {
-    return fetch("https://api.mixcloud.com/" + id)
+    return fetch(server + id)
         .then(response => response.json())
         .then(json => {
             console.log("Mix Data", json);
@@ -188,8 +199,8 @@ export function getMixDetail(id) {
 }
 
 export function getMixListeners(id) {
-    console.log("https://api.mixcloud.com/" + id + "/listeners/");
-    return fetch("https://api.mixcloud.com/" + id + "/listeners/?limit=50")
+    console.log(server + id + "/listeners/");
+    return fetch(server + id + "/listeners/?limit=50")
         .then(response => response.json())
         .then(json => {
             console.log("Mix Listeners Data", json);
@@ -200,8 +211,8 @@ export function getMixListeners(id) {
 }
 
 export function getMixSimilar(id) {
-    console.log("https://api.mixcloud.com/" + id + "/similar/");
-    return fetch("https://api.mixcloud.com/" + id + "/similar/?limit=50")
+    console.log(server + id + "/similar/");
+    return fetch(server + id + "/similar/?limit=50")
         .then(response => response.json())
         .then(json => {
             console.log("Mix Similar/Suggested Data", json);
@@ -212,8 +223,8 @@ export function getMixSimilar(id) {
 }
 
 export function getMixFavorite(id) {
-    console.log("https://api.mixcloud.com/" + id + "/favorites/");
-    return fetch("https://api.mixcloud.com/" + id + "/favorites/?limit=20")
+    console.log(server + id + "/favorites/");
+    return fetch(server + id + "/favorites/?limit=20")
         .then(response => response.json())
         .then(json => {
             console.log("Mix Favorites Data", json);
@@ -224,8 +235,8 @@ export function getMixFavorite(id) {
 }
 
 export function getMixComments(id) {
-    console.log("https://api.mixcloud.com/" + id + "/comments/");
-    return fetch("https://api.mixcloud.com/" + id + "/comments/?limit=20")
+    console.log(server + id + "/comments/");
+    return fetch(server + id + "/comments/?limit=20")
         .then(response => response.json())
         .then(json => {
             console.log("Mix Comments Data", json);
@@ -236,6 +247,9 @@ export function getMixComments(id) {
 }
 
 export function getTagSearch(tag, offset, limit) {
+
+    store.dispatch(APIFunction.setLoadingStatus(true));
+
     return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
@@ -248,8 +262,11 @@ export function getTagSearch(tag, offset, limit) {
 }
 
 export function getMixListByCity(city, offset, limit) {
-    console.log("https://api.mixcloud.com/discover/city:" + city + "/popular/?limit=" + limit + "&offset=" + offset);
-    return fetch("https://api.mixcloud.com/discover/city:" + city + "/popular/?limit=" + limit + "&offset=" + offset)
+
+    store.dispatch(APIFunction.setLoadingStatus(true));
+
+    console.log(server + "discover/city:" + city + "/popular/?limit=" + limit + "&offset=" + offset);
+    return fetch(server + "discover/city:" + city + "/popular/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("Mix By City Data", json.data);
