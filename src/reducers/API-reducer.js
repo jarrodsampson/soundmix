@@ -1,7 +1,6 @@
 import * as types from '../actions/action-types';
 
 const initialState = {
-    // chart lists
     hotList: {
         data: []
     },
@@ -14,7 +13,6 @@ const initialState = {
     cityList: {
         data: []
     },
-    // search data
     discoverTagList: {
         data: []
     },
@@ -22,13 +20,11 @@ const initialState = {
       data: []
     },
     searchParamString: "",
-    // pagination details/ settings
     paginationConfig: {
         pageCount: 10,
         offset: 0,
         limit: 21
     },
-    // user data
     userDetails: {
         pictures: {},
         cover_pictures: {
@@ -57,7 +53,6 @@ const initialState = {
     comments: {
         data: []
     },
-    // mix data
     mixDetails: {
         pictures: {},
         user: {
