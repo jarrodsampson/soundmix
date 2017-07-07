@@ -1,7 +1,7 @@
 import React from 'react';
 import Moment from 'react-moment';
 import OwlCarousel from 'react-owl-carousel';
-
+import Truncate from 'react-truncate';
 // Using "Stateless Functional Components"
 export default function (props) {
     //console.log("Ps", props);
@@ -26,7 +26,9 @@ export default function (props) {
                     <div key={i} className="col s12 commentSlide">
                         <div className="item card hoverable">
                             <div className="card-content">
-                                              <span className="card-title">"{item.comment}" {item.user.username}
+                                              <span className="card-title">"<Truncate lines={3} ellipsis={<span>...</span>}>
+                                                                            {item.comment}
+                                                                        </Truncate>" {item.user.username}
 
                                               </span>
                                 <p>

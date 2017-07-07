@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as APIService from '../../api/APIService';
-
+import DocumentTitle from 'react-document-title';
 import ReactPaginate from 'react-paginate';
-
+import Loader from '../helpers/loader';
 import CloudCastList from '../views/lists/CloudCastList';
 
 class FullCloudCasts extends Component {
@@ -26,8 +26,12 @@ class FullCloudCasts extends Component {
         return (
             <div className="center-align">
                 <div className="container">
+                    <DocumentTitle title={(this.props.match.params.id || "User")+ "'s CloudCasts - SoundMix"}/>
+                    <div className="col s12 pushDown"></div>
 
-                    <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
+                    <div className={!this.props.isLoading ? 'hidden' : ''}>
+                        <Loader />
+                    </div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
                         <CloudCastList
                             isLoading = {this.props.isLoading}
@@ -35,17 +39,27 @@ class FullCloudCasts extends Component {
                             cloudcasts={this.props.cloudcasts.data}
                         />
 
-                        <ReactPaginate previousLabel={"Previous"}
-                                       nextLabel={"Next"}
-                                       breakLabel={<a href="">...</a>}
-                                       breakClassName={"break-me"}
-                                       pageCount={this.props.paginationConfig.pageCount}
-                                       marginPagesDisplayed={0}
-                                       pageRangeDisplayed={7}
-                                       onPageChange={this.handlePageClick}
-                                       containerClassName={"pagination"}
-                                       subContainerClassName={"pages pagination"}
-                                       activeClassName={"active"} />
+                        {(() => {
+                            if (this.props.cloudcasts.data.length >= this.props.paginationConfig.limitWideColumn) {
+                                return <ReactPaginate previousLabel={"Previous"}
+                                                      nextLabel={"Next"}
+                                                      breakLabel={<a href="">...</a>}
+                                                      breakClassName={"break-me"}
+                                                      pageCount={this.props.paginationConfig.pageCount}
+                                                      marginPagesDisplayed={0}
+                                                      pageRangeDisplayed={7}
+                                                      onPageChange={this.handleFollowersPageClick}
+                                                      containerClassName={"pagination"}
+                                                      subContainerClassName={"pages pagination"}
+                                                      activeClassName={"active"} />
+                            }
+
+                            if (this.props.cloudcasts.data.length === 0) {
+                                return <p>No CloudCasts Just Yet...</p>
+                            }
+
+                        })()}
+
                     </div>
                 </div>
             </div>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as APIService from '../../api/APIService';
-
+import DocumentTitle from 'react-document-title';
 import ReactPaginate from 'react-paginate';
-
+import Loader from '../helpers/loader';
 import MusicList from '../views/lists/MusicList';
 
 class ListensList extends Component {
@@ -25,9 +25,12 @@ class ListensList extends Component {
     render() {
         return (
             <div className="center-align">
-                <div className="">
-
-                    <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
+                <div className="container">
+                    <DocumentTitle title={(this.props.match.params.id || "User")+ "'s Listens - SoundMix"}/>
+                    <div className="col s12 pushDown"></div>
+                    <div className={!this.props.isLoading ? 'hidden' : ''}>
+                        <Loader />
+                    </div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
                         <MusicList
                             isLoading = {this.props.isLoading}
@@ -35,17 +38,27 @@ class ListensList extends Component {
                             data={this.props.listensList.data}
                         />
 
-                        <ReactPaginate previousLabel={"Previous"}
-                                       nextLabel={"Next"}
-                                       breakLabel={<a href="">...</a>}
-                                       breakClassName={"break-me"}
-                                       pageCount={this.props.paginationConfig.pageCount}
-                                       marginPagesDisplayed={0}
-                                       pageRangeDisplayed={7}
-                                       onPageChange={this.handlePageClick}
-                                       containerClassName={"pagination"}
-                                       subContainerClassName={"pages pagination"}
-                                       activeClassName={"active"} />
+                        {(() => {
+                            if (this.props.listensList.data.length >= this.props.paginationConfig.limit) {
+                                return <ReactPaginate previousLabel={"Previous"}
+                                                      nextLabel={"Next"}
+                                                      breakLabel={<a href="">...</a>}
+                                                      breakClassName={"break-me"}
+                                                      pageCount={this.props.paginationConfig.pageCount}
+                                                      marginPagesDisplayed={0}
+                                                      pageRangeDisplayed={7}
+                                                      onPageChange={this.handlePageClick}
+                                                      containerClassName={"pagination"}
+                                                      subContainerClassName={"pages pagination"}
+                                                      activeClassName={"active"} />
+                            }
+
+                            if (this.props.listensList.data.length === 0) {
+                                return <p>No Listens Just Yet...</p>
+                            }
+
+                        })()}
+
                     </div>
                 </div>
             </div>

@@ -38,7 +38,7 @@ class Discover extends Component {
 
                 <div className="center-align container">
 
-                    <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
+                    <div className={!this.props.isLoading ? 'hidden' : ''}></div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
 
                         <ArtistList data={this.props.discoverTagList.data} />

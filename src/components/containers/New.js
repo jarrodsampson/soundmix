@@ -6,8 +6,8 @@ import '../../css/owl.carousel.min.css';
 import '../../css/owl.theme.default.min.css';
 import * as APIService from '../../api/APIService';
 import ReactPaginate from 'react-paginate';
-
-import ArtistList from '../views/ArtistList';
+import Loader from '../helpers/loader';
+import MixView from '../views/items/MixView';
 
 class New extends Component {
 
@@ -32,10 +32,12 @@ class New extends Component {
         return (
             <div className="container center-align max-width">
                 <DocumentTitle title={"New - SoundMix"} />
-
-                <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
+                <div className="col s12 pushDown"></div>
+                <div className={!this.props.isLoading ? 'hidden' : ''}>
+                    <Loader />
+                </div>
                 <div className={this.props.isLoading ? 'hidden' : ''}>
-                    <ArtistList data={this.props.newList.data} />
+                    <MixView mixList={this.props.newList.data} />
                     <ReactPaginate previousLabel={"Previous"}
                                    nextLabel={"Next"}
                                    breakLabel={<a href="">...</a>}

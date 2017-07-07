@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import DocumentTitle from 'react-document-title';
 import * as APIService from '../../api/APIService';
 import * as LocationService from '../../api/LocationService';
-
+import Loader from '../helpers/loader';
 import {geolocated} from 'react-geolocated';
 
 import MusicList from '../views/lists/MusicList';
@@ -45,10 +45,12 @@ class YourHood extends Component {
     render() {
         return (
             <div className="container">
-                <DocumentTitle title={ (this.props.searchParamString || "Your Hood") + " - The Best Artists"} />
+                <DocumentTitle title={ "Searching " + (this.props.searchParamString || "Your Hood") + " - SoundMix"} />
                 <div className="center-align">
-
-                    <div className={!this.props.isLoading ? 'hidden' : ''}><div className="dataLoader"> Loading...</div></div>
+                    <div className="col s12 pushDown"></div>
+                    <div className={!this.props.isLoading ? 'hidden' : ''}>
+                        <Loader />
+                    </div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
                         {(() => {
 

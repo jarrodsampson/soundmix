@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import InfiniteScroll from 'redux-infinite-scroll';
 import DocumentTitle from 'react-document-title';
 import '../../css/Home.css';
 import '../../css/owl.carousel.min.css';
 import '../../css/owl.theme.default.min.css';
 import * as APIService from '../../api/APIService';
 import ReactPaginate from 'react-paginate';
-
-import ArtistList from '../views/ArtistList';
+import Loader from '../helpers/loader';
+import MixView from '../views/items/MixView';
 
 class TagSearch extends Component {
 
@@ -38,11 +37,13 @@ class TagSearch extends Component {
             <div className="container center-align max-width">
 
                 <DocumentTitle title={(this.props.match.params.id).replace(/[+]/g, " ") + " - SoundMix"} />
-
-                <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
+                <div className="col s12 pushDown"></div>
+                <div className={!this.props.isLoading ? 'hidden' : ''}>
+                    <Loader />
+                </div>
                 <div className={this.props.isLoading ? 'hidden' : ''}>
 
-                    <ArtistList data={this.props.tagSearchList.data} onClickTag={this.tagClick} />
+                    <MixView mixList={this.props.tagSearchList.data} onClickTag={this.tagClick} />
                     <ReactPaginate previousLabel={"Previous"}
                                    nextLabel={"Next"}
                                    breakLabel={<a href="">...</a>}

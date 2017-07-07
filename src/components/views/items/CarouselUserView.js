@@ -25,7 +25,7 @@ export default function (props) {
                 {props.list.map((item, i) => {
                     return (
                         <div key={i} className="col s12">
-                            <div className="item card hoverable">
+                            <div className="item card hoverable carouselCard">
                                 <div className="card-image">
                                     <img src={item.pictures.large} alt={item.name}/>
                                     <span className="card-title">{item.name}</span>

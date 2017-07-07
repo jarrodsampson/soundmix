@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import DocumentTitle from 'react-document-title';
 import * as APIService from '../../api/APIService';
 import ReactPaginate from 'react-paginate';
-
-import ArtistList from '../views/ArtistList';
+import Loader from '../helpers/loader';
+import MixView from '../views/items/MixView';
 
 class Popular extends Component {
 
@@ -29,10 +29,12 @@ class Popular extends Component {
         return (
             <div className="container center-align max-width">
                 <DocumentTitle title={"Popular - SoundMix"} />
-
-                <div className={!this.props.isLoading ? 'hidden' : ''}>Loading...</div>
+                <div className="col s12 pushDown"></div>
+                <div className={!this.props.isLoading ? 'hidden' : ''}>
+                    <Loader />
+                </div>
                 <div className={this.props.isLoading ? 'hidden' : ''}>
-                    <ArtistList data={this.props.popularList.data} />
+                    <MixView mixList={this.props.popularList.data} />
                     <ReactPaginate previousLabel={"Previous"}
                                    nextLabel={"Next"}
                                    breakLabel={<a href="">...</a>}

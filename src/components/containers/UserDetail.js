@@ -12,7 +12,7 @@ import MusicList from '../views/lists/MusicList';
 import FavoritesList from '../views/lists/FavoritesList';
 import CloudCastList from '../views/lists/CloudCastList';
 import FeedList from '../views/lists/FeedList';
-
+import Loader from '../helpers/loader';
 import {Tabs, Tab} from 'react-materialize';
 import ReactPaginate from 'react-paginate';
 
@@ -75,7 +75,9 @@ class UserDetail extends Component {
             <div className="center-align">
                 <div className="">
 
-                    <div className={!this.props.isLoading ? 'hidden' : ''}><div className="dataLoader">Loading...</div></div>
+                    <div className={!this.props.isLoading ? 'hidden' : ''}>
+                        <Loader />
+                    </div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
 
                         <div>
