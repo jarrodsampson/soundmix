@@ -7,7 +7,7 @@ import '../../css/owl.theme.default.min.css';
 import * as APIService from '../../api/APIService';
 import ReactPaginate from 'react-paginate';
 
-import ArtistList from '../views/ArtistList';
+import MixView from '../views/items/MixView';
 import DiscoverForm from '../layouts/DiscoverForm';
 
 class Discover extends Component {
@@ -41,7 +41,7 @@ class Discover extends Component {
                     <div className={!this.props.isLoading ? 'hidden' : ''}></div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
 
-                        <ArtistList data={this.props.discoverTagList.data} />
+                        <MixView mixList={this.props.discoverTagList.data} />
 
                         {(() => {
 

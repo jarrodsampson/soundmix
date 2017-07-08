@@ -50,7 +50,7 @@ class SearchForm extends Component {
                                 </label>
                             </div>
                         </div>
-                        <Button className="buttonColor" type="submit"><Icon>search</Icon></Button>
+                        <Button className="buttonColor deep-purple darken-1 waves-effect waves-light" type="submit"><Icon>search</Icon></Button>
                      </div>
                  </div>
             </form>

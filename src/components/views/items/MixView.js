@@ -1,8 +1,8 @@
 import React from 'react';
 import Moment from 'react-moment';
 import Truncate from 'react-truncate';
-import {Icon} from 'react-materialize';
 import {NavLink} from 'react-router-dom';
+import {Icon} from 'react-materialize';
 
 // Using "Stateless Functional Components"
 export default function (props) {
@@ -32,10 +32,10 @@ export default function (props) {
                                                 <p><Icon>visibility</Icon><span>{item.play_count}</span></p>
                                             </div>
                                             <div className="">
-                                                <p><Icon>star</Icon><span>{item.favorite_count}</span></p>
+                                                <p><Icon>star</Icon><span><NavLink to={"/mix" + item.key + "favorites"}>{item.favorite_count}</NavLink></span></p>
                                             </div>
                                             <div className="">
-                                                <p><Icon>perm_identity</Icon><span>{item.listener_count}</span></p>
+                                                <p><Icon>perm_identity</Icon><span><NavLink to={"/mix" + item.key + "listens"}>{item.listener_count}</NavLink></span></p>
                                             </div>
                                             <div className="">
                                                 <p><Icon>repeat</Icon><span>{item.repost_count}</span></p>
@@ -84,6 +84,7 @@ export default function (props) {
                 );
 
             })}
+
 
         </div>
     );

@@ -20,6 +20,10 @@ class New extends Component {
         this.getContent(this.props.paginationConfig.offset, this.props.paginationConfig.limit);
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return false;
+    }
+
     handlePageClick = (data) => {
         let selected = data.selected * 20;
         //console.log(selected);

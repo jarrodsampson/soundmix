@@ -6,24 +6,55 @@ import PropTypes from 'prop-types';
 
 import * as APIService from '../../api/APIService';
 
+
+const validate = values => {
+    const errors = {};
+    if (!values.discoverText) {
+        errors.discoverText = 'Required'
+    }
+    return errors
+};
+
 class DiscoverForm extends Component {
     static propTypes = {
         handleSubmit: PropTypes.func
     };
 
     handleSubmit(e) {
-        console.log((e.discoverText).replace(/ /g, "+"));
+        //console.log((e.discoverText).replace(/ /g, "+"));
         APIService.searchByTag((e.discoverText).replace(/ /g, "+"), 0, 21);
-        //window.location.replace("/search/" + e.discoverText);
     }
 
     render() {
-        const {fields: {discoverText}, handleSubmit} = this.props;
+        const {handleSubmit, pristine, submitting} = this.props;
+
+        const renderField = ({
+            input,
+            label,
+            type,
+            meta: { touched, error, warning }
+        }) => (
+            <div>
+                <label>{label}</label>
+                <div>
+                    <input {...input} placeholder={label} type={type} />
+                    {touched &&
+                    ((error && <span>{error}</span>))}
+                </div>
+            </div>
+        );
 
         return (
             <form onSubmit={handleSubmit(this.handleSubmit)}>
-                <Field name="discoverText" component="input" type="text" placeholder="Type In A Tag" {...discoverText} />
-                <Button className="buttonColor" type="submit"><Icon>search</Icon></Button>
+                <Field
+                    name="discoverText"
+                    type="text"
+                    component={renderField}
+                    label="Search Genre"
+                />
+                <div>
+                    <Button type="submit" className="buttonColor deep-purple darken-1 waves-effect waves-light" disabled={pristine || submitting}><Icon>search</Icon></Button>
+                </div>
             </form>
 
         );
@@ -33,7 +64,7 @@ class DiscoverForm extends Component {
 DiscoverForm = reduxForm({
     // a unique name for the form
     form: 'discoverForm',
-    fields: ['discoverText']
+    validate
 })(DiscoverForm);
 
 export default DiscoverForm;

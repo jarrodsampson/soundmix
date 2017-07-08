@@ -1,4 +1,3 @@
-
 import * as APIService from './APIService';
 
 var server = "https://maps.googleapis.com/maps/api/";

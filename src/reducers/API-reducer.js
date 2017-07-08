@@ -76,7 +76,6 @@ const initialState = {
     commentsList: {
         data: []
     },
-    // helpers
     isLoading: true
 };
 
@@ -86,6 +85,7 @@ const APIReducer = function(state = initialState, action) {
     switch(action.type) {
 
         case types.GET_HOTLIST_SUCCESS:
+            //console.log("Hot list", state.hotList.data.concat(action.hotList.data));
             return Object.assign({}, state, { hotList: action.hotList });
         case types.GET_CITY_LIST_SUCCESS:
             return Object.assign({}, state, { cityList: action.cityList });

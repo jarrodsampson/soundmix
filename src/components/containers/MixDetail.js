@@ -9,16 +9,16 @@ import MixDetailView from '../views/MixDetailView';
 
 class MixDetail extends Component {
 
-    getContent(id) {
+    getContent(id, offset, limit) {
         APIService.getMixDetail(id);
-        APIService.getMixListeners(id);
+        APIService.getMixListeners(id, offset, limit);
         APIService.getMixSimilar(id);
-        APIService.getMixFavorite(id);
-        APIService.getMixComments(id);
+        APIService.getMixFavorite(id, offset, limit);
+        APIService.getMixComments(id, offset, limit);
     }
 
     componentDidMount() {
-        this.getContent((this.props.match.params.username + "/" + this.props.match.params.slug));
+        this.getContent((this.props.match.params.username + "/" + this.props.match.params.slug), this.props.paginationConfig.offset, this.props.paginationConfig.limit);
     }
 
     albumClick() {

@@ -26,6 +26,9 @@ import FullFollowing from './components/containers/FullFollowing';
 import FullFavorites from './components/containers/FullFavorites';
 import ListensList from './components/containers/ListensList';
 
+import MixFavorites from './components/containers/MixData/MixFavorites';
+import MixListens from './components/containers/MixData/MixListens';
+
 import YourHood from './components/containers/YourHood';
 
 import NotFound from './components/containers/NotFound';
@@ -47,6 +50,8 @@ export default (
                             <Route exact path="/user/:id" component={UserDetail}/>
                             <Route exact path="/feed/:id" component={FullFeed}/>
                             <Route exact path="/favorites/:id" component={FullFavorites}/>
+                            <Route exact path="/mix/:user/:id/favorites/" component={MixFavorites}/>
+                            <Route exact path="/mix/:user/:id/listens/" component={MixListens}/>
                             <Route exact path="/followers/:id" component={FullFollowers}/>
                             <Route exact path="/following/:id" component={FullFollowing}/>
                             <Route exact path="/listens/:id" component={ListensList}/>

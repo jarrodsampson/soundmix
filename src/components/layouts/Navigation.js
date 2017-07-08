@@ -5,7 +5,7 @@ import {
 import Headroom from 'react-headroom';
 import Back2Top from 'react-back2top';
 
-import {Navbar, NavItem, Button, Modal, Icon} from 'react-materialize';
+import {Navbar, NavItem, Button, Modal} from 'react-materialize';
 
 export default function(props) {
     return (
@@ -17,10 +17,9 @@ export default function(props) {
                         <li><NavLink to="/new" activeClassName="activeV">New</NavLink></li>
                         <li><NavLink to="/popular" activeClassName="activeV">Popular</NavLink></li>
                         <li><NavLink to="/hot" activeClassName="activeV">Hot</NavLink></li>
+                        <li><NavLink to="/discover" activeClassName="activeV">Discover</NavLink></li>
                         <li><NavLink to="#aboutModal">About</NavLink></li>
                         <NavItem href="//www.mixcloud.com/developers/" target="_blank" rel="noopener noreferrer">API</NavItem>
-                        <li><NavLink to="/discover" activeClassName="activeV">Discover</NavLink></li>
-                        <li><NavLink to="/search" activeClassName="activeV"><Icon>search</Icon></NavLink></li>
                     </Navbar>
                 </Headroom>
 
@@ -35,14 +34,17 @@ export default function(props) {
                 </Back2Top>
 
                 <Modal
-                    header='Berr.IO'
+                    header='SoundMix'
                     id='aboutModal'>
                     <div>
                         <p>
-                            A search application through Brewdog's expansive back catalogue of beer.
+                            Find awesome cloudcasts roaming the world. Right now.
                         </p>
                         <p>
-                            Version 1.3.1, Created By Jarrod Sampson
+                            Build with React, Redux, and MaterializeCSS.
+                        </p>
+                        <p>
+                            Version 1.2.3, Created By Jarrod Sampson
                         </p>
                     </div>
                 </Modal>
@@ -53,7 +55,7 @@ export default function(props) {
                     <div className="row">
                         <div className="col l6 s12">
                             <h5 className="white-text">SoundMix</h5>
-                            <p className="grey-text text-lighten-4">Find awesome cloudcast roaming the world. Right now.</p>
+                            <p className="grey-text text-lighten-4">Find awesome cloudcasts roaming the world. Right now.</p>
                         </div>
                         <div className="col l4 offset-l2 s12">
                             <h5 className="white-text">About The Developer</h5>

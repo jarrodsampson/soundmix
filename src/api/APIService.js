@@ -198,13 +198,14 @@ export function getMixDetail(id) {
         .catch((err) => console.log(''));
 }
 
-export function getMixListeners(id) {
-    console.log(server + id + "/listeners/");
-    return fetch(server + id + "/listeners/?limit=50")
+export function getMixListeners(id, offset, limit) {
+    console.log(server + id + "/listeners/?limit=" + limit + "&offset=" + offset);
+    return fetch(server + id + "/listeners/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("Mix Listeners Data", json);
             store.dispatch(APIFunction.getMixListenerSuccess(json));
+            store.dispatch(APIFunction.setLoadingStatus(false));
             return json;
         })
         .catch((err) => console.log(''));
@@ -212,7 +213,7 @@ export function getMixListeners(id) {
 
 export function getMixSimilar(id) {
     console.log(server + id + "/similar/");
-    return fetch(server + id + "/similar/?limit=50")
+    return fetch(server + id + "/similar/")
         .then(response => response.json())
         .then(json => {
             console.log("Mix Similar/Suggested Data", json);
@@ -222,21 +223,23 @@ export function getMixSimilar(id) {
         .catch((err) => console.log(''));
 }
 
-export function getMixFavorite(id) {
-    console.log(server + id + "/favorites/");
-    return fetch(server + id + "/favorites/?limit=20")
+export function getMixFavorite(id, offset, limit) {
+
+    console.log(server + id + "/favorites/?limit=" + limit + "&offset=" + offset);
+    return fetch(server + id + "/favorites/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("Mix Favorites Data", json);
             store.dispatch(APIFunction.getMixFavoriteSuccess(json));
+            store.dispatch(APIFunction.setLoadingStatus(false));
             return json;
         })
         .catch((err) => console.log(''));
 }
 
-export function getMixComments(id) {
-    console.log(server + id + "/comments/");
-    return fetch(server + id + "/comments/?limit=20")
+export function getMixComments(id, offset, limit) {
+    console.log(server + id + "/comments/?limit=" + limit + "&offset=" + offset);
+    return fetch(server + id + "/comments/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("Mix Comments Data", json);

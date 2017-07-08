@@ -17,11 +17,15 @@ class Popular extends Component {
         this.getContent(this.props.paginationConfig.offset, this.props.paginationConfig.limit);
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return false;
+    }
+
     handlePageClick = (data) => {
         let selected = data.selected * this.props.paginationConfig.limit;
         //console.log(selected);
 
-        this.getContent(selected, 20);
+        this.getContent(selected, this.props.paginationConfig.limit);
 
     };
 
