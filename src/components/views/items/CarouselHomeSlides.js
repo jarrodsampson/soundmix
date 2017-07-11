@@ -10,7 +10,12 @@ export default function (props) {
 
         <OwlCarousel
             className="owl-theme"
-            loop margin={0}
+            loop
+            margin={0}
+            autoplaySpeed={600}
+            rewind={true}
+            autoplay={true}
+            autoplayHoverPause={true}
             items={1}
         >
 

@@ -19,6 +19,12 @@ const initialState = {
     internationalList: {
         data: []
     },
+    talkList: {
+        data: []
+    },
+    entertainmentList: {
+        data: []
+    },
     searchResults: {
       data: []
     },
@@ -28,7 +34,8 @@ const initialState = {
         offset: 0,
         limit: 21,
         limitWideColumn: 20,
-        limitTeaser: 3
+        limitTeaser: 3,
+        limitEight: 8
     },
     userDetails: {
         pictures: {},
@@ -83,17 +90,25 @@ const initialState = {
     },
     isLoading: true,
     genreArray: [
-        "Jazz","Rap","Rock","Soul","Alternative","Pop","Funk","Techno","Disco","Gospel"
+        "Jazz","Rap","Rock","Soul","Alternative","Pop","Funk","Techno","Disco","Gospel","Latin","Electronic","KPop"
     ],
     internationalArray: [
-        "Korean","Japanese","African","Hindu","French","Spanish","Portugese","German"
+        "Korean","Japanese","African","Hindu","French","Spanish","Portugese","German","Chinese","Irish","American"
     ],
     popularCities: [
-        "Athens","Los Angeles", "Tokyo","London","Paris","Turkey","Malaysia","Rome","Singapore","Dubai","Bangkok"
+        "Athens","Los Angeles", "Tokyo","London","Paris","Turkey","Malaysia","Rome","Singapore","Dubai","Bangkok","Istanbul","Barcelona","Milan"
     ],
     slideshowBanner: [
         "assets/images/banner1.jpg",
-        "assets/images/banner2.jpg"
+        "assets/images/banner2.jpg",
+        "assets/images/banner3.jpg",
+        "assets/images/banner4.jpg"
+    ],
+    popularTalkCasts: [
+        "Business","Comedy","Education","Science","Sport","Technology","News","Interview"
+    ],
+    popularEntertainmentCasts: [
+        "Comedy","Sport","Technology","Lifestyle"
     ]
 };
 
@@ -112,6 +127,10 @@ const APIReducer = function(state = initialState, action) {
             return Object.assign({}, state, { popularList: action.popularList });
         case types.GET_INTERNATIONAL_LIST_SUCCESS:
             return Object.assign({}, state, { internationalList: action.internationalList });
+        case types.GET_TALK_LIST_SUCCESS:
+            return Object.assign({}, state, { talkList: action.talkList });
+        case types.GET_ENTERTAINMENT_LIST_SUCCESS:
+            return Object.assign({}, state, { entertainmentList: action.entertainmentList });
         case types.GET_SEARCH_LIST_SUCCESS:
             return Object.assign({}, state, { searchResults: action.searchList });
         case types.GET_SEARCH_LIST_PARAMS_SUCCESS:

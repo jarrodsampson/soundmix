@@ -7,10 +7,19 @@
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
     transition-timing-function: cubic-bezier(1.28, -0.55, 0.265, 1.55);
+    bottom: -0.1em !important;
+}
+
+.owl-dots {
+    position: absolute;
+    left: 50%;
+    width: 500px;
+    margin-left: -250px;
+    bottom: .5em;
 }
 
 .carouselCardMixAlbum:hover .small {
-    height:100%;
+    height:101%;
     background: rgba(0,0,0,0.8);
 }
 
@@ -27,4 +36,11 @@
 .rightLink a {
     font-weight:bold;
     text-transform: uppercase;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.rightLink a:hover {
+    color: #b388ff;
 }

@@ -26,7 +26,7 @@ export default function (props) {
                 <div className="col s12 card valign-wrapper">
                     <div className="card-content valign-wrapper">
                         <div className="col s12 m4 valign-wrapper">
-                            <img className="userPhoto" src={(props.pictures.large || "https://s3.amazonaws.com/uifaces/faces/twitter/sachagreif/128.jpg")} alt={props.username} />
+                            <img className="userPhoto" src={(props.pictures.large || "http://wellington.recollect.co.nz/img/placeholder.gif")} alt={props.username} />
                         </div>
 
                         <div className="col s12 m6">

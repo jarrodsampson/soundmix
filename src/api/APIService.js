@@ -65,6 +65,29 @@ export function searchByTag(tag, type, offset, limit) {
                 })
                 .catch((err) => console.log(''));
 
+        case "talk":
+            return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
+                .then(response => response.json())
+                .then(json => {
+                    console.log("Talk Tag Data", json);
+
+                    store.dispatch(APIFunction.getTalkListSuccess(json));
+
+                    return json;
+                })
+                .catch((err) => console.log(''));
+        case "entertainment":
+            return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
+                .then(response => response.json())
+                .then(json => {
+                    console.log("Entertainment Tag Data", json);
+
+                    store.dispatch(APIFunction.getEntertainmentListSuccess(json));
+
+                    return json;
+                })
+                .catch((err) => console.log(''));
+
         default:
             return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
                 .then(response => response.json())

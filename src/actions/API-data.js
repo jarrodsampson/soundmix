@@ -28,6 +28,20 @@ export function getInternationalListSuccess(internationalList) {
     };
 }
 
+export function getTalkListSuccess(talkList) {
+    return {
+        type: types.GET_TALK_LIST_SUCCESS,
+        talkList
+    };
+}
+
+export function getEntertainmentListSuccess(entertainmentList) {
+    return {
+        type: types.GET_ENTERTAINMENT_LIST_SUCCESS,
+        entertainmentList
+    };
+}
+
 export function getSearchSuccess(searchList) {
     return {
         type: types.GET_SEARCH_LIST_SUCCESS,
