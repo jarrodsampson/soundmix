@@ -77,7 +77,7 @@ export default function (props) {
                                             <div className="tags">
                                                 {props.tags.map(function (tag, i) {
                                                     return <div className="chip" key={i}>
-                                                        <NavLink to={"/tag/" + (tag.name).replace(/ /g, "+")}
+                                                        <NavLink to={"/tag/" + (tag.name).replace(/ /g, "+").toLowerCase()}
                                                                  onClick={props.onClickTag}>
                                                             {tag.name}
                                                         </NavLink>
@@ -95,18 +95,34 @@ export default function (props) {
 
                         <div className="row">
                             <div className="col s12">
-                                <p>{props.description || "No Description Added."}</p>
-                                <p>
-                                    <Iframe
-                                        url={"https://api.mixcloud.com/" + props.user.username + "/" + props.slug + "/embed-html"}
-                                        width="100%"
-                                        display="initial"
-                                        position="relative"
-                                        allowFullScreen/>
-                                </p>
-                                <p>
-                                    <a href={props.url} target="_blank">Visit</a>
-                                </p>
+
+                                {(() => {
+                                    if (props.description !== undefined) {
+                                        return <p>{props.description || "No Description Added."}</p>
+                                    }
+                                })()}
+
+                                {(() => {
+                                    if (props.slug !== undefined) {
+                                        return <p>
+                                                    <Iframe
+                                                        url={"https://api.mixcloud.com/" + props.user.username + "/" + props.slug + "/embed-html"}
+                                                        width="100%"
+                                                        display="initial"
+                                                        position="relative"
+                                                        allowFullScreen/>
+                                                </p>
+                                    }
+                                })()}
+
+                                {(() => {
+                                    if (props.url !== undefined) {
+                                        return <p>
+                                                    <a href={props.url} target="_blank">Visit</a>
+                                                </p>
+                                    }
+                                })()}
+
                             </div>
                         </div>
 
@@ -115,12 +131,13 @@ export default function (props) {
                 </div>
 
                 <div className="row">
-                    <h4 className="headers">Recent Listeners</h4>
                     <div className="row">
-                        <CarouselUserView list={props.listeners} />
                         {(() => {
-                            if (props.listeners.length === 0) {
-                                return <p>No Recent Listeners Found.</p>
+                            if (props.listeners.length === 0) { } else {
+                                return <div>
+                                            <h4 className="headers">Recent Listeners</h4>
+                                            <CarouselUserView list={props.listeners} />
+                                        </div>
                             }
                         })()}
                     </div>
@@ -128,12 +145,13 @@ export default function (props) {
 
                 <div className="container">
                     <div className="row">
-                        <h4>Suggested For You</h4>
                         <div className="row">
-                            <MixView mixList={props.suggestions} />
                             {(() => {
-                                if (props.suggestions.length === 0) {
-                                    return <p>No Suggestions Found.</p>
+                                if (props.suggestions.length > 0) {
+                                    return <div>
+                                                <h4>Suggested For You</h4>
+                                                <MixView mixList={props.suggestions} />
+                                            </div>
                                 }
                             })()}
                         </div>
@@ -141,24 +159,26 @@ export default function (props) {
                 </div>
 
                 <div className="row">
-                     <h4 className="headers">Comments</h4>
                      <div className="row">
-                          <CarouselCommentView commentList={props.comments} />
                          {(() => {
-                             if (props.comments.length === 0) {
-                                 return <p>No Comments Found.</p>
+                             if (props.comments.length > 0) {
+                                 return <div>
+                                             <h4 className="headers">Comments</h4>
+                                             <CarouselCommentView commentList={props.comments} />
+                                         </div>
                              }
                          })()}
                      </div>
                 </div>
 
                 <div className="row">
-                    <h4 className="headers">Recent Likes</h4>
                     <div className="row">
-                        <CarouselUserView list={props.favorites} />
                         {(() => {
-                            if (props.favorites.length === 0) {
-                                return <p>No Likes Found.</p>
+                            if (props.favorites.length === 0) { } else {
+                                return <div>
+                                            <h4 className="headers">Recent Likes</h4>
+                                            <CarouselUserView list={props.favorites} />
+                                        </div>
                             }
                         })()}
                     </div>

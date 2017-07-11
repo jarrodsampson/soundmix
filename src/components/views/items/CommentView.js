@@ -1,6 +1,5 @@
 import React from 'react';
 import Moment from 'react-moment';
-import Truncate from 'react-truncate';
 
 // Using "Stateless Functional Components"
 export default function (props) {

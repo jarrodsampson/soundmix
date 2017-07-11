@@ -16,6 +16,9 @@ const initialState = {
     discoverTagList: {
         data: []
     },
+    internationalList: {
+        data: []
+    },
     searchResults: {
       data: []
     },
@@ -24,13 +27,15 @@ const initialState = {
         pageCount: 10,
         offset: 0,
         limit: 21,
-        limitWideColumn: 20
+        limitWideColumn: 20,
+        limitTeaser: 3
     },
     userDetails: {
         pictures: {},
         cover_pictures: {
             "1670wx240h": "image"
         },
+        picture_primary_color: "",
         user: {}
     },
     playlists: {
@@ -76,7 +81,20 @@ const initialState = {
     commentsList: {
         data: []
     },
-    isLoading: true
+    isLoading: true,
+    genreArray: [
+        "Jazz","Rap","Rock","Soul","Alternative","Pop","Funk","Techno","Disco","Gospel"
+    ],
+    internationalArray: [
+        "Korean","Japanese","African","Hindu","French","Spanish","Portugese","German"
+    ],
+    popularCities: [
+        "Athens","Los Angeles", "Tokyo","London","Paris","Turkey","Malaysia","Rome","Singapore","Dubai","Bangkok"
+    ],
+    slideshowBanner: [
+        "assets/images/banner1.jpg",
+        "assets/images/banner2.jpg"
+    ]
 };
 
 
@@ -85,7 +103,6 @@ const APIReducer = function(state = initialState, action) {
     switch(action.type) {
 
         case types.GET_HOTLIST_SUCCESS:
-            //console.log("Hot list", state.hotList.data.concat(action.hotList.data));
             return Object.assign({}, state, { hotList: action.hotList });
         case types.GET_CITY_LIST_SUCCESS:
             return Object.assign({}, state, { cityList: action.cityList });
@@ -93,9 +110,8 @@ const APIReducer = function(state = initialState, action) {
             return Object.assign({}, state, { newList: action.newList });
         case types.GET_POPULARLIST_SUCCESS:
             return Object.assign({}, state, { popularList: action.popularList });
-        // TODO: COME BACK TO THIS IT IS NOT WORKING MAYBE NEED REDUX THUNK???
-        case types.GET_TAG_LATEST_LIST_SUCCESS:
-            return Object.assign({}, state, { discoverList: {latest: action.tagLatestList} });
+        case types.GET_INTERNATIONAL_LIST_SUCCESS:
+            return Object.assign({}, state, { internationalList: action.internationalList });
         case types.GET_SEARCH_LIST_SUCCESS:
             return Object.assign({}, state, { searchResults: action.searchList });
         case types.GET_SEARCH_LIST_PARAMS_SUCCESS:

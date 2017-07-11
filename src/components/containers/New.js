@@ -12,16 +12,12 @@ import MixView from '../views/items/MixView';
 class New extends Component {
 
     getContent(offset, limit) {
-        APIService.getNewList(offset, limit);
+        APIService.getGeneralList("new", offset, limit);
         window.scrollTo(0,0);
     }
 
     componentDidMount() {
         this.getContent(this.props.paginationConfig.offset, this.props.paginationConfig.limit);
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return false;
     }
 
     handlePageClick = (data) => {

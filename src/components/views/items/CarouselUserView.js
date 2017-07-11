@@ -1,6 +1,5 @@
 import React from 'react';
 import Moment from 'react-moment';
-import {NavLink} from 'react-router-dom';
 import OwlCarousel from 'react-owl-carousel';
 
 // Using "Stateless Functional Components"
@@ -29,9 +28,9 @@ export default function (props) {
                                 <div className="card-image">
                                     <img src={item.pictures.large} alt={item.name}/>
                                     <span className="card-title">{item.name}</span>
-                                    <NavLink to={"/user/" + item.username}
-                                             className="btn-floating halfway-fab waves-effect waves-light buttonColor"><i
-                                        className="material-icons">add</i></NavLink>
+                                    <a href={"/user/" + item.username}
+                                             className="btn-floating halfway-fab waves-effect waves-light deep-purple darken-1"><i
+                                        className="material-icons">add</i></a>
                                 </div>
                                 <div className="card-content">
                                     {(() => {
@@ -39,7 +38,7 @@ export default function (props) {
                                             return <p>Listened <Moment fromNow>{item.listen_time}</Moment></p>
                                         } else {
                                             return <p>
-                                                        <NavLink to={"/user/" + item.username}> {item.username} </NavLink>
+                                                        <a href={"/user/" + item.username}> {item.username} </a>
                                                     </p>
                                         }
                                     })()}

@@ -2,6 +2,10 @@ body {
   background: #ecf0f1;
 }
 
+.tiled {
+  background: url(assets/images/grey-tile.jpg) fixed;
+}
+
 .hidden { display:none; }
 
 .scrollTop {

@@ -3,67 +3,82 @@ import * as APIFunction from '../actions/API-data';
 
 var server = "https://api.mixcloud.com/";
 
-export function getHotList(offset, limit) {
+export function getGeneralList(type, offset, limit) {
 
     store.dispatch(APIFunction.setLoadingStatus(true));
 
-    return fetch(server + "popular/hot/?limit=" + limit + "&offset=" + offset)
-        .then(response => response.json())
-        .then(json => {
-            console.log("Hot List", json.data);
-            store.dispatch(APIFunction.getHotListSuccess(json));
-            store.dispatch(APIFunction.setLoadingStatus(false));
-            return json;
-        })
-        .catch((err) => console.log(''));
+    switch(type) {
+        case "popular":
+
+            return fetch(server + "popular/?limit=" + limit + "&offset=" + offset)
+                .then(response => response.json())
+                .then(json => {
+                    console.log("Popular List", json.data);
+                    store.dispatch(APIFunction.getPopularListSuccess(json));
+                    store.dispatch(APIFunction.setLoadingStatus(false));
+                    return json;
+                })
+                .catch((err) => console.log(''));
+
+        case "new":
+            return fetch(server + "new/?limit=" + limit + "&offset=" + offset)
+                .then(response => response.json())
+                .then(json => {
+                    console.log("New List", json.data);
+                    store.dispatch(APIFunction.getNewListSuccess(json));
+                    store.dispatch(APIFunction.setLoadingStatus(false));
+                    return json;
+                })
+                .catch((err) => console.log(''));
+
+        case "hot":
+            return fetch(server + "popular/hot/?limit=" + limit + "&offset=" + offset)
+                .then(response => response.json())
+                .then(json => {
+                    console.log("Hot List", json.data);
+                    store.dispatch(APIFunction.getHotListSuccess(json));
+                    store.dispatch(APIFunction.setLoadingStatus(false));
+                    return json;
+                })
+                .catch((err) => console.log(''));
+        default:
+
+    }
+
 }
 
-export function getNewList(offset, limit) {
+export function searchByTag(tag, type, offset, limit) {
 
     store.dispatch(APIFunction.setLoadingStatus(true));
 
-    return fetch(server + "new/?limit=" + limit + "&offset=" + offset)
-        .then(response => response.json())
-        .then(json => {
-            console.log("New List", json.data);
-            store.dispatch(APIFunction.getNewListSuccess(json));
-            store.dispatch(APIFunction.setLoadingStatus(false));
-            return json;
-        })
-        .catch((err) => console.log(''));
-}
+    switch(type) {
+        case "international":
+            return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
+                .then(response => response.json())
+                .then(json => {
+                    console.log("International Tag Data", json);
 
-export function getPopularList(offset, limit) {
+                    store.dispatch(APIFunction.getInternationalListSuccess(json));
+                    store.dispatch(APIFunction.setLoadingStatus(false));
 
-    store.dispatch(APIFunction.setLoadingStatus(true));
+                    return json;
+                })
+                .catch((err) => console.log(''));
 
-    return fetch(server + "popular/?limit=" + limit + "&offset=" + offset)
-        .then(response => response.json())
-        .then(json => {
-            console.log("Popular List", json.data);
-            store.dispatch(APIFunction.getPopularListSuccess(json));
-            store.dispatch(APIFunction.setLoadingStatus(false));
-            return json;
-        })
-        .catch((err) => console.log(''));
-}
+        default:
+            return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
+                .then(response => response.json())
+                .then(json => {
+                    console.log("Tag Data", json);
 
-export function searchByTag(tag, offset, limit) {
+                    store.dispatch(APIFunction.getTagDiscoverySuccess(json));
+                    store.dispatch(APIFunction.getSearchParamSuccess(tag));
+                    store.dispatch(APIFunction.setLoadingStatus(false));
 
-    store.dispatch(APIFunction.setLoadingStatus(true));
-
-    return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
-        .then(response => response.json())
-        .then(json => {
-            console.log("Tag Data", json);
-
-            store.dispatch(APIFunction.getTagDiscoverySuccess(json));
-            store.dispatch(APIFunction.getSearchParamSuccess(tag));
-            store.dispatch(APIFunction.setLoadingStatus(false));
-
-            return json;
-        })
-        .catch((err) => console.log(''));
+                    return json;
+                })
+                .catch((err) => console.log(''));
+    }
 }
 
 export function searchByParams(params, offset, limit) {
@@ -276,6 +291,17 @@ export function getMixListByCity(city, offset, limit) {
             store.dispatch(APIFunction.getMixByCitySuccess(json));
             store.dispatch(APIFunction.getSearchParamSuccess(city));
             store.dispatch(APIFunction.setLoadingStatus(false));
+            return json;
+        })
+        .catch((err) => console.log(''));
+}
+
+export function getRedditPosts() {
+    return fetch("https://www.reddit.com/r/Mixcloud/new.json?limit=10")
+        .then(response => response.json())
+        .then(json => {
+            console.log("Reddit Data", json);
+
             return json;
         })
         .catch((err) => console.log(''));

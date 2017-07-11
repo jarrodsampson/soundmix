@@ -1,5 +1,4 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
 
 // Using "Stateless Functional Components"
 export default function (props) {
@@ -13,9 +12,9 @@ export default function (props) {
                             <div className="card-image">
                                 <img src={item.pictures.large} alt={item.username}/>
 
-                                <NavLink to={"/user/" + item.username}
-                                         className="btn-floating halfway-fab waves-effect waves-light buttonColor"><i
-                                    className="material-icons">add</i></NavLink>
+                                <a href={"/user/" + item.username}
+                                         className="btn-floating halfway-fab waves-effect waves-light deep-purple darken-1"><i
+                                    className="material-icons">add</i></a>
                             </div>
                             <div className="card-content">
                                 <span className="card-title">{item.name}</span>

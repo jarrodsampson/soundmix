@@ -21,6 +21,13 @@ export function getPopularListSuccess(popularList) {
     };
 }
 
+export function getInternationalListSuccess(internationalList) {
+    return {
+        type: types.GET_INTERNATIONAL_LIST_SUCCESS,
+        internationalList
+    };
+}
+
 export function getSearchSuccess(searchList) {
     return {
         type: types.GET_SEARCH_LIST_SUCCESS,

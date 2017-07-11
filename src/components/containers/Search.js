@@ -7,7 +7,6 @@ import '../../css/owl.theme.default.min.css';
 import * as APIService from '../../api/APIService';
 import ReactPaginate from 'react-paginate';
 
-import TagList from '../views/search/TagList';
 import UserView from '../views/items/UserView';
 import MixView from '../views/items/MixView';
 import SearchForm from '../layouts/SearchForm';
