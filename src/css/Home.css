@@ -44,3 +44,15 @@
 .rightLink a:hover {
     color: #b388ff;
 }
+
+@media(max-width:550px) {
+    .rightLink {
+        position: absolute;
+        left: 50%;
+        bottom: -2em;
+        top: auto;
+        width: 200px;
+        margin-left: -100px;
+
+    }
+}
