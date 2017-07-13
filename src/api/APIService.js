@@ -266,6 +266,8 @@ export function getMixSimilar(id) {
 
 export function getMixFavorite(id, offset, limit) {
 
+    store.dispatch(APIFunction.setLoadingStatus(true));
+
     console.log(server + id + "/favorites/?limit=" + limit + "&offset=" + offset);
     return fetch(server + id + "/favorites/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
