@@ -17,9 +17,11 @@ export default function (props) {
             <DocumentTitle title={(props.name || "Loading...") + " - SoundMix"}/>
 
 
-                <div className="row">
+            {/*<div className="row">
                     <Button className="buttonColor" onClick={props.goBack}>Back</Button>
-                </div>
+                </div>*/}
+
+                <div className="pushDown"></div>
 
                 <div className="container">
                     <div className="row itemHolder">
@@ -118,7 +120,7 @@ export default function (props) {
                                 {(() => {
                                     if (props.url !== undefined) {
                                         return <p>
-                                                    <a href={props.url} target="_blank">Visit</a>
+                                                    <a href={props.url} target="_blank">Visit MixCloud Profile Page</a>
                                                 </p>
                                     }
                                 })()}

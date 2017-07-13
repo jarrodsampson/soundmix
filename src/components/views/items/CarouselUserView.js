@@ -30,7 +30,7 @@ export default function (props) {
                                     <span className="card-title">{item.name}</span>
                                     <a href={"/user/" + item.username}
                                              className="btn-floating halfway-fab waves-effect waves-light deep-purple darken-1"><i
-                                        className="material-icons">add</i></a>
+                                        className="material-icons">info</i></a>
                                 </div>
                                 <div className="card-content">
                                     {(() => {

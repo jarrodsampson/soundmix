@@ -10,7 +10,11 @@ export default function (props) {
                     <div key={i} className="col s12 m4 l3 padding">
                         <div className="card hoverable plainCard">
                             <div className="card-image">
-                                <img src={item.user.pictures.large} alt={item.user.username}/>
+                                
+
+                                <a href={"/user/" + item.user.username}>
+                                    <img src={item.user.pictures.large} alt={item.user.username} />
+                                </a>
 
                                 <a href={"/user/" + item.user.username}
                                    className="btn-floating halfway-fab waves-effect waves-light deep-purple darken-1"><i

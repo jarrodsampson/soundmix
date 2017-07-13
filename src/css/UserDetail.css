@@ -52,6 +52,14 @@
 
 .plainCard .card-image img {
     max-height:315px;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    transition-timing-function: cubic-bezier(1.28, -0.55, 0.265, 1.55);
+}
+
+.plainCard:hover .card-image img, .carouselCard:hover .card-image img {
+    opacity: 0.5;
 }
 
 .plainCard {

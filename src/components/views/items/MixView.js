@@ -55,7 +55,7 @@ export default function (props) {
                                         <div className="user valign-wrapper">
                                             <div className="col s12 m6 l6">
                                                 <a href={"/user/" + (item.user.username || "None")}>
-                                                    <img src={item.user.pictures.thumbnail} alt={item.user.name} />
+                                                    <img src={(item.user.pictures.thumbnail || "http://wellington.recollect.co.nz/img/placeholder.gif")} alt={item.user.name} />
                                                 </a>
                                             </div>
                                             <div className="col s12 m6 l6">
@@ -66,7 +66,7 @@ export default function (props) {
                                         </div>
 
                                         <div className="tags">
-                                            {item.tags.map(function(tag, i) {
+                                            {item.tags.filter((i, index) => (index < 4)).map(function(tag, i) {
                                                 return <div className="chip" key={i}>
                                                     <NavLink to={"/tag/" + (tag.name).replace(/ /g, "+").toLowerCase()} onClick={props.onClickTag}>
                                                         {tag.name}

@@ -17,10 +17,6 @@ class MixListens extends Component {
         this.getContent((this.props.match.params.user + "/" + this.props.match.params.id), this.props.paginationConfig.offset, this.props.paginationConfig.limitWideColumn);
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return false;
-    }
-
     handlePageClick = (data) => {
         let selected = data.selected * 20;
         this.getContent((this.props.match.params.user + "/" + this.props.match.params.id), selected, this.props.paginationConfig.limitWideColumn);

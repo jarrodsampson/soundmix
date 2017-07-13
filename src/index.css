@@ -136,6 +136,10 @@ a {
   color: #5e35b1;
 }
 
+a:hover {
+  color: #9575cd;
+}
+
 iframe {
   width:100%;
   outline: none;

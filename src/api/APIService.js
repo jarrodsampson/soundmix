@@ -237,6 +237,9 @@ export function getMixDetail(id) {
 }
 
 export function getMixListeners(id, offset, limit) {
+
+    store.dispatch(APIFunction.setLoadingStatus(true));
+
     console.log(server + id + "/listeners/?limit=" + limit + "&offset=" + offset);
     return fetch(server + id + "/listeners/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())

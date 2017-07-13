@@ -12,7 +12,7 @@ export default function (props) {
             className="owl-theme"
             loop
             margin={0}
-            autoplaySpeed={600}
+            autoplaySpeed={900}
             rewind={true}
             autoplay={true}
             autoplayHoverPause={true}

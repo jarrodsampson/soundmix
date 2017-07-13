@@ -7,11 +7,12 @@ export default function (props) {
         <div className="row itemHolder">
             {props.userList.map((item, i) => {
                 return (
-                    <div key={i} className="col s12 m3 l3 padding">
+                    <div key={i} className="col s12 m4 l3 padding">
                         <div className="card hoverable plainCard">
                             <div className="card-image">
-                                <img src={item.pictures.large} alt={item.username}/>
-
+                                <a href={"/user/" + item.username}>
+                                    <img src={item.pictures.large} alt={item.username}/>
+                                </a>
                                 <a href={"/user/" + item.username}
                                          className="btn-floating halfway-fab waves-effect waves-light deep-purple darken-1"><i
                                     className="material-icons">add</i></a>
