@@ -14,32 +14,33 @@ Find awesome cloudcasts roaming the world. Right now. Built on Node, SASS, React
 
 ## Updates and News
 
-### Version 1.1 Updates
-- RouterLink active Tab added
-- Materialize Tabs Now working
-- CSS3 Animations for Floating and Scaling
-- Feedback on Hovered Images and Emojis
+### Version 1.2.3 Updates
+- API Call Corrections
+- UI Layout fixes
+- Error Handling and 404 page update
+- Slideshow additions and new fonts
 
 ## Features
 
 ### Users
-- View and Search Users and their contributed content on GitHub.
-- See Recent Commits made by users along with the repo and their user profile.
-- See All Organizations and Subscriptions that user has.
-- Check out the users followers and see their content as well.
-### Events
-- View the most Recent Events made by active users on the website.
-- See Pull requests, issues, commits, and organization updates.
+- View user followers, following, cloudcasts, listeners, and comments.
+- Parallax scrolling on user profile page along with user detail panel
+- View user feed of most recent activity.
+### Music
+- Suggested music based on mix listen choice.
+- View listeners and other users who have favorited the same mix.
+
 ![Image](https://github.com/planlodge/soundmix/blob/master/screenshots/screen2.png?raw=true)
 
-### Repositories
-- Search and View all the repositories on this application.
-- Get commit history for each repository.
-### Organizations
-- View all the organizations listed publicly on GitHub.
-- See all members of those organizations and their content contributed.
-### Emojis
-- See the Entire Collection of accepted Emojis on GitHub
+### Homepage
+- New lists and artists that are updated upon each visit.
+- View latest mixes, along with the most popular ones as well.
+- Get a snapshot of the top active users.
+- Stay up to date with the msot popular mixes internationally, based on region and popular cities.
+
+### Your Hood
+- Search your city for mixes based on your location
+- Find other mixes and cloudcasts by city.
 
 ![Image](https://github.com/planlodge/soundmix/blob/master/screenshots/screen3.png?raw=true)
 
