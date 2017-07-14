@@ -231,3 +231,74 @@ iframe {
   }
 
 }
+
+
+@media(max-width:501px) {
+  .plainCard .card-image img {
+    min-height:0;
+  }
+}
+
+
+@media(max-width:992px) {
+  .plainCard {
+    min-height: 350px;
+  }
+
+  .plainCard .card-image img {
+    min-height: 0;
+  }
+
+  .plainCard .card-content {
+    padding: 24px 2px 0 2px;
+  }
+
+
+}
+
+@media(max-width: 501px) {
+  .hotBoxContainer {
+    position: relative;
+    overflow: hidden;
+    height: auto; }
+
+  .hotBoxContainer .imageContain {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    position: static; }
+
+  .hotBoxContainer .imageContain img {
+    width:100%;
+  }
+
+  .hotBoxContainer .card-content {
+    padding: 20px 0 0 0;
+    border-radius: 0 0 2px 2px;
+  }
+
+  .hotBoxContainer .counts {
+    position: relative;
+    top: 10px;
+    right: 0;
+  }
+
+  .hotBoxContainer .tags {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .valign-wrapper {
+    all: revert;
+
+  }
+
+
+
+
+
+
+}
