@@ -38,7 +38,7 @@ class Search extends Component {
 
 
                 {(() => {
-                    console.log("EMBER", (this.props.searchParamString).match(/user/g));
+                    //console.log("EMBER", (this.props.searchParamString).match(/user/g));
                     if ((this.props.searchParamString).match(/user/g)) {
                         return <UserView userList={this.props.searchResults.data} />
                     } else if ((this.props.searchParamString).match(/cloudcast/g)) {

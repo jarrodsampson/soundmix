@@ -39,7 +39,7 @@ class MixListens extends Component {
                             if (this.props.errorStatus) {
                                 return <IssueHandler requestItem={this.props.match.params.id} />
                             } else {
-                                return  <div>
+                                return  <div className="max-width">
 
                                     <FollowerList
                                         isLoading = {this.props.isLoading}

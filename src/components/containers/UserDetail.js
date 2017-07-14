@@ -133,64 +133,69 @@ class UserDetail extends Component {
                                             </Tab>
                                             <Tab title="Followers">
                                                 <div className="col s12 pushDown"></div>
-                                                <FollowerList
-                                                    isLoading = {this.props.isLoading}
-                                                    goBack={APIService.goBack}
-                                                    followers={this.props.followers.data}
-                                                />
 
-                                                {(() => {
-                                                    if (this.props.followers.data.length >= this.props.paginationConfig.limitWideColumn) {
-                                                        return <ReactPaginate previousLabel={"Previous"}
-                                                                              nextLabel={"Next"}
-                                                                              breakLabel={<a href="">...</a>}
-                                                                              breakClassName={"break-me"}
-                                                                              pageCount={this.props.paginationConfig.pageCount}
-                                                                              marginPagesDisplayed={0}
-                                                                              pageRangeDisplayed={7}
-                                                                              onPageChange={this.handleFollowersPageClick}
-                                                                              containerClassName={"pagination"}
-                                                                              subContainerClassName={"pages pagination"}
-                                                                              activeClassName={"active"} />
-                                                    }
+                                                <div className="max-width">
+                                                    <FollowerList
+                                                        isLoading = {this.props.isLoading}
+                                                        goBack={APIService.goBack}
+                                                        followers={this.props.followers.data}
+                                                    />
 
-                                                    if (this.props.followers.data.length === 0) {
-                                                        return <p>No Followers Just Yet...</p>
-                                                    }
+                                                    {(() => {
+                                                        if (this.props.followers.data.length >= this.props.paginationConfig.limitWideColumn) {
+                                                            return <ReactPaginate previousLabel={"Previous"}
+                                                                                  nextLabel={"Next"}
+                                                                                  breakLabel={<a href="">...</a>}
+                                                                                  breakClassName={"break-me"}
+                                                                                  pageCount={this.props.paginationConfig.pageCount}
+                                                                                  marginPagesDisplayed={0}
+                                                                                  pageRangeDisplayed={7}
+                                                                                  onPageChange={this.handleFollowersPageClick}
+                                                                                  containerClassName={"pagination"}
+                                                                                  subContainerClassName={"pages pagination"}
+                                                                                  activeClassName={"active"} />
+                                                        }
 
-                                                })()}
+                                                        if (this.props.followers.data.length === 0) {
+                                                            return <p>No Followers Just Yet...</p>
+                                                        }
 
+                                                    })()}
+                                                </div>
 
                                             </Tab>
                                             <Tab title="Following">
                                                 <div className="col s12 pushDown"></div>
-                                                <FollowerList
-                                                    isLoading={this.props.isLoading}
-                                                    goBack={APIService.goBack}
-                                                    followers={this.props.following.data}
-                                                />
+
+                                                <div className="max-width">
+                                                    <FollowerList
+                                                        isLoading={this.props.isLoading}
+                                                        goBack={APIService.goBack}
+                                                        followers={this.props.following.data}
+                                                    />
 
 
-                                                {(() => {
-                                                    if (this.props.following.data.length >= this.props.paginationConfig.limitWideColumn) {
-                                                        return <ReactPaginate previousLabel={"Previous"}
-                                                                              nextLabel={"Next"}
-                                                                              breakLabel={<a href="">...</a>}
-                                                                              breakClassName={"break-me"}
-                                                                              pageCount={this.props.paginationConfig.pageCount}
-                                                                              marginPagesDisplayed={0}
-                                                                              pageRangeDisplayed={7}
-                                                                              onPageChange={this.handleFollowingPageClick}
-                                                                              containerClassName={"pagination"}
-                                                                              subContainerClassName={"pages pagination"}
-                                                                              activeClassName={"active"} />
-                                                    }
+                                                    {(() => {
+                                                        if (this.props.following.data.length >= this.props.paginationConfig.limitWideColumn) {
+                                                            return <ReactPaginate previousLabel={"Previous"}
+                                                                                  nextLabel={"Next"}
+                                                                                  breakLabel={<a href="">...</a>}
+                                                                                  breakClassName={"break-me"}
+                                                                                  pageCount={this.props.paginationConfig.pageCount}
+                                                                                  marginPagesDisplayed={0}
+                                                                                  pageRangeDisplayed={7}
+                                                                                  onPageChange={this.handleFollowingPageClick}
+                                                                                  containerClassName={"pagination"}
+                                                                                  subContainerClassName={"pages pagination"}
+                                                                                  activeClassName={"active"} />
+                                                        }
 
-                                                    if (this.props.following.data.length === 0) {
-                                                        return <p>Not Following Anyone Just Yet...</p>
-                                                    }
+                                                        if (this.props.following.data.length === 0) {
+                                                            return <p>Not Following Anyone Just Yet...</p>
+                                                        }
 
-                                                })()}
+                                                    })()}
+                                                 </div>
 
                                             </Tab>
                                             <Tab title="Listens">

@@ -54,7 +54,7 @@ class Popular extends Component {
 
 const mapStateToProps = function(store) {
 
-    console.log("Store", store.api);
+    //console.log("Store", store.api);
     return {
         popularList: store.api.popularList,
         paginationConfig: store.api.paginationConfig,

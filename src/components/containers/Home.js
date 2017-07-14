@@ -108,7 +108,7 @@ class Home extends Component {
 
                         <div className="tileBg">
 
-                            <div className="container-fluid center-align">
+                            <div className="container-fluid center-align max-width">
 
                                 {(() => {
                                     if (this.props.hotList.data.length > 0) {

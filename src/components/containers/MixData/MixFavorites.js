@@ -39,7 +39,7 @@ class MixFavorites extends Component {
                             if (this.props.errorStatus) {
                                 return <IssueHandler requestItem={this.props.match.params.id} />
                             } else {
-                                return  <div>
+                                return  <div className="max-width">
 
                                     <FollowerList
                                         isLoading = {this.props.isLoading}
@@ -83,7 +83,7 @@ class MixFavorites extends Component {
 
 const mapStateToProps = function(store) {
 
-    console.log("Store", store.api);
+    //console.log("Store", store.api);
     return {
         favoriteList: store.api.favoriteList,
         isLoading: store.api.isLoading,

@@ -11,7 +11,7 @@ import CarouselUserView from '../views/items/CarouselUserView';
 
 // Using "Stateless Functional Components"
 export default function (props) {
-    console.log("https://api.mixcloud.com/" + props.user.username + "/" + props.slug + "/embed-html");
+    //console.log("https://api.mixcloud.com/" + props.user.username + "/" + props.slug + "/embed-html");
     return (
         <div className="">
             <DocumentTitle title={(props.name || "Loading...") + " - SoundMix"}/>

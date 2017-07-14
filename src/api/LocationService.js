@@ -9,7 +9,7 @@ export function getCityByLatLng(lat, lng, offset, limit) {
         .then(response => response.json())
         .then(json => {
             cityName = json.results[1].address_components[0].long_name;
-            console.log("City Data", cityName.replace(/ /g, '').toLowerCase());
+            //console.log("City Data", cityName.replace(/ /g, '').toLowerCase());
             return APIService.getMixListByCity( cityName.replace(/ /g, '').toLowerCase(), offset, limit );
         })
         .catch((err) => console.log(''));

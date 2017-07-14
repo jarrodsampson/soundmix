@@ -13,7 +13,7 @@ export function getGeneralList(type, offset, limit) {
             return fetch(server + "popular/?limit=" + limit + "&offset=" + offset)
                 .then(response => response.json())
                 .then(json => {
-                    console.log("Popular List", json.data);
+                    //console.log("Popular List", json.data);
                     store.dispatch(APIFunction.getPopularListSuccess(json));
                     store.dispatch(APIFunction.setLoadingStatus(false));
                     return json;
@@ -24,7 +24,7 @@ export function getGeneralList(type, offset, limit) {
             return fetch(server + "new/?limit=" + limit + "&offset=" + offset)
                 .then(response => response.json())
                 .then(json => {
-                    console.log("New List", json.data);
+                    //console.log("New List", json.data);
                     store.dispatch(APIFunction.getNewListSuccess(json));
                     store.dispatch(APIFunction.setLoadingStatus(false));
                     return json;
@@ -35,7 +35,7 @@ export function getGeneralList(type, offset, limit) {
             return fetch(server + "popular/hot/?limit=" + limit + "&offset=" + offset)
                 .then(response => response.json())
                 .then(json => {
-                    console.log("Hot List", json.data);
+                    //console.log("Hot List", json.data);
                     store.dispatch(APIFunction.getHotListSuccess(json));
                     store.dispatch(APIFunction.setLoadingStatus(false));
                     return json;
@@ -56,7 +56,7 @@ export function searchByTag(tag, type, offset, limit) {
             return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
                 .then(response => response.json())
                 .then(json => {
-                    console.log("International Tag Data", json);
+                    //console.log("International Tag Data", json);
 
                     store.dispatch(APIFunction.getInternationalListSuccess(json));
                     store.dispatch(APIFunction.setLoadingStatus(false));
@@ -69,7 +69,7 @@ export function searchByTag(tag, type, offset, limit) {
             return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
                 .then(response => response.json())
                 .then(json => {
-                    console.log("Talk Tag Data", json);
+                    //console.log("Talk Tag Data", json);
 
                     store.dispatch(APIFunction.getTalkListSuccess(json));
 
@@ -80,7 +80,7 @@ export function searchByTag(tag, type, offset, limit) {
             return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
                 .then(response => response.json())
                 .then(json => {
-                    console.log("Entertainment Tag Data", json);
+                    //console.log("Entertainment Tag Data", json);
 
                     store.dispatch(APIFunction.getEntertainmentListSuccess(json));
 
@@ -92,7 +92,7 @@ export function searchByTag(tag, type, offset, limit) {
             return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
                 .then(response => response.json())
                 .then(json => {
-                    console.log("Tag Data", json);
+                    //console.log("Tag Data", json);
 
                     store.dispatch(APIFunction.getTagDiscoverySuccess(json));
                     store.dispatch(APIFunction.getSearchParamSuccess(tag));
@@ -108,7 +108,7 @@ export function searchByParams(params, offset, limit) {
     return fetch("https://api.mixcloud.com/search/?" + params + "&limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("Search Data", json);
+            //console.log("Search Data", json);
             store.dispatch(APIFunction.getSearchSuccess(json));
             store.dispatch(APIFunction.getSearchParamSuccess(params));
             return json;
@@ -123,7 +123,7 @@ export function getUserDetail(id) {
     return fetch(server + id)
         .then(response => response.json())
         .then(json => {
-            console.log("User Data", json);
+            //console.log("User Data", json);
 
             if (json.error) {
                 store.dispatch(APIFunction.setErrorStatus(true));
@@ -141,7 +141,7 @@ export function getUserPlaylists(id) {
     return fetch(server + id + "/playlists/")
         .then(response => response.json())
         .then(json => {
-            console.log("User Playlist Data", json);
+            //console.log("User Playlist Data", json);
             store.dispatch(APIFunction.getUserPlaylistSuccess(json));
             return json;
         })
@@ -155,7 +155,7 @@ export function getUserCloudCasts(id, offset, limit) {
     return fetch(server + id + "/cloudcasts?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("User Cloudcast Data", json);
+            //console.log("User Cloudcast Data", json);
 
             if (json.error) {
                 store.dispatch(APIFunction.setErrorStatus(true));
@@ -176,7 +176,7 @@ export function getUserFeed(id, offset, limit) {
     return fetch(server + id + "/feed/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("User Feed Data", json);
+            //console.log("User Feed Data", json);
             store.dispatch(APIFunction.getUserFeedSuccess(json));
             store.dispatch(APIFunction.setLoadingStatus(false));
             return json;
@@ -191,7 +191,7 @@ export function getUserFollowers(id, offset, limit) {
     return fetch(server + id + "/followers/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("User Follower Data", json);
+            //console.log("User Follower Data", json);
 
             if (json.error) {
                 store.dispatch(APIFunction.setErrorStatus(true));
@@ -212,7 +212,7 @@ export function getUserFollowing(id, offset, limit) {
     return fetch(server + id + "/following/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("User Following Data", json);
+            //console.log("User Following Data", json);
 
             if (json.error) {
                 store.dispatch(APIFunction.setErrorStatus(true));
@@ -230,11 +230,11 @@ export function getUserFavorites(id, offset, limit) {
 
     store.dispatch(APIFunction.setErrorStatus(false));
 
-    console.log(server + id + "/favorites/?limit=" + limit + "&offset=" + offset);
+    //console.log(server + id + "/favorites/?limit=" + limit + "&offset=" + offset);
     return fetch(server + id + "/favorites/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("User Favorites Data", json);
+            //console.log("User Favorites Data", json);
 
             if (json.error) {
                 store.dispatch(APIFunction.setErrorStatus(true));
@@ -255,7 +255,7 @@ export function getUserListensList(id, offset, limit) {
     return fetch(server + id + "/listens/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("User Listen Data", json);
+            //console.log("User Listen Data", json);
 
             if (json.error) {
                 store.dispatch(APIFunction.setErrorStatus(true));
@@ -270,11 +270,11 @@ export function getUserListensList(id, offset, limit) {
 }
 
 export function getUserComments(id, offset, limit) {
-    console.log(server + id + "/comments/?limit=" + limit + "&offset=" + offset);
+    //console.log(server + id + "/comments/?limit=" + limit + "&offset=" + offset);
     return fetch(server + id + "/comments/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("User Comment Data", json);
+            //console.log("User Comment Data", json);
             store.dispatch(APIFunction.getUserCommentsSuccess(json));
             return json;
         })
@@ -288,7 +288,7 @@ export function getMixDetail(id) {
     return fetch(server + id)
         .then(response => response.json())
         .then(json => {
-            console.log("Mix Data", json);
+            //console.log("Mix Data", json);
 
             if (json.error) {
                 store.dispatch(APIFunction.setErrorStatus(true));
@@ -307,11 +307,11 @@ export function getMixListeners(id, offset, limit) {
     store.dispatch(APIFunction.setErrorStatus(false));
     store.dispatch(APIFunction.setLoadingStatus(true));
 
-    console.log(server + id + "/listeners/?limit=" + limit + "&offset=" + offset);
+    //console.log(server + id + "/listeners/?limit=" + limit + "&offset=" + offset);
     return fetch(server + id + "/listeners/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("Mix Listeners Data", json);
+            //console.log("Mix Listeners Data", json);
 
             if (json.error) {
                 store.dispatch(APIFunction.setErrorStatus(true));
@@ -326,11 +326,11 @@ export function getMixListeners(id, offset, limit) {
 }
 
 export function getMixSimilar(id) {
-    console.log(server + id + "/similar/");
+    //console.log(server + id + "/similar/");
     return fetch(server + id + "/similar/")
         .then(response => response.json())
         .then(json => {
-            console.log("Mix Similar/Suggested Data", json);
+            //console.log("Mix Similar/Suggested Data", json);
             store.dispatch(APIFunction.getMixSimilarSuccess(json));
             return json;
         })
@@ -342,11 +342,11 @@ export function getMixFavorite(id, offset, limit) {
     store.dispatch(APIFunction.setErrorStatus(false));
     store.dispatch(APIFunction.setLoadingStatus(true));
 
-    console.log(server + id + "/favorites/?limit=" + limit + "&offset=" + offset);
+    //console.log(server + id + "/favorites/?limit=" + limit + "&offset=" + offset);
     return fetch(server + id + "/favorites/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("Mix Favorites Data", json);
+            //console.log("Mix Favorites Data", json);
 
             if (json.error) {
                 store.dispatch(APIFunction.setErrorStatus(true));
@@ -361,11 +361,11 @@ export function getMixFavorite(id, offset, limit) {
 }
 
 export function getMixComments(id, offset, limit) {
-    console.log(server + id + "/comments/?limit=" + limit + "&offset=" + offset);
+    //console.log(server + id + "/comments/?limit=" + limit + "&offset=" + offset);
     return fetch(server + id + "/comments/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("Mix Comments Data", json);
+            //console.log("Mix Comments Data", json);
             store.dispatch(APIFunction.getMixCommentsSuccess(json));
             return json;
         })
@@ -380,7 +380,7 @@ export function getTagSearch(tag, offset, limit) {
     return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("TagSearch Data", json);
+            //console.log("TagSearch Data", json);
             if (json.error) {
                 store.dispatch(APIFunction.setLoadingStatus(false));
                 store.dispatch(APIFunction.setErrorStatus(true));
@@ -398,11 +398,11 @@ export function getMixListByCity(city, offset, limit) {
     store.dispatch(APIFunction.setErrorStatus(false));
     store.dispatch(APIFunction.setLoadingStatus(true));
 
-    console.log(server + "discover/city:" + city + "/popular/?limit=" + limit + "&offset=" + offset);
+    //console.log(server + "discover/city:" + city + "/popular/?limit=" + limit + "&offset=" + offset);
     return fetch(server + "discover/city:" + city + "/popular/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
-            console.log("Mix By City Data", json.data);
+            //console.log("Mix By City Data", json.data);
 
             if (json.data === undefined) {
                 store.dispatch(APIFunction.setErrorStatus(true));
@@ -423,7 +423,7 @@ export function getRedditPosts() {
     return fetch("https://www.reddit.com/r/Mixcloud/new.json?limit=10")
         .then(response => response.json())
         .then(json => {
-            console.log("Reddit Data", json);
+            //console.log("Reddit Data", json);
 
             return json;
         })

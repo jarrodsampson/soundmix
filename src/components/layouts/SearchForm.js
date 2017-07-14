@@ -16,7 +16,7 @@ class SearchForm extends Component {
 
     handleSubmit(e) {
         let form = serialize(document.querySelector('#searchData'));
-        console.log(form);
+        //console.log(form);
         APIService.searchByParams(form, 0, 21);
         //window.location.replace("/search/" + e.discoverText);
     }
