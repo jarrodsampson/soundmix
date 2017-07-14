@@ -10,7 +10,7 @@ Find awesome cloudcasts roaming the world. Right now. Built on Node, SASS, React
 
 > Find awesome cloudcasts roaming the world. Right now.
 
-![Image](https://github.com/planlodge/berr.io/blob/master/screenB3.png?raw=true)
+![Image](https://github.com/planlodge/soundmix/blob/master/screenshots/screen1.png?raw=true)
 
 ## Updates and News
 
@@ -30,7 +30,7 @@ Find awesome cloudcasts roaming the world. Right now. Built on Node, SASS, React
 ### Events
 - View the most Recent Events made by active users on the website.
 - See Pull requests, issues, commits, and organization updates.
-![Image](https://github.com/planlodge/berr.io/blob/master/screenB1.png?raw=true)
+![Image](https://github.com/planlodge/soundmix/blob/master/screenshots/screen2.png?raw=true)
 
 ### Repositories
 - Search and View all the repositories on this application.
@@ -41,7 +41,7 @@ Find awesome cloudcasts roaming the world. Right now. Built on Node, SASS, React
 ### Emojis
 - See the Entire Collection of accepted Emojis on GitHub
 
-![Image](https://github.com/planlodge/berr.io/blob/master/screenB4.png?raw=true)
+![Image](https://github.com/planlodge/soundmix/blob/master/screenshots/screen3.png?raw=true)
 
 ## License
 
