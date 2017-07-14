@@ -8,7 +8,7 @@ Find awesome cloudcasts roaming the world. Right now. Built on Node, SASS, React
 
 ## Description
 
-> Find awesome cloudcasts roaming the world. Right now.
+> Find awesome cloudcasts roaming the world. Right now. Discover artists from all over the planet in any genere of music. Search by artists, genre, or city to find that awesome cloudcasts you've been waiting on.
 
 ![Image](https://github.com/planlodge/soundmix/blob/master/screenshots/screen1.png?raw=true)
 
