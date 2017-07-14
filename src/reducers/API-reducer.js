@@ -102,7 +102,9 @@ const initialState = {
         "assets/images/banner1.jpg",
         "assets/images/banner2.jpg",
         "assets/images/banner3.jpg",
-        "assets/images/banner4.jpg"
+        "assets/images/banner4.jpg",
+        "assets/images/banner5.jpg",
+        "assets/images/banner6.jpg"
     ],
     popularTalkCasts: [
         "Business","Comedy","Education","Science","Sport","Technology","News","Interview"

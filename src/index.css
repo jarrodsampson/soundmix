@@ -1,5 +1,6 @@
 body {
   background: #ecf0f1;
+  overflow-x:hidden;
 }
 
 .tileBg {
@@ -180,6 +181,47 @@ iframe {
 
 .carouselCard .card-image img{
   min-height: 255px;
+}
+
+.owl-next {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  background: black;
+  width: 40px;
+  height: 60px;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.owl-prev {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background: rgba(0,0,0,0.7);
+  width: 40px;
+  height: 60px;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.owl-next, .owl-prev {
+  margin-top:-20px;
+}
+
+.owl-next i, .owl-prev i {
+  font-size: 35pt;
+  color:white;
+}
+
+.owl-next i{
+  margin-right:-5px;
+  margin-top:5px;
+}
+
+.owl-prev i {
+  margin-top:5px;
+  margin-left:-5px;
 }
 
 @media(min-width:992px) {

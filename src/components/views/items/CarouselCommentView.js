@@ -11,6 +11,8 @@ export default function (props) {
             autoplaySpeed={300}
             lazyLoad={true}
             rewind={true}
+            navText={['<i class="material-icons">skip_previous</i>','<i class="material-icons">skip_next</i>']}
+            nav
             responsive={
             {
                 "0": {items: 1},
