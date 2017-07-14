@@ -120,7 +120,7 @@ export function getUserDetail(id) {
 
     store.dispatch(APIFunction.setErrorStatus(false));
 
-    return fetch(server + id)
+    return fetch(server + id + "/")
         .then(response => response.json())
         .then(json => {
             //console.log("User Data", json);
@@ -285,7 +285,7 @@ export function getMixDetail(id) {
 
     store.dispatch(APIFunction.setErrorStatus(false));
 
-    return fetch(server + id)
+    return fetch(server + id + "/")
         .then(response => response.json())
         .then(json => {
             //console.log("Mix Data", json);
