@@ -117,12 +117,21 @@ export function searchByParams(params, offset, limit) {
 }
 
 export function getUserDetail(id) {
+
+    store.dispatch(APIFunction.setErrorStatus(false));
+
     return fetch(server + id)
         .then(response => response.json())
         .then(json => {
             console.log("User Data", json);
-            store.dispatch(APIFunction.getUserDetailSuccess(json));
-            store.dispatch(APIFunction.setLoadingStatus(false));
+
+            if (json.error) {
+                store.dispatch(APIFunction.setErrorStatus(true));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            } else {
+                store.dispatch(APIFunction.getUserDetailSuccess(json));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            }
             return json;
         })
         .catch((err) => console.log(''));
@@ -140,18 +149,30 @@ export function getUserPlaylists(id) {
 }
 
 export function getUserCloudCasts(id, offset, limit) {
+
+    store.dispatch(APIFunction.setErrorStatus(false));
+
     return fetch(server + id + "/cloudcasts?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Cloudcast Data", json);
-            store.dispatch(APIFunction.getUserCloudCastsSuccess(json));
-            store.dispatch(APIFunction.setLoadingStatus(false));
+
+            if (json.error) {
+                store.dispatch(APIFunction.setErrorStatus(true));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            } else {
+                store.dispatch(APIFunction.getUserCloudCastsSuccess(json));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            }
             return json;
         })
         .catch((err) => console.log(''));
 }
 
 export function getUserFeed(id, offset, limit) {
+
+    store.dispatch(APIFunction.setErrorStatus(false));
+
     return fetch(server + id + "/feed/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
@@ -164,49 +185,85 @@ export function getUserFeed(id, offset, limit) {
 }
 
 export function getUserFollowers(id, offset, limit) {
+
+    store.dispatch(APIFunction.setErrorStatus(false));
+
     return fetch(server + id + "/followers/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Follower Data", json);
-            store.dispatch(APIFunction.getUserFollowersSuccess(json));
-            store.dispatch(APIFunction.setLoadingStatus(false));
+
+            if (json.error) {
+                store.dispatch(APIFunction.setErrorStatus(true));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            } else {
+                store.dispatch(APIFunction.getUserFollowersSuccess(json));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            }
             return json;
         })
         .catch((err) => console.log(''));
 }
 
 export function getUserFollowing(id, offset, limit) {
+
+    store.dispatch(APIFunction.setErrorStatus(false));
+
     return fetch(server + id + "/following/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Following Data", json);
-            store.dispatch(APIFunction.getUserFollowingSuccess(json));
-            store.dispatch(APIFunction.setLoadingStatus(false));
+
+            if (json.error) {
+                store.dispatch(APIFunction.setErrorStatus(true));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            } else {
+                store.dispatch(APIFunction.getUserFollowingSuccess(json));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            }
             return json;
         })
         .catch((err) => console.log(''));
 }
 
 export function getUserFavorites(id, offset, limit) {
+
+    store.dispatch(APIFunction.setErrorStatus(false));
+
     console.log(server + id + "/favorites/?limit=" + limit + "&offset=" + offset);
     return fetch(server + id + "/favorites/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Favorites Data", json);
-            store.dispatch(APIFunction.getUserFavoritesSuccess(json));
-            store.dispatch(APIFunction.setLoadingStatus(false));
+
+            if (json.error) {
+                store.dispatch(APIFunction.setErrorStatus(true));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            } else {
+                store.dispatch(APIFunction.getUserFavoritesSuccess(json));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            }
             return json;
         })
         .catch((err) => console.log(''));
 }
 
 export function getUserListensList(id, offset, limit) {
+
+    store.dispatch(APIFunction.setErrorStatus(false));
+
     return fetch(server + id + "/listens/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("User Listen Data", json);
-            store.dispatch(APIFunction.getUserListensSuccess(json));
-            store.dispatch(APIFunction.setLoadingStatus(false));
+
+            if (json.error) {
+                store.dispatch(APIFunction.setErrorStatus(true));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            } else {
+                store.dispatch(APIFunction.getUserListensSuccess(json));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            }
             return json;
         })
         .catch((err) => console.log(''));
@@ -225,12 +282,21 @@ export function getUserComments(id, offset, limit) {
 }
 
 export function getMixDetail(id) {
+
+    store.dispatch(APIFunction.setErrorStatus(false));
+
     return fetch(server + id)
         .then(response => response.json())
         .then(json => {
             console.log("Mix Data", json);
-            store.dispatch(APIFunction.getMixDetailSuccess(json));
-            store.dispatch(APIFunction.setLoadingStatus(false));
+
+            if (json.error) {
+                store.dispatch(APIFunction.setErrorStatus(true));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            } else {
+                store.dispatch(APIFunction.getMixDetailSuccess(json));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            }
             return json;
         })
         .catch((err) => console.log(''));
@@ -238,6 +304,7 @@ export function getMixDetail(id) {
 
 export function getMixListeners(id, offset, limit) {
 
+    store.dispatch(APIFunction.setErrorStatus(false));
     store.dispatch(APIFunction.setLoadingStatus(true));
 
     console.log(server + id + "/listeners/?limit=" + limit + "&offset=" + offset);
@@ -245,8 +312,14 @@ export function getMixListeners(id, offset, limit) {
         .then(response => response.json())
         .then(json => {
             console.log("Mix Listeners Data", json);
-            store.dispatch(APIFunction.getMixListenerSuccess(json));
-            store.dispatch(APIFunction.setLoadingStatus(false));
+
+            if (json.error) {
+                store.dispatch(APIFunction.setErrorStatus(true));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            } else {
+                store.dispatch(APIFunction.getMixListenerSuccess(json));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            }
             return json;
         })
         .catch((err) => console.log(''));
@@ -266,6 +339,7 @@ export function getMixSimilar(id) {
 
 export function getMixFavorite(id, offset, limit) {
 
+    store.dispatch(APIFunction.setErrorStatus(false));
     store.dispatch(APIFunction.setLoadingStatus(true));
 
     console.log(server + id + "/favorites/?limit=" + limit + "&offset=" + offset);
@@ -273,8 +347,14 @@ export function getMixFavorite(id, offset, limit) {
         .then(response => response.json())
         .then(json => {
             console.log("Mix Favorites Data", json);
-            store.dispatch(APIFunction.getMixFavoriteSuccess(json));
-            store.dispatch(APIFunction.setLoadingStatus(false));
+
+            if (json.error) {
+                store.dispatch(APIFunction.setErrorStatus(true));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            } else {
+                store.dispatch(APIFunction.getMixFavoriteSuccess(json));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            }
             return json;
         })
         .catch((err) => console.log(''));
@@ -294,14 +374,20 @@ export function getMixComments(id, offset, limit) {
 
 export function getTagSearch(tag, offset, limit) {
 
+    store.dispatch(APIFunction.setErrorStatus(false));
     store.dispatch(APIFunction.setLoadingStatus(true));
 
     return fetch("https://api.mixcloud.com/discover/" + tag + "/popular/?limit=" + limit + "&offset=" + offset)
         .then(response => response.json())
         .then(json => {
             console.log("TagSearch Data", json);
-            store.dispatch(APIFunction.getTagSearchSuccess(json));
-            store.dispatch(APIFunction.setLoadingStatus(false));
+            if (json.error) {
+                store.dispatch(APIFunction.setLoadingStatus(false));
+                store.dispatch(APIFunction.setErrorStatus(true));
+            } else {
+                store.dispatch(APIFunction.getTagSearchSuccess(json));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            }
             return json;
         })
         .catch((err) => console.log(''));
@@ -309,6 +395,7 @@ export function getTagSearch(tag, offset, limit) {
 
 export function getMixListByCity(city, offset, limit) {
 
+    store.dispatch(APIFunction.setErrorStatus(false));
     store.dispatch(APIFunction.setLoadingStatus(true));
 
     console.log(server + "discover/city:" + city + "/popular/?limit=" + limit + "&offset=" + offset);
@@ -316,9 +403,17 @@ export function getMixListByCity(city, offset, limit) {
         .then(response => response.json())
         .then(json => {
             console.log("Mix By City Data", json.data);
-            store.dispatch(APIFunction.getMixByCitySuccess(json));
-            store.dispatch(APIFunction.getSearchParamSuccess(city));
-            store.dispatch(APIFunction.setLoadingStatus(false));
+
+            if (json.data === undefined) {
+                store.dispatch(APIFunction.setErrorStatus(true));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+            } else {
+
+                store.dispatch(APIFunction.getMixByCitySuccess(json));
+                store.dispatch(APIFunction.getSearchParamSuccess(city));
+                store.dispatch(APIFunction.setLoadingStatus(false));
+
+            }
             return json;
         })
         .catch((err) => console.log(''));

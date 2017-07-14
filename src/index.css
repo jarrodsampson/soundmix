@@ -3,6 +3,24 @@ body {
   overflow-x:hidden;
 }
 
+.coverbackground {
+  width:100%;
+  height:100vh;
+  position:absolute;
+  background: url(assets/images/coverBg.jpg) scroll no-repeat;
+  background-size:cover;
+}
+
+.errorBox, .issueBox {
+  position: absolute;
+  top:40%;
+  left:50%;
+  width:650px;
+  height:300px;
+  margin-left:-350px;
+  margin-top:-150px;
+}
+
 .tileBg {
   background: url(assets/images/grey-tile.jpg) fixed;
   padding: 10px;

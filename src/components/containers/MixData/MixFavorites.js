@@ -4,6 +4,7 @@ import * as APIService from '../../../api/APIService';
 import DocumentTitle from 'react-document-title';
 import ReactPaginate from 'react-paginate';
 import Loader from '../../helpers/loader';
+import IssueHandler from '../../helpers/IssueHandler';
 import FollowerList from '../../views/lists/FollowerList';
 
 class MixFavorites extends Component {
@@ -32,29 +33,42 @@ class MixFavorites extends Component {
                         <Loader />
                     </div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
-                        <FollowerList
-                            isLoading = {this.props.isLoading}
-                            goBack={APIService.goBack}
-                            followers={this.props.favoriteList.data}
-                        />
+
 
                         {(() => {
-                            if (this.props.favoriteList.data.length >= this.props.paginationConfig.limitWideColumn) {
-                                return <ReactPaginate previousLabel={"Previous"}
-                                                      nextLabel={"Next"}
-                                                      breakLabel={<a href="">...</a>}
-                                                      breakClassName={"break-me"}
-                                                      pageCount={this.props.paginationConfig.pageCount}
-                                                      marginPagesDisplayed={0}
-                                                      pageRangeDisplayed={7}
-                                                      onPageChange={this.handlePageClick}
-                                                      containerClassName={"pagination"}
-                                                      subContainerClassName={"pages pagination"}
-                                                      activeClassName={"active"} />
-                            }
+                            if (this.props.errorStatus) {
+                                return <IssueHandler requestItem={this.props.match.params.id} />
+                            } else {
+                                return  <div>
 
-                            if (this.props.favoriteList.data.length === 0) {
-                                return <p>No Favorites Just Yet...</p>
+                                    <FollowerList
+                                        isLoading = {this.props.isLoading}
+                                        goBack={APIService.goBack}
+                                        followers={this.props.favoriteList.data}
+                                    />
+
+                                    {(() => {
+                                        if (this.props.favoriteList.data.length >= this.props.paginationConfig.limitWideColumn) {
+                                            return <ReactPaginate previousLabel={"Previous"}
+                                                                  nextLabel={"Next"}
+                                                                  breakLabel={<a href="">...</a>}
+                                                                  breakClassName={"break-me"}
+                                                                  pageCount={this.props.paginationConfig.pageCount}
+                                                                  marginPagesDisplayed={0}
+                                                                  pageRangeDisplayed={7}
+                                                                  onPageChange={this.handlePageClick}
+                                                                  containerClassName={"pagination"}
+                                                                  subContainerClassName={"pages pagination"}
+                                                                  activeClassName={"active"} />
+                                        }
+
+                                        if (this.props.favoriteList.data.length === 0) {
+                                            return <p>No Favorites Just Yet...</p>
+                                        }
+
+                                    })()}
+
+                                </div>
                             }
 
                         })()}
@@ -73,6 +87,7 @@ const mapStateToProps = function(store) {
     return {
         favoriteList: store.api.favoriteList,
         isLoading: store.api.isLoading,
+        errorStatus: store.api.errorStatus,
         paginationConfig: store.api.paginationConfig
     };
 };

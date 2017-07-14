@@ -89,6 +89,7 @@ const initialState = {
         data: []
     },
     isLoading: true,
+    errorStatus: false,
     genreArray: [
         "Jazz","Rap","Rock","Soul","Alternative","Pop","Funk","Techno","Disco","Gospel","Latin","Electronic","KPop"
     ],
@@ -171,6 +172,8 @@ const APIReducer = function(state = initialState, action) {
             return Object.assign({}, state, { discoverTagList: action.tagDiscoverList });
         case types.GET_LOADING_STATUS:
             return Object.assign({}, state, { isLoading: action.status });
+        case types.GET_ERROR_STATUS:
+            return Object.assign({}, state, { errorStatus: action.errorStatus });
         default:
 
     }

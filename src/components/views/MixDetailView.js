@@ -1,6 +1,6 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
-import {Button, Icon} from 'react-materialize';
+import {Icon} from 'react-materialize';
 import Moment from 'react-moment';
 import {NavLink} from 'react-router-dom';
 import Iframe from 'react-iframe'

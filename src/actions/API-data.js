@@ -176,6 +176,13 @@ export function setLoadingStatus(status) {
     };
 }
 
+export function setErrorStatus(errorStatus) {
+    return {
+        type: types.GET_ERROR_STATUS,
+        errorStatus
+    };
+}
+
 export function getMixByCitySuccess(cityList) {
     return {
         type: types.GET_CITY_LIST_SUCCESS,

@@ -4,6 +4,7 @@ import * as APIService from '../../api/APIService';
 import DocumentTitle from 'react-document-title';
 import ReactPaginate from 'react-paginate';
 import Loader from '../helpers/loader';
+import IssueHandler from '../helpers/IssueHandler';
 import CloudCastList from '../views/lists/CloudCastList';
 
 class FullCloudCasts extends Component {
@@ -33,32 +34,46 @@ class FullCloudCasts extends Component {
                         <Loader />
                     </div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
-                        <CloudCastList
-                            isLoading = {this.props.isLoading}
-                            goBack={APIService.goBack}
-                            cloudcasts={this.props.cloudcasts.data}
-                        />
+
 
                         {(() => {
-                            if (this.props.cloudcasts.data.length >= this.props.paginationConfig.limitWideColumn) {
-                                return <ReactPaginate previousLabel={"Previous"}
-                                                      nextLabel={"Next"}
-                                                      breakLabel={<a href="">...</a>}
-                                                      breakClassName={"break-me"}
-                                                      pageCount={this.props.paginationConfig.pageCount}
-                                                      marginPagesDisplayed={0}
-                                                      pageRangeDisplayed={7}
-                                                      onPageChange={this.handleFollowersPageClick}
-                                                      containerClassName={"pagination"}
-                                                      subContainerClassName={"pages pagination"}
-                                                      activeClassName={"active"} />
-                            }
+                            if (this.props.errorStatus) {
+                                return <IssueHandler requestItem={this.props.match.params.id} />
+                            } else {
+                                return  <div>
 
-                            if (this.props.cloudcasts.data.length === 0) {
-                                return <p>No CloudCasts Just Yet...</p>
+                                    <CloudCastList
+                                        isLoading = {this.props.isLoading}
+                                        goBack={APIService.goBack}
+                                        cloudcasts={this.props.cloudcasts.data}
+                                    />
+
+                                    {(() => {
+                                        if (this.props.cloudcasts.data.length >= this.props.paginationConfig.limitWideColumn) {
+                                            return <ReactPaginate previousLabel={"Previous"}
+                                                                  nextLabel={"Next"}
+                                                                  breakLabel={<a href="">...</a>}
+                                                                  breakClassName={"break-me"}
+                                                                  pageCount={this.props.paginationConfig.pageCount}
+                                                                  marginPagesDisplayed={0}
+                                                                  pageRangeDisplayed={7}
+                                                                  onPageChange={this.handleFollowersPageClick}
+                                                                  containerClassName={"pagination"}
+                                                                  subContainerClassName={"pages pagination"}
+                                                                  activeClassName={"active"} />
+                                        }
+
+                                        if (this.props.cloudcasts.data.length === 0) {
+                                            return <p>No CloudCasts Just Yet...</p>
+                                        }
+
+                                    })()}
+
+                                </div>
                             }
 
                         })()}
+
 
                     </div>
                 </div>
@@ -69,11 +84,12 @@ class FullCloudCasts extends Component {
 
 const mapStateToProps = function(store) {
 
-    console.log("Store", store.api);
+    //console.log("Store", store.api);
     return {
         cloudcasts: store.api.cloudcasts,
         isLoading: store.api.isLoading,
-        paginationConfig: store.api.paginationConfig
+        paginationConfig: store.api.paginationConfig,
+        errorStatus: store.api.errorStatus
     };
 };
 

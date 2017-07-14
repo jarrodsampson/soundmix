@@ -7,6 +7,7 @@ import '../../css/owl.theme.default.min.css';
 import * as APIService from '../../api/APIService';
 import ReactPaginate from 'react-paginate';
 import Loader from '../helpers/loader';
+import IssueHandler from '../helpers/IssueHandler';
 import MixView from '../views/items/MixView';
 
 class TagSearch extends Component {
@@ -43,18 +44,29 @@ class TagSearch extends Component {
                 </div>
                 <div className={this.props.isLoading ? 'hidden' : ''}>
 
-                    <MixView mixList={this.props.tagSearchList.data} onClickTag={this.tagClick} />
-                    <ReactPaginate previousLabel={"Previous"}
-                                   nextLabel={"Next"}
-                                   breakLabel={<a href="">...</a>}
-                                   breakClassName={"break-me"}
-                                   pageCount={this.props.paginationConfig.pageCount}
-                                   marginPagesDisplayed={0}
-                                   pageRangeDisplayed={7}
-                                   onPageChange={this.handlePageClick}
-                                   containerClassName={"pagination"}
-                                   subContainerClassName={"pages pagination"}
-                                   activeClassName={"active"} />
+                    {(() => {
+                        if (this.props.errorStatus) {
+                            return <IssueHandler requestItem={this.props.match.params.id} />
+                        } else {
+                            return  <div>
+
+                                <MixView mixList={this.props.tagSearchList.data} onClickTag={this.tagClick} />
+                                <ReactPaginate previousLabel={"Previous"}
+                                               nextLabel={"Next"}
+                                               breakLabel={<a href="">...</a>}
+                                               breakClassName={"break-me"}
+                                               pageCount={this.props.paginationConfig.pageCount}
+                                               marginPagesDisplayed={0}
+                                               pageRangeDisplayed={7}
+                                               onPageChange={this.handlePageClick}
+                                               containerClassName={"pagination"}
+                                               subContainerClassName={"pages pagination"}
+                                               activeClassName={"active"} />
+
+                            </div>
+                        }
+
+                    })()}
 
                 </div>
             </div>
@@ -64,11 +76,12 @@ class TagSearch extends Component {
 
 const mapStateToProps = function(store) {
 
-    //console.log("Store", store.api.hotList.data);
+    //console.log("Store", store.api);
     return {
         tagSearchList: store.api.tagSearchList,
         paginationConfig: store.api.paginationConfig,
-        isLoading: store.api.isLoading
+        isLoading: store.api.isLoading,
+        errorStatus: store.api.errorStatus
     };
 };
 

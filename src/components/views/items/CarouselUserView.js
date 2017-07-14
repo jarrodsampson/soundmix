@@ -28,7 +28,9 @@ export default function (props) {
                         <div key={i} className="col s12">
                             <div className="item card hoverable carouselCard">
                                 <div className="card-image">
-                                    <img src={item.pictures.large} alt={item.name}/>
+                                    <a href={"/user/" + item.username}>
+                                        <img src={item.pictures.large} alt={item.name}/>
+                                    </a>
                                     <span className="card-title">{item.name}</span>
                                     <a href={"/user/" + item.username}
                                              className="btn-floating halfway-fab waves-effect waves-light deep-purple darken-1"><i

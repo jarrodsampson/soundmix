@@ -5,6 +5,7 @@ import '../../css/owl.carousel.min.css';
 import '../../css/owl.theme.default.min.css';
 import * as APIService from '../../api/APIService';
 import Loader from '../helpers/loader';
+import IssueHandler from '../helpers/IssueHandler';
 import MixDetailView from '../views/MixDetailView';
 
 class MixDetail extends Component {
@@ -34,16 +35,27 @@ class MixDetail extends Component {
                     </div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
 
-                        <MixDetailView
-                            {...this.props.mixDetails}
-                            listeners={this.props.listeners.data}
-                            suggestions={this.props.suggestions.data}
-                            favorites={this.props.favoriteList.data}
-                            comments={this.props.commentsList.data}
-                            goBack={APIService.goBack}
-                            onClickAlbum={this.albumClick}
-                            isLoading = {this.props.isLoading}
-                        />
+                        {(() => {
+                            if (this.props.errorStatus) {
+                                return <IssueHandler requestItem={this.props.match.params.id} />
+                            } else {
+                                return  <div>
+
+                                    <MixDetailView
+                                        {...this.props.mixDetails}
+                                        listeners={this.props.listeners.data}
+                                        suggestions={this.props.suggestions.data}
+                                        favorites={this.props.favoriteList.data}
+                                        comments={this.props.commentsList.data}
+                                        goBack={APIService.goBack}
+                                        onClickAlbum={this.albumClick}
+                                        isLoading = {this.props.isLoading}
+                                    />
+
+                                </div>
+                            }
+
+                        })()}
 
                     </div>
 
@@ -63,6 +75,7 @@ const mapStateToProps = function(store) {
         favoriteList: store.api.favoriteList,
         commentsList: store.api.commentsList,
         isLoading: store.api.isLoading,
+        errorStatus: store.api.errorStatus,
         paginationConfig: store.api.paginationConfig
     };
 };

@@ -4,6 +4,7 @@ import DocumentTitle from 'react-document-title';
 import * as APIService from '../../api/APIService';
 import * as LocationService from '../../api/LocationService';
 import Loader from '../helpers/loader';
+import IssueHandler from '../helpers/IssueHandler';
 import {geolocated} from 'react-geolocated';
 
 import MusicList from '../views/lists/MusicList';
@@ -52,71 +53,87 @@ class YourHood extends Component {
                         <Loader />
                     </div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
+
+
                         {(() => {
+                            if (this.props.errorStatus) {
+                                return <IssueHandler requestItem={this.props.match.params.id} />
+                            } else {
+                                return  <div>
 
-                            if (this.props.match.params.id === undefined) {
+                                    {(() => {
 
-                                if (!this.props.isGeolocationAvailable) {
-                                    return <div>Your browser does not support Geolocation</div>
-                                } else if (!this.props.isGeolocationEnabled) {
-                                    return <div>Geolocation is not enabled</div>
-                                } else if (this.props.coords) {
-                                    if (count < 1) {
-                                        this.getCityByLatLng(
-                                            this.props.coords.latitude,
-                                            this.props.coords.longitude,
-                                            this.props.paginationConfig.offset,
-                                            this.props.paginationConfig.limit
-                                        );
-                                        count++;
-                                    }
-                                    return <div>
-                                        <MusicList
-                                            isLoading={this.props.isLoading}
-                                            goBack={APIService.goBack}
-                                            data={this.props.cityList.data}
-                                        />
+                                        if (this.props.match.params.id === undefined) {
 
-                                        <ReactPaginate previousLabel={"Previous"}
-                                                       nextLabel={"Next"}
-                                                       breakLabel={<a href="">...</a>}
-                                                       breakClassName={"break-me"}
-                                                       pageCount={this.props.paginationConfig.pageCount}
-                                                       marginPagesDisplayed={0}
-                                                       pageRangeDisplayed={7}
-                                                       onPageChange={this.handlePageClick}
-                                                       containerClassName={"pagination"}
-                                                       subContainerClassName={"pages pagination"}
-                                                       activeClassName={"active"}
-                                        />
+                                            if (!this.props.isGeolocationAvailable) {
+                                                return <div>Your browser does not support Geolocation</div>
+                                            } else if (!this.props.isGeolocationEnabled) {
+                                                return <div>Geolocation is not enabled</div>
+                                            } else if (this.props.coords) {
+                                                if (count < 1) {
+                                                    this.getCityByLatLng(
+                                                        this.props.coords.latitude,
+                                                        this.props.coords.longitude,
+                                                        this.props.paginationConfig.offset,
+                                                        this.props.paginationConfig.limit
+                                                    );
+                                                    count++;
+                                                }
+                                                return <div>
+                                                    <MusicList
+                                                        isLoading={this.props.isLoading}
+                                                        goBack={APIService.goBack}
+                                                        data={this.props.cityList.data}
+                                                    />
 
-                                    </div>
-                                }
+                                                    <ReactPaginate previousLabel={"Previous"}
+                                                                   nextLabel={"Next"}
+                                                                   breakLabel={<a href="">...</a>}
+                                                                   breakClassName={"break-me"}
+                                                                   pageCount={this.props.paginationConfig.pageCount}
+                                                                   marginPagesDisplayed={0}
+                                                                   pageRangeDisplayed={7}
+                                                                   onPageChange={this.handlePageClick}
+                                                                   containerClassName={"pagination"}
+                                                                   subContainerClassName={"pages pagination"}
+                                                                   activeClassName={"active"}
+                                                    />
+
+                                                </div>
+                                            }
+                                        }
+                                        else {
+                                            return <div>
+                                                <MusicList
+                                                    isLoading={this.props.isLoading}
+                                                    goBack={APIService.goBack}
+                                                    data={this.props.cityList.data}
+                                                />
+
+
+                                                <ReactPaginate previousLabel={"Previous"}
+                                                               nextLabel={"Next"}
+                                                               breakLabel={<a href="">...</a>}
+                                                               breakClassName={"break-me"}
+                                                               pageCount={this.props.paginationConfig.pageCount}
+                                                               marginPagesDisplayed={0}
+                                                               pageRangeDisplayed={7}
+                                                               onPageChange={this.handlePageIdClick}
+                                                               containerClassName={"pagination"}
+                                                               subContainerClassName={"pages pagination"}
+                                                               activeClassName={"active"}
+                                                />
+                                            </div>
+                                        }
+                                    })()}
+
+
+
+                                </div>
                             }
-                            else {
-                                return <div>
-                                            <MusicList
-                                                isLoading={this.props.isLoading}
-                                                goBack={APIService.goBack}
-                                                data={this.props.cityList.data}
-                                            />
 
-
-                                            <ReactPaginate previousLabel={"Previous"}
-                                                           nextLabel={"Next"}
-                                                           breakLabel={<a href="">...</a>}
-                                                           breakClassName={"break-me"}
-                                                           pageCount={this.props.paginationConfig.pageCount}
-                                                           marginPagesDisplayed={0}
-                                                           pageRangeDisplayed={7}
-                                                           onPageChange={this.handlePageIdClick}
-                                                           containerClassName={"pagination"}
-                                                           subContainerClassName={"pages pagination"}
-                                                           activeClassName={"active"}
-                                            />
-                                        </div>
-                            }
                         })()}
+
                     </div>
 
                 </div>
@@ -133,6 +150,7 @@ const mapStateToProps = function(store) {
         cityList: store.api.cityList,
         paginationConfig: store.api.paginationConfig,
         isLoading: store.api.isLoading,
+        errorStatus: store.api.errorStatus,
         searchParamString: store.api.searchParamString
     };
 };

@@ -4,6 +4,7 @@ import * as APIService from '../../api/APIService';
 import DocumentTitle from 'react-document-title';
 import ReactPaginate from 'react-paginate';
 import Loader from '../helpers/loader';
+import IssueHandler from '../helpers/IssueHandler';
 import FollowerList from '../views/lists/FollowerList';
 
 class FullFollowers extends Component {
@@ -32,32 +33,46 @@ class FullFollowers extends Component {
                         <Loader />
                     </div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
-                        <FollowerList
-                            isLoading = {this.props.isLoading}
-                            goBack={APIService.goBack}
-                            followers={this.props.followers.data}
-                        />
+
 
                         {(() => {
-                            if (this.props.followers.data.length >= this.props.paginationConfig.limitWideColumn) {
-                                return <ReactPaginate previousLabel={"Previous"}
-                                                      nextLabel={"Next"}
-                                                      breakLabel={<a href="">...</a>}
-                                                      breakClassName={"break-me"}
-                                                      pageCount={this.props.paginationConfig.pageCount}
-                                                      marginPagesDisplayed={0}
-                                                      pageRangeDisplayed={7}
-                                                      onPageChange={this.handlePageClick}
-                                                      containerClassName={"pagination"}
-                                                      subContainerClassName={"pages pagination"}
-                                                      activeClassName={"active"} />
-                            }
+                            if (this.props.errorStatus) {
+                                return <IssueHandler requestItem={this.props.match.params.id} />
+                            } else {
+                                return  <div>
 
-                            if (this.props.followers.data.length === 0) {
-                                return <p>No Followers Just Yet...</p>
+                                    <FollowerList
+                                        isLoading = {this.props.isLoading}
+                                        goBack={APIService.goBack}
+                                        followers={this.props.followers.data}
+                                    />
+
+                                    {(() => {
+                                        if (this.props.followers.data.length >= this.props.paginationConfig.limitWideColumn) {
+                                            return <ReactPaginate previousLabel={"Previous"}
+                                                                  nextLabel={"Next"}
+                                                                  breakLabel={<a href="">...</a>}
+                                                                  breakClassName={"break-me"}
+                                                                  pageCount={this.props.paginationConfig.pageCount}
+                                                                  marginPagesDisplayed={0}
+                                                                  pageRangeDisplayed={7}
+                                                                  onPageChange={this.handlePageClick}
+                                                                  containerClassName={"pagination"}
+                                                                  subContainerClassName={"pages pagination"}
+                                                                  activeClassName={"active"} />
+                                        }
+
+                                        if (this.props.followers.data.length === 0) {
+                                            return <p>No Followers Just Yet...</p>
+                                        }
+
+                                    })()}
+
+                                </div>
                             }
 
                         })()}
+
 
                     </div>
                 </div>
@@ -68,11 +83,12 @@ class FullFollowers extends Component {
 
 const mapStateToProps = function(store) {
 
-    console.log("Store", store.api);
+    //console.log("Store", store.api);
     return {
         followers: store.api.followers,
         isLoading: store.api.isLoading,
-        paginationConfig: store.api.paginationConfig
+        paginationConfig: store.api.paginationConfig,
+        errorStatus: store.api.errorStatus
     };
 };
 

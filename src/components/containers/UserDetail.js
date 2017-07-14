@@ -13,6 +13,7 @@ import FavoritesList from '../views/lists/FavoritesList';
 import CloudCastList from '../views/lists/CloudCastList';
 import FeedList from '../views/lists/FeedList';
 import Loader from '../helpers/loader';
+import IssueHandler from '../helpers/IssueHandler';
 import {Tabs, Tab} from 'react-materialize';
 import ReactPaginate from 'react-paginate';
 
@@ -80,211 +81,226 @@ class UserDetail extends Component {
                     </div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
 
-                        <div>
-                            <UserDetailPane
-                                {...this.props.userDetails}
-                            />
-                        </div>
 
-                        <div className="container-fluid tab-area">
-                            <Tabs className='tab-demo z-depth-1 tabs-fixed-width'>
-                                <Tab title="Summary" active>
+                        {(() => {
+                            if (this.props.errorStatus) {
+                                return <IssueHandler requestItem={this.props.match.params.id} />
+                            } else {
+                                return  <div>
 
-                                    <div className="col s12 pushDown"></div>
-
-                                    <UserDetailSummary
-                                        goBack={APIService.goBack}
-                                        playlists={this.props.playlists.data}
-                                        cloudcasts={this.props.cloudcasts.data}
-                                        feed={this.props.feed.data}
-                                        comments={this.props.comments.data}
-                                    />
-                                </Tab>
-                                <Tab title="Feed">
-
-                                    <div className="col s12 pushDown"></div>
-
-                                    <FeedList
-                                        isLoading = {this.props.isLoading}
-                                        goBack={APIService.goBack}
-                                        feed={this.props.feed.data}
-                                    />
-
-                                    <ReactPaginate previousLabel={"Previous"}
-                                                   nextLabel={"Next"}
-                                                   breakLabel={<a href="">...</a>}
-                                                   breakClassName={"break-me"}
-                                                   pageCount={this.props.paginationConfig.pageCount}
-                                                   marginPagesDisplayed={0}
-                                                   pageRangeDisplayed={7}
-                                                   onPageChange={this.handleFeedPageClick}
-                                                   containerClassName={"pagination"}
-                                                   subContainerClassName={"pages pagination"}
-                                                   activeClassName={"active"} />
-
-                                </Tab>
-                                <Tab title="Followers">
-                                    <div className="col s12 pushDown"></div>
-                                    <FollowerList
-                                        isLoading = {this.props.isLoading}
-                                        goBack={APIService.goBack}
-                                        followers={this.props.followers.data}
-                                    />
-
-                                    {(() => {
-                                        if (this.props.followers.data.length >= this.props.paginationConfig.limitWideColumn) {
-                                            return <ReactPaginate previousLabel={"Previous"}
-                                                                  nextLabel={"Next"}
-                                                                  breakLabel={<a href="">...</a>}
-                                                                  breakClassName={"break-me"}
-                                                                  pageCount={this.props.paginationConfig.pageCount}
-                                                                  marginPagesDisplayed={0}
-                                                                  pageRangeDisplayed={7}
-                                                                  onPageChange={this.handleFollowersPageClick}
-                                                                  containerClassName={"pagination"}
-                                                                  subContainerClassName={"pages pagination"}
-                                                                  activeClassName={"active"} />
-                                        }
-
-                                        if (this.props.followers.data.length === 0) {
-                                            return <p>No Followers Just Yet...</p>
-                                        }
-
-                                    })()}
-
-
-                                </Tab>
-                                <Tab title="Following">
-                                    <div className="col s12 pushDown"></div>
-                                    <FollowerList
-                                        isLoading={this.props.isLoading}
-                                        goBack={APIService.goBack}
-                                        followers={this.props.following.data}
-                                    />
-
-
-                                    {(() => {
-                                        if (this.props.following.data.length >= this.props.paginationConfig.limitWideColumn) {
-                                            return <ReactPaginate previousLabel={"Previous"}
-                                                                  nextLabel={"Next"}
-                                                                  breakLabel={<a href="">...</a>}
-                                                                  breakClassName={"break-me"}
-                                                                  pageCount={this.props.paginationConfig.pageCount}
-                                                                  marginPagesDisplayed={0}
-                                                                  pageRangeDisplayed={7}
-                                                                  onPageChange={this.handleFollowingPageClick}
-                                                                  containerClassName={"pagination"}
-                                                                  subContainerClassName={"pages pagination"}
-                                                                  activeClassName={"active"} />
-                                        }
-
-                                        if (this.props.following.data.length === 0) {
-                                            return <p>Not Following Anyone Just Yet...</p>
-                                        }
-
-                                    })()}
-
-                                </Tab>
-                                <Tab title="Listens">
-                                    <div className="col s12 pushDown"></div>
-                                    <div className="container">
-                                        <MusicList
-                                            isLoading = {this.props.isLoading}
-                                            goBack={APIService.goBack}
-                                            data={this.props.listensList.data}
+                                    <div>
+                                        <UserDetailPane
+                                            {...this.props.userDetails}
                                         />
                                     </div>
 
-                                    {(() => {
-                                        if (this.props.listensList.data.length >= this.props.paginationConfig.limit) {
-                                            return <ReactPaginate previousLabel={"Previous"}
-                                                                  nextLabel={"Next"}
-                                                                  breakLabel={<a href="">...</a>}
-                                                                  breakClassName={"break-me"}
-                                                                  pageCount={this.props.paginationConfig.pageCount}
-                                                                  marginPagesDisplayed={0}
-                                                                  pageRangeDisplayed={7}
-                                                                  onPageChange={this.handleListensPageClick}
-                                                                  containerClassName={"pagination"}
-                                                                  subContainerClassName={"pages pagination"}
-                                                                  activeClassName={"active"} />
-                                        }
+                                    <div className="container-fluid tab-area">
+                                        <Tabs className='tab-demo z-depth-1 tabs-fixed-width'>
+                                            <Tab title="Summary" active>
 
-                                        if (this.props.listensList.data.length === 0) {
-                                            return <p>No Listens Publicly Available.</p>
-                                        }
+                                                <div className="col s12 pushDown"></div>
 
-                                    })()}
+                                                <UserDetailSummary
+                                                    goBack={APIService.goBack}
+                                                    playlists={this.props.playlists.data}
+                                                    cloudcasts={this.props.cloudcasts.data}
+                                                    feed={this.props.feed.data}
+                                                    comments={this.props.comments.data}
+                                                />
+                                            </Tab>
+                                            <Tab title="Feed">
+
+                                                <div className="col s12 pushDown"></div>
+
+                                                <FeedList
+                                                    isLoading = {this.props.isLoading}
+                                                    goBack={APIService.goBack}
+                                                    feed={this.props.feed.data}
+                                                />
+
+                                                <ReactPaginate previousLabel={"Previous"}
+                                                               nextLabel={"Next"}
+                                                               breakLabel={<a href="">...</a>}
+                                                               breakClassName={"break-me"}
+                                                               pageCount={this.props.paginationConfig.pageCount}
+                                                               marginPagesDisplayed={0}
+                                                               pageRangeDisplayed={7}
+                                                               onPageChange={this.handleFeedPageClick}
+                                                               containerClassName={"pagination"}
+                                                               subContainerClassName={"pages pagination"}
+                                                               activeClassName={"active"} />
+
+                                            </Tab>
+                                            <Tab title="Followers">
+                                                <div className="col s12 pushDown"></div>
+                                                <FollowerList
+                                                    isLoading = {this.props.isLoading}
+                                                    goBack={APIService.goBack}
+                                                    followers={this.props.followers.data}
+                                                />
+
+                                                {(() => {
+                                                    if (this.props.followers.data.length >= this.props.paginationConfig.limitWideColumn) {
+                                                        return <ReactPaginate previousLabel={"Previous"}
+                                                                              nextLabel={"Next"}
+                                                                              breakLabel={<a href="">...</a>}
+                                                                              breakClassName={"break-me"}
+                                                                              pageCount={this.props.paginationConfig.pageCount}
+                                                                              marginPagesDisplayed={0}
+                                                                              pageRangeDisplayed={7}
+                                                                              onPageChange={this.handleFollowersPageClick}
+                                                                              containerClassName={"pagination"}
+                                                                              subContainerClassName={"pages pagination"}
+                                                                              activeClassName={"active"} />
+                                                    }
+
+                                                    if (this.props.followers.data.length === 0) {
+                                                        return <p>No Followers Just Yet...</p>
+                                                    }
+
+                                                })()}
 
 
-                                </Tab>
-                                <Tab title="Likes">
-                                    <div className="col s12 pushDown"></div>
-                                    <div className="container">
-                                        <FavoritesList
-                                            isLoading = {this.props.isLoading}
-                                            goBack={APIService.goBack}
-                                            favorites={this.props.favorites.data}
-                                        />
+                                            </Tab>
+                                            <Tab title="Following">
+                                                <div className="col s12 pushDown"></div>
+                                                <FollowerList
+                                                    isLoading={this.props.isLoading}
+                                                    goBack={APIService.goBack}
+                                                    followers={this.props.following.data}
+                                                />
+
+
+                                                {(() => {
+                                                    if (this.props.following.data.length >= this.props.paginationConfig.limitWideColumn) {
+                                                        return <ReactPaginate previousLabel={"Previous"}
+                                                                              nextLabel={"Next"}
+                                                                              breakLabel={<a href="">...</a>}
+                                                                              breakClassName={"break-me"}
+                                                                              pageCount={this.props.paginationConfig.pageCount}
+                                                                              marginPagesDisplayed={0}
+                                                                              pageRangeDisplayed={7}
+                                                                              onPageChange={this.handleFollowingPageClick}
+                                                                              containerClassName={"pagination"}
+                                                                              subContainerClassName={"pages pagination"}
+                                                                              activeClassName={"active"} />
+                                                    }
+
+                                                    if (this.props.following.data.length === 0) {
+                                                        return <p>Not Following Anyone Just Yet...</p>
+                                                    }
+
+                                                })()}
+
+                                            </Tab>
+                                            <Tab title="Listens">
+                                                <div className="col s12 pushDown"></div>
+                                                <div className="container">
+                                                    <MusicList
+                                                        isLoading = {this.props.isLoading}
+                                                        goBack={APIService.goBack}
+                                                        data={this.props.listensList.data}
+                                                    />
+                                                </div>
+
+                                                {(() => {
+                                                    if (this.props.listensList.data.length >= this.props.paginationConfig.limit) {
+                                                        return <ReactPaginate previousLabel={"Previous"}
+                                                                              nextLabel={"Next"}
+                                                                              breakLabel={<a href="">...</a>}
+                                                                              breakClassName={"break-me"}
+                                                                              pageCount={this.props.paginationConfig.pageCount}
+                                                                              marginPagesDisplayed={0}
+                                                                              pageRangeDisplayed={7}
+                                                                              onPageChange={this.handleListensPageClick}
+                                                                              containerClassName={"pagination"}
+                                                                              subContainerClassName={"pages pagination"}
+                                                                              activeClassName={"active"} />
+                                                    }
+
+                                                    if (this.props.listensList.data.length === 0) {
+                                                        return <p>No Listens Publicly Available.</p>
+                                                    }
+
+                                                })()}
+
+
+                                            </Tab>
+                                            <Tab title="Likes">
+                                                <div className="col s12 pushDown"></div>
+                                                <div className="container">
+                                                    <FavoritesList
+                                                        isLoading = {this.props.isLoading}
+                                                        goBack={APIService.goBack}
+                                                        favorites={this.props.favorites.data}
+                                                    />
+                                                </div>
+
+                                                {(() => {
+                                                    if (this.props.favorites.data.length >= this.props.paginationConfig.limit) {
+                                                        return <ReactPaginate previousLabel={"Previous"}
+                                                                              nextLabel={"Next"}
+                                                                              breakLabel={<a href="">...</a>}
+                                                                              breakClassName={"break-me"}
+                                                                              pageCount={this.props.paginationConfig.pageCount}
+                                                                              marginPagesDisplayed={0}
+                                                                              pageRangeDisplayed={7}
+                                                                              onPageChange={this.handleFavoritesPageClick}
+                                                                              containerClassName={"pagination"}
+                                                                              subContainerClassName={"pages pagination"}
+                                                                              activeClassName={"active"} />
+                                                    }
+
+                                                    if (this.props.favorites.data.length === 0) {
+                                                        return <p>No Likes Publicly Available.</p>
+                                                    }
+
+                                                })()}
+
+
+                                            </Tab>
+                                            <Tab title="CloudCasts">
+                                                <div className="col s12 pushDown"></div>
+                                                <div className="container">
+                                                    <CloudCastList
+                                                        isLoading = {this.props.isLoading}
+                                                        goBack={APIService.goBack}
+                                                        cloudcasts={this.props.cloudcasts.data}
+                                                    />
+                                                </div>
+
+                                                {(() => {
+                                                    if (this.props.cloudcasts.data.length >= this.props.paginationConfig.limit) {
+                                                        return <ReactPaginate previousLabel={"Previous"}
+                                                                              nextLabel={"Next"}
+                                                                              breakLabel={<a href="">...</a>}
+                                                                              breakClassName={"break-me"}
+                                                                              pageCount={this.props.paginationConfig.pageCount}
+                                                                              marginPagesDisplayed={0}
+                                                                              pageRangeDisplayed={7}
+                                                                              onPageChange={this.handleCloudCastsPageClick}
+                                                                              containerClassName={"pagination"}
+                                                                              subContainerClassName={"pages pagination"}
+                                                                              activeClassName={"active"} />
+                                                    }
+
+                                                    if (this.props.cloudcasts.data.length === 0) {
+                                                        return <p>No Cloudcasts Just Yet...</p>
+                                                    }
+
+                                                })()}
+
+                                            </Tab>
+                                        </Tabs>
                                     </div>
 
-                                    {(() => {
-                                        if (this.props.favorites.data.length >= this.props.paginationConfig.limit) {
-                                            return <ReactPaginate previousLabel={"Previous"}
-                                                                  nextLabel={"Next"}
-                                                                  breakLabel={<a href="">...</a>}
-                                                                  breakClassName={"break-me"}
-                                                                  pageCount={this.props.paginationConfig.pageCount}
-                                                                  marginPagesDisplayed={0}
-                                                                  pageRangeDisplayed={7}
-                                                                  onPageChange={this.handleFavoritesPageClick}
-                                                                  containerClassName={"pagination"}
-                                                                  subContainerClassName={"pages pagination"}
-                                                                  activeClassName={"active"} />
-                                        }
+                                </div>
+                            }
 
-                                        if (this.props.favorites.data.length === 0) {
-                                            return <p>No Likes Publicly Available.</p>
-                                        }
-
-                                    })()}
+                        })()}
 
 
-                                </Tab>
-                                <Tab title="CloudCasts">
-                                    <div className="col s12 pushDown"></div>
-                                    <div className="container">
-                                        <CloudCastList
-                                            isLoading = {this.props.isLoading}
-                                            goBack={APIService.goBack}
-                                            cloudcasts={this.props.cloudcasts.data}
-                                        />
-                                    </div>
 
-                                    {(() => {
-                                        if (this.props.cloudcasts.data.length >= this.props.paginationConfig.limit) {
-                                            return <ReactPaginate previousLabel={"Previous"}
-                                                                  nextLabel={"Next"}
-                                                                  breakLabel={<a href="">...</a>}
-                                                                  breakClassName={"break-me"}
-                                                                  pageCount={this.props.paginationConfig.pageCount}
-                                                                  marginPagesDisplayed={0}
-                                                                  pageRangeDisplayed={7}
-                                                                  onPageChange={this.handleCloudCastsPageClick}
-                                                                  containerClassName={"pagination"}
-                                                                  subContainerClassName={"pages pagination"}
-                                                                  activeClassName={"active"} />
-                                        }
-
-                                        if (this.props.cloudcasts.data.length === 0) {
-                                            return <p>No Cloudcasts Just Yet...</p>
-                                        }
-
-                                    })()}
-
-                                </Tab>
-                            </Tabs>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -306,6 +322,7 @@ const mapStateToProps = function(store) {
         favorites: store.api.favoriteList,
         comments: store.api.comments,
         isLoading: store.api.isLoading,
+        errorStatus: store.api.errorStatus,
         paginationConfig: store.api.paginationConfig
     };
 };

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as APIService from '../../api/APIService';
 import Loader from '../helpers/loader';
+import IssueHandler from '../helpers/IssueHandler';
 import ReactPaginate from 'react-paginate';
 import DocumentTitle from 'react-document-title';
 import FeedList from '../views/lists/FeedList';
@@ -32,30 +33,43 @@ class FullFeed extends Component {
                         <Loader />
                     </div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
-                        <FeedList
-                            isLoading = {this.props.isLoading}
-                            goBack={APIService.goBack}
-                            feed={this.props.feed.data}
-                        />
 
                         {(() => {
-                            if (this.props.feed.data.length === 0) {
-                                return <p>Nothing in Feed Just Yet...</p>
+                            if (this.props.errorStatus) {
+                                return <IssueHandler requestItem={this.props.match.params.id} />
+                            } else {
+                                return  <div>
+
+                                    <FeedList
+                                        isLoading = {this.props.isLoading}
+                                        goBack={APIService.goBack}
+                                        feed={this.props.feed.data}
+                                    />
+
+                                    {(() => {
+                                        if (this.props.feed.data.length === 0) {
+                                            return <p>Nothing in Feed Just Yet...</p>
+                                        }
+
+                                    })()}
+
+                                    <ReactPaginate previousLabel={"Previous"}
+                                                   nextLabel={"Next"}
+                                                   breakLabel={<a href="">...</a>}
+                                                   breakClassName={"break-me"}
+                                                   pageCount={this.props.paginationConfig.pageCount}
+                                                   marginPagesDisplayed={0}
+                                                   pageRangeDisplayed={7}
+                                                   onPageChange={this.handlePageClick}
+                                                   containerClassName={"pagination"}
+                                                   subContainerClassName={"pages pagination"}
+                                                   activeClassName={"active"} />
+
+                                </div>
                             }
 
                         })()}
 
-                        <ReactPaginate previousLabel={"Previous"}
-                                       nextLabel={"Next"}
-                                       breakLabel={<a href="">...</a>}
-                                       breakClassName={"break-me"}
-                                       pageCount={this.props.paginationConfig.pageCount}
-                                       marginPagesDisplayed={0}
-                                       pageRangeDisplayed={7}
-                                       onPageChange={this.handlePageClick}
-                                       containerClassName={"pagination"}
-                                       subContainerClassName={"pages pagination"}
-                                       activeClassName={"active"} />
 
                     </div>
                 </div>
@@ -66,11 +80,12 @@ class FullFeed extends Component {
 
 const mapStateToProps = function(store) {
 
-    console.log("Store", store.api);
+    //console.log("Store", store.api);
     return {
         feed: store.api.feed,
         isLoading: store.api.isLoading,
-        paginationConfig: store.api.paginationConfig
+        paginationConfig: store.api.paginationConfig,
+        errorStatus: store.api.errorStatus
     };
 };
 

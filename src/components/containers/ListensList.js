@@ -4,6 +4,7 @@ import * as APIService from '../../api/APIService';
 import DocumentTitle from 'react-document-title';
 import ReactPaginate from 'react-paginate';
 import Loader from '../helpers/loader';
+import IssueHandler from '../helpers/IssueHandler';
 import MusicList from '../views/lists/MusicList';
 
 class ListensList extends Component {
@@ -32,32 +33,45 @@ class ListensList extends Component {
                         <Loader />
                     </div>
                     <div className={this.props.isLoading ? 'hidden' : ''}>
-                        <MusicList
-                            isLoading = {this.props.isLoading}
-                            goBack={APIService.goBack}
-                            data={this.props.listensList.data}
-                        />
 
                         {(() => {
-                            if (this.props.listensList.data.length >= this.props.paginationConfig.limit) {
-                                return <ReactPaginate previousLabel={"Previous"}
-                                                      nextLabel={"Next"}
-                                                      breakLabel={<a href="">...</a>}
-                                                      breakClassName={"break-me"}
-                                                      pageCount={this.props.paginationConfig.pageCount}
-                                                      marginPagesDisplayed={0}
-                                                      pageRangeDisplayed={7}
-                                                      onPageChange={this.handlePageClick}
-                                                      containerClassName={"pagination"}
-                                                      subContainerClassName={"pages pagination"}
-                                                      activeClassName={"active"} />
-                            }
+                            if (this.props.errorStatus) {
+                                return <IssueHandler requestItem={this.props.match.params.id} />
+                            } else {
+                                return  <div>
 
-                            if (this.props.listensList.data.length === 0) {
-                                return <p>No Listens Just Yet...</p>
+                                    <MusicList
+                                        isLoading = {this.props.isLoading}
+                                        goBack={APIService.goBack}
+                                        data={this.props.listensList.data}
+                                    />
+
+                                    {(() => {
+                                        if (this.props.listensList.data.length >= this.props.paginationConfig.limit) {
+                                            return <ReactPaginate previousLabel={"Previous"}
+                                                                  nextLabel={"Next"}
+                                                                  breakLabel={<a href="">...</a>}
+                                                                  breakClassName={"break-me"}
+                                                                  pageCount={this.props.paginationConfig.pageCount}
+                                                                  marginPagesDisplayed={0}
+                                                                  pageRangeDisplayed={7}
+                                                                  onPageChange={this.handlePageClick}
+                                                                  containerClassName={"pagination"}
+                                                                  subContainerClassName={"pages pagination"}
+                                                                  activeClassName={"active"} />
+                                        }
+
+                                        if (this.props.listensList.data.length === 0) {
+                                            return <p>No Listens Just Yet...</p>
+                                        }
+
+                                    })()}
+
+                                </div>
                             }
 
                         })()}
+
 
                     </div>
                 </div>
@@ -68,11 +82,12 @@ class ListensList extends Component {
 
 const mapStateToProps = function(store) {
 
-    console.log("Store", store.api);
+    //console.log("Store", store.api);
     return {
         listensList: store.api.listensList,
         isLoading: store.api.isLoading,
-        paginationConfig: store.api.paginationConfig
+        paginationConfig: store.api.paginationConfig,
+        errorStatus: store.api.errorStatus
     };
 };
 
